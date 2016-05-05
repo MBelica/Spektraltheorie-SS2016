@@ -2,8 +2,7 @@
 \contentsline {chapter}{{\"U}berblick \IeC {\"u}ber die Vorlesung Spektraltheorie}{4}{chapter*.5}
 \contentsline {chapter}{Fourieranalysis}{7}{chapter*.24}
 \contentsline {section}{\numberline {3}Die Fouriertransformation auf $L^{1}$, $\ensuremath {\mathcal {S}}$ und $L^{2}$}{7}{section.25}
-\contentsline {chapter}{\numberline {1}\IeC {\"U}bungen}{8}{chapter.28}
-\contentsline {section}{\numberline {1}1. \IeC {\"U}bung}{8}{section.29}
-\contentsline {section}{\numberline {2}2. \IeC {\"U}bung}{8}{section.30}
-\contentsline {section}{\numberline {3}3. \IeC {\"U}bung}{8}{section.31}
-\contentsline {chapter}{Abk\IeC {\"u}rzungsverzeichnis}{9}{appendix*.32}
+\contentsline {section}{\numberline {4}Don't know}{10}{section.52}
+\contentsline {chapter}{\IeC {\"U}bungen}{12}{chapter*.63}
+\contentsline {chapter}{Abk\IeC {\"u}rzungsverzeichnis}{13}{appendix*.67}
+\contentsline {chapter}{Stichwortverzeichnis}{14}{section*.68}

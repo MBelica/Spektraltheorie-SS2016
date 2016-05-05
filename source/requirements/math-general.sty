@@ -28,12 +28,23 @@
 \usetikzlibrary{intersections}
 \usetikzlibrary[topaths]
 
+\renewcommand{\labelenumi}{\alph{enumi})} % Change standard enumeration to a), b), c),... Care one has to change all references after changing this!
+\renewcommand{\labelenumii}{(\roman{enumii})} % Change standard level-2 enumeration to (i), (ii), .... Care one has to change all hyperrefs after changing this!
+
+\DeclareFontFamily{OT1}{pzc}{}
+\DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.10] pzcmi7t}{}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
 
 % Removes common mistake occurring with broken unicode character 
 \DeclareUnicodeCharacter{00A0}{ }
 
 
 % Sets
+\def\ft{\xrightarrow[]{\mathpzc{f}}}
 \def\Sz{\ensuremath{\mathcal{S}}}
 \def\C{\ensuremath{\mathbb{C}}}
 \def\D{\ensuremath{\mathbb{D}}}

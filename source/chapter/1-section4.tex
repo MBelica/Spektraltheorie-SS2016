@@ -1,0 +1,56 @@
+\section{Don't know} %todo start missing
+
+
+\setcounter{satz}{2}
+
+\begin{satz} \label{satz:4.3}
+	Sei $v : \Sz(\R^{d}) \rightarrow \C$ linear. Dann gilt:
+	\[ v \text{ stetig (d.h. } v \in \Sz(\R^{d}) \text{)} \gdw \exists N \in \N: |v(f)| \leq C \| f \|_{N} \text{ für alle } f \in \Sz(\R^{d}) \]
+\end{satz}
+
+\begin{beweis}
+	$"\Leftarrow"$ klar. \\
+	$"\Rightarrow"$ Andernfalls gibt es zu jedem $n \in \N$ ein $f_{n} \in \Sz$ mit $\|f_{n}\|_{n} = 1$, aber $|v(f_{n}) \geq n$. Setze $g_{n} = \frac{f_{n}}{\sqrt{n}}$. Dann
+		\[ \| g_{n} \|_{N} \leq n^{-\frac{1}{2}} \xrightarrow[n \rightarrow \infty]{} 0 \text{ für } n \geq N \]
+		Aber: $|v(g_{n})| \geq \sqrt{n} \xrightarrow[n \rightarrow \infty]{} \infty$. Also ein Widerspruch zur Stetigkeit von $v$.
+\end{beweis}
+
+
+\begin{beispiele}
+	\begin{enumerate}
+		\item $"L^{p}(\R^{d}) \subset \Sz'(\R^{d})"$. Sei $u \colon \R^{d} \rightarrow \C$ lokal integrierbar und
+			\[ (*) \quad \int_{|x|\leq R} |h(x)| dx \leq C R^{n} \text{ für } R > 1 \text{ und ein festes } C < \infty, n \in \N \text{ fest.} \label{eq:4.4-*} \]
+			Dann wird durch
+				\[ u_{n}(f) = \int_{\R^{d}} h(x) f(x)dx \]
+			eine Distribution $u_{n} \in \Sz'(\R^{d})$ definiert, d.h. wir erhalten eine Einbettung 
+				\[ h \in \{ \text{ Fkt. mit } \hyperref[eq:4.4-*]{(*)} \} \rightarrow v_{n} \in \Sz'(\R^{d}) \]
+			\begin{beweis}
+				Benutze \hyperref[satz:4.3]{4.3} mit $u$ auf $(*)$
+				\begin{align*}
+					|u_{n}(f)| & = |\int h(x) f(x) dx | = | \int h(x) (1 + |x|^{2})^{-2-n}(1+|x|^{2})^{2+n}f(x)dx| \\
+					& \leq \underbrace{\int |h(x)(1+|x|^{2})^{-2-n}dx}_{\leq C \| f \|_{N} < \infty} \cdot \underbrace{\sup_{x \in \R^{d}} (1 + |x|^{2})^{2+R}|f(x)|}_{\underset{(N = 4+ 2R)}{\leq \| f \|_{4+2R}}}
+				\end{align*}
+				$h \in L^{p}(\R^{d}), \int_{|x|=R} |h(x) dx \overset{Hölder}{\leq} \left( \int_{|x| \leq R} |h(x)|^{p} dx \right)^{\frac{1}{p}} R^{\frac{d}{p'}}$ mit $1 = \frac{1}{p} + \frac{1}{p'}$. Hier ist $(*)$ erfüllt mit ... % todo check this whole line
+			\end{beweis}
+		\item Sei $\psi \in C^{\infty}(\R^{d})$ und langsam wachsend, d.h. für alle $\alpha \in \N_{0}^{d}$ gibt es $N_{\alpha}, C_{\alpha} < \infty$ mit
+			\[ |D^{\alpha} \psi(x)| \leq C_{\alpha} (1 + |x|)^{N_{\alpha}}, x \in \R^{d} \]
+			Dann kann man für jedes $v \in \Sz'(\R^{d})$ ein Produkt $\psi \cdot v \in S'(\R^{d})$ definieren, durch:
+			\[ (\psi \cdot v)(f) \coloneqq u(\psi f) \text{ für alle } f \in S(\R^{d}) \]
+			\begin{beweis}
+				z.B.: $\psi f \in \R^{d}$
+			\end{beweis}
+		\item Dirac Distrubution: $\delta_{x} \in \Sz'(\R^{d})$
+			\[ \delta_{x}(f) = f(x) \text{ für } f \in S(\R^{d}) \]
+		\item $h(x) = e^{|x|^{2}}$. Dann $u_{h} \notin \Sz'(\R^{d})$, denn $f(x) = e^{-|x|^{2}} \in \Sz(\R^{d})$
+			\[ u_{h} = \int h(x) g(x) dx = \int 1 dx = \infty \]	
+	\end{enumerate}
+\end{beispiele}
+
+
+\begin{definition}[Prinzip der Dualität] \index{Dualität}
+	
+\end{definition}
+
+
+ 
+\newpage
