@@ -1,0 +1,129 @@
+%!TEX root = Funktionalanalysis - Vorlesung.tex
+\chapter*{{\"U}berblick über die Vorlesung Spektraltheorie} \addcontentsline{toc}{chapter}{{\"U}berblick über die Vorlesung Spektraltheorie}
+
+\setcounter{section}{1}
+
+
+\subsection*{I Kapitel: Fourieranalysis}
+
+Motivation:
+\begin{enumerate}[label=\alph*\upshape)]
+	\item $x \in C_{c}^{2}(\MdR^{d}) : \Delta x = \sum_{j = 1}^{d} \frac{\partial^{2}}{\partial x_{j}^{2} x(u)} \in L^{2}(\MdR^{d})$
+		$\Delta : C_{c}^{2}(\MdR^{d}) \rightarrow L^{2}(\MdR^{d}) $ unbeschränkter Operator
+		$(C_{c}^{2}(\MdR^{d}, \| \cdot \|_{\Delta}), \| x \|_{\Delta} = \| x \|_{L^{2}} + \| \Delta u \|_{L^{2}}$
+		Ist denn der Operator $\Delta$ genau dann abgeschlossen, wenn $(C_{c}^{2}(\MdR^{d}, \| \cdot \|_{\Delta})$ vollständig? Nein.
+
+		%$\hat \Delta : \underbrace{C_{c}^{2}(\MdR^{d}, \| \cdot \|_{\Delta})^{\hat}}_{\underset{schwache Ableitung}{\hat \Delta \colon H^{2, 2}(\Omega)} \rightarrow L^{2}(\underset{abgeschlossen}{\MdR^{d}})} \rightarrow L^{2}(\MdR^{d})$
+		$\< \Delta x , y \>_{L^{2}} = \< x , \Delta y \>$, $x, y \in C_{c}^{2}$ $\Delta$ selbstadjungiert auf $D(\Delta) = H^{2, 2}$, part. Integr.
+	\item Spektralsatz für $\Delta$L: $\exists f: L^{2}(\MdR^{2} \rightarrow L^{2}(\MdR^{d})$ unitär, sodass $\delta = f M f^{-1}$ mit
+			\[ (M x)(u) = - | u|^{2} x(u) ~ \text{Multiplikationsoperator} \]
+		$D(M) = \{ x \in L^{2} \colon | u|^{2} x(u) \in L^{2} \}. L^{2}(\MdR^{d} \supset D(M) \rightarrow L^{2}(\MdR^{d})$
+		$x \in L^{1}(\MdR^{d}) \colon \hat x (u) = (f x)(u) = \int_{\MdR^{d}} e^{-2 \pi i u \cdot v} x(v) dc$ Fouriertransformation
+	\item Grundlegende Eigenschaften von $f$:
+		\begin{itemize}
+			\item Differentiation und Multiplikation
+				\[ (- 2 \pi i u)^{\alpha} f(u) \xrightarrow[f]{} D^{\alpha} \hat f(v), ~ \alpha = (\alpha_{1}, \cdots, \alpha_{n}) \]
+				\[ D^{\alpha} f(u) \xrightarrow[f]{} (2 \pi i v)^{\alpha} \hat f(v)\]
+			\item Faltung
+				$( f \ast g)(u) = \int f(v - u) g(v) dv$
+				$todo$ %todo hier fehlt was
+			\item Translationen: $f(u + h ) \xrightarrow[\tilde f]{} \hat f(v) e^{2 \pi v \cdot h}$
+				$F(u) e^{- 2 \pi i u \cdot h} \xrightarrow[]{f} \hat(v + h)$
+			\item Stetigkeit von $f$
+				$ f \colon L^{1}(\MdR^{d}) \rightarrow L^{\infty}(\MdR^{d})$
+				$ f \colon L^{2} (\MdR^{d}) \rightarrow L^{2}(\MdR^{d})$ unitär
+				rcases über beide $f \colon L^{p} \rightarrow L^{p'}, 1 \leq p \leq 2, \frac{1}{p} + \frac{1}{p'} = 1$
+		\end{itemize}
+\end{enumerate}
+
+
+\subsection*{II Kapitel: Spektraldarstellung selbstadjungierter Operatoren}
+
+Motivation: 
+\begin{itemize}
+	\item Schrödingeroperatpr $A = \Delta + \underbrace{V}_{Potential : V x(u) = V(u) x(u)}$
+	\item ellip. Operaator: $A x = \sum_{n, m} \frac{\partial}{\partial u_{n}} a_{n, m} \frac{\partial}{\partial u_{m} x(u)}$ wobei $(a_{n, m}) \in M(d, l)$ selbstadjungiert, $A \geq 0$
+	\item Laplace Beltr. Operatoren auf Mannigfaltigkeiten
+	\item Graphenlaplace auf Graphen
+	\item $\Delta$ auf Fraktalen
+\end{itemize}
+
+Ist $X$ ein Hilbertraum, $X \subset D(A) \xrightarrow[]{A} X$ selbstadjungiert
+\textbf{Spektralsatz}: Es gilt $(U, \mu)$ und $m \colon U \rightarrow \MdC$ und $J \colon L^{2}(U, \mu) \rightarrow X$ unitärer Operator, sodass
+	\[ A = J M J^{-1} x, ~ x \in D(A) \]
+	wobei $M \colon L^{2}(U, \mu) \rightarrow L^{2}(U, \mu), (M x)(u) = m(u)x(u)$
+
+
+\subsection*{III Kapitel: Funktionalkalkül für selbstadjungierte Operatoren}
+
+ Sei $A \in B(X)$ selbstadjunigert, $X$ ein Hilbertraum. Nach II gilt: $A = J M J^{-1}$.
+ \begin{align*}
+ 	A^{2} & = (J M J^{-1})(J M J^{-1}) = J M^{2} J^{-1} \\
+	A^{n} & = \dotsc  = J M^{n} J^{-1} 
+ \end{align*}
+ $p(z) = \sum_{n} a_{n} z^{n}, \quad M^{n} x(u) = m(u)^{n} x(u)$
+ $z = A$: $p(A) = \sum a_{n} A^{n} = J (\sum_{n} a_{n} M^{n} ) J^{-1} = J ( p(M) ) J^{-1}$
+ $P(M)x(u) = ( \sum_{n} a_{n} m(u)^{n} ) x(u) = p(m(u)) x(u)$
+ Allgemeine Definition: $f \in B_{b}(\MdR)$ - beschr. Borel.
+ 	\[ f(A) = J f(M) J^{-1} \]
+ mit $f(M) x(u) = f(m(u)) x(u)$.
+ 
+ Eigenschaften des Funktionalkalküls: $f, g \in B_{b}(\MdR)$
+ \begin{enumerate}[label=\roman*\upshape)]
+ 	\item $(\underbrace{(f \cdot g)}_{punktweises Produkt von Funktionen}(A) = \underbrace{f(A) \cdot g(A)}_{Komposition von Operatoren}$
+ 	\item $\| f(A) \| = \| f \|_{L^{\infty}(U, \mu)} \underset{\text{stetig}}{\overset{f}{=}} \sup_{u \in \sigma(A)} |f(u) |$
+ 	\item $f \colon U \rightarrow \MdC$ stetig
+ 		$\sigma( f(A) ) = \{ f(\lambda) : \lambda \in \sigma(A) \}$
+ 		Kurz: $f \in (B_{b}, \| \cdot \|_{\infty} ) \rightarrow f(A) \in B(X)$ stetiger Algebrenhomomorphismus
+ \end{enumerate}
+ 
+ \begin{beispiel}
+ 	\begin{enumerate}
+ 		\item $\frac{1}{\lambda - z} - \frac{1}{\mu - z} = \frac{mu - \lambda}{(\lambda - z)(\mu - z)}$
+ 			$z = A$: $R(\lambda, A) - R(\mu, A) = (\mu - \lambda) R(\lambda, A) R(\mu, A)$
+ 		\item $f_{t}(z) = e^{- tz}$, $t > 0$
+ 			$f_{t}(z) = e^{- t A} = \sum_{n \geq 9} \frac{{-1}^{n}}{n!} t^{n} A^{n}$
+ 			$e^{-t z} e^{- s z} = e^{- (s + t)z} \rightarrow e^{- tA}e^{ - sA} = e^{-(s + t)A}$
+ 		\item $f_{a}(z) = z^{a}, \quad f_{a}(A) = A^{a}$
+ 			$z^{a} \cdot z^{b} = z^{a + b} \rightarrow A^{a} \cdot A^{b} ) A^{a + b}$
+ 		\item $f(z) = z^{\alpha} e^{-z u}$, $f(A) = A^{\alpha} e^{- t A}$
+ 			$\| f(A) \| = \sup_{z > 0} | z^{\alpha} e^{- tz } |$
+ 			$f(z) = z^{\alpha}(\lambda_{0} - z )^{-\beta}$, $f(A) = A^{\alpha} R(\lambda_{0}, A)^{\beta}, \| f(A) \| = \sup \left| \frac{z^{\alpha} }{(\lambda_{0} - z)^{\beta}} \right|$
+ 		\item $f = \mathds{1}_{[a, b]}, f(A)^{2} \overset{i)}{=} f^{2}(A) = f(A)$, d.h. $f(A)$ ist eine Projektion.
+ 			$\sigma(A) \subset[a, b], c \in (a, b)$
+ 			$P_{1} = \mathds{¡}_{(a, c]}(A), P_{2} = \mathds{1}_{(c, b)}(A)$
+ 			$P_{1} + P_{2} = I$, $P_{1}P_{2} = 0$
+ 			$X_{j} = P_{j}(X), j = 1, 2$: $X = X_{1} \oplus X_{2}$
+ 			$mit A(X_{1} \subset X_{1}$, $A(X_{2}) \subset X_{2}$
+ 			$A = A_{1} \oplus A_{2}$, $A_{1} = A|_{X_{1}}, A_{2} = A|_{X_{2}}$
+ 			$\sigma(A_{1}) \cup \sigma(A_{2}) = \sigma(A)$
+ 	\end{enumerate}
+ \end{beispiel}
+ 
+ Anwendung des Kalküls auf Evolutionsgleichungen:
+ \begin{enumerate}[label=\roman*\upshape)]
+ 	\item  $y'(t) = A y(t), ~ y(0) = y_{0} $
+ 		mit z.B. $A = \Delta$ und $y (t) \in L^{2}(\MdR^{d})$ erhalten wir die Wärmeleitungsgleichung.
+		$y(t) = e^{tA} y_{0}, e^{t A} = \sum_{n} \frac{1}{n} t^{n} A^{n}, e^{tA} = f_{t}(A), f_{t}(z) = e^{tz}$ 
+	\item $y'(t) = i A y(t), y(0) = y_{0}$ 
+		$A = \Delta$: Schrödingergleichung
+		$y(t) = e^{i t A} y_{n}$
+	\item $y''(t) = A y(t), y(0) = y_{0}, y_{t}(0) = y_{1}$
+		$A = \Delta$ Wellengelichung
+		$y(t) = \cos(A^{\frac{1}{2}}t) y_{0} + A^{-\frac{1}{2}} \sin(A^{\frac{1}{2}} t) y_{1}$
+		$A = \Delta$ Kapitel Fourieranalysis
+		$e^{tA}x(u) = \frac{1}{(2 \pi t)^{\frac{d}{2}}} \int_{\MdR^{d}} e^{\frac{-(u - v)^{2}}{2 \pi}} f(v) dv$
+ \end{enumerate}
+Eigenschaften der Lösung:
+\begin{itemize}
+	\item Stbilität, asymptotisches Vehalten:
+		$y(t) = e^{t A}y_{0} \xrightarrow[t \rightarrow 0]{} ?$
+		$\exists \epsilon > 0, \sigma(A) \subset \{ \lambda : \Re \lambda < - \lambda \}$
+		\[ \Rightarrow \| y(t) \| \leq c e^{- \epsilon t} \xrightarrow[t \rightarrow \infty]{} 0 \]
+	\item Regularität:
+		$\underbrace{\| A^{\alpha} e^{- t A} y_{0} \|}_{\| e^{-tA} y_{0} \|_{D(A^{\alpha})} d} \leq c \frac{1}{t^{\alpha}}$, $t > 0, \alpha > 0$
+		$A = - \Delta$, $D(A) = H^{2, 2}, D(A^{n}) = H^{2n, 2},$
+\end{itemize}
+ 
+ 
+\newpage

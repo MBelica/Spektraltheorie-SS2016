@@ -1,0 +1,30 @@
+\select@language {ngerman}
+\contentsline {chapter}{Einf{\"u}hrung}{4}{chapter*.5}
+\contentsline {chapter}{Lineare Operatoren auf Banachr\IeC {\"a}umen}{7}{chapter*.17}
+\contentsline {section}{\numberline {2}Normierte R{\"a}ume}{7}{section.18}
+\contentsline {section}{\numberline {3}Beschr{\"a}nkte und lineare Operatoren}{12}{section.47}
+\contentsline {section}{\numberline {4}Metrische R{\"a}ume}{20}{section.99}
+\contentsline {section}{\numberline {5}Vollst{\"a}ndigkeit}{29}{section.202}
+\contentsline {section}{\numberline {6}Kompakte Mengen}{39}{section.263}
+\contentsline {section}{\numberline {7}Kompakte Operatoren}{44}{section.301}
+\contentsline {section}{\numberline {8}Approximation von $L^{p}$ Funktionen}{48}{section.331}
+\contentsline {chapter}{Elemente der Operatortheorie}{56}{chapter*.363}
+\contentsline {section}{\numberline {9}Der Satz von Baire und der Satz von Banach-Steinhaus}{56}{section.364}
+\contentsline {section}{\numberline {10}Satz von der offenen Abbildung}{61}{section.394}
+\contentsline {section}{\numberline {11}Projektionen}{63}{section.406}
+\contentsline {section}{\numberline {12}Abgeschlossene Operatoren}{65}{section.423}
+\contentsline {section}{\numberline {13}Spektrum und Resolvente}{68}{section.443}
+\contentsline {section}{\numberline {14}Das Spektrum kompakter Operatoren}{74}{section.469}
+\contentsline {chapter}{Operatoren auf Hilbertr\IeC {\"a}umen}{78}{chapter*.488}
+\contentsline {section}{\numberline {15}Hilbertr\IeC {\"a}ume}{78}{section.489}
+\contentsline {section}{\numberline {16}Orthogonalit\IeC {\"a}t und Orthonormalbasen}{83}{section.518}
+\contentsline {section}{\numberline {17}Der Darstellungssatz von Riesz}{88}{section.551}
+\contentsline {section}{\numberline {18}Schwache Konvergenz und Kompaktheit}{90}{section.559}
+\contentsline {section}{\numberline {19}Duale Operatoren auf Hilbertr\IeC {\"a}umen}{92}{section.579}
+\contentsline {chapter}{Dualit\IeC {\"a}t in Banachr\IeC {\"a}umen}{99}{chapter*.624}
+\contentsline {section}{\numberline {20}Der Fortsetzungssatz von Hahn-Banach}{99}{section.625}
+\contentsline {section}{\numberline {21}Trennungss\IeC {\"a}tze f\IeC {\"u}r konvexe Menge}{103}{section.651}
+\contentsline {section}{\numberline {22}Schwache Konvergenz \& Reflexivit\IeC {\"a}t}{105}{section.665}
+\contentsline {section}{\numberline {23}Adjungierte Operatoren}{109}{section.712}
+\contentsline {chapter}{Abk\IeC {\"u}rzungsverzeichnis}{111}{appendix*.743}
+\contentsline {chapter}{Stichwortverzeichnis}{112}{section*.744}
