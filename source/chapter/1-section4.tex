@@ -47,10 +47,86 @@
 \end{beispiele}
 
 
-\begin{definition}[Prinzip der Dualität] \index{Dualität}
-	
+\begin{definition}[Prinzip der Dualität] \index{duale Abbildung} \index{Dualität}
+	Sei $T \colon \Sz(\R^{d}) \rightarrow \Sz(\R^{d})$ linear, stetig. Dann definieren wir die \begriff{duale Abbildung} $T' \colon \Sz'(\R^{d}) \rightarrow \Sz'(\R^{d})$ durch
+		\[  T' u(f) = u(Tf) \quad u \in \Sz'(\R^{d}), f \in \Sz(\R^{d}) \]
+\end{definition}
+
+\begin{beweis}
+	$f_{n} \xrightarrow[]{\Sz} f \Rightarrow T f_{n} \xrightarrow[]{\Sz} T f$.  \\
+	$u(tf_{n}) \rightarrow u(Tf)$, $T'u(f_{n}) \rightarrow T'u(f)$, da $T$ und $u$ stetig nach Definition.
+\end{beweis}
+
+
+\begin{definition} \label{def:4.6}
+	$F \colon \Sz(\R^{d}) \rightarrow \Sz(\R^{d})$ \\
+	$\Rightarrow F' \colon \Sz'(\R^{d}) \rightarrow \Sz'(\R^{d})$ mit $(F'u)(f) = u(\hat{f})$ und $f \in \Sz, u \in \Sz'$
 \end{definition}
 
 
+\begin{bemerkung}
+	$h \in L^{1}(\R^{d}) \rightarrow u_{h} \in \Sz'(\R^{d})$. Für $f \in \Sz(\R^{d})$ gilt:
+	\[ (F' u_{h})(f) = u_{h}(\hat{f}) = \int h(x) \hat{f}(x) dx \underset{\S 3}{=} \int \underbrace{\widehat{h(x)}}_{\underset{(4.4 a)}{hat (*)}} f(x) dx = u_{\widehat{h(x)}}(f), ~\forall f \in \Sz \]
+\end{bemerkung} 
+
+
+Notation: $F' = F$. Dann $\boxed{F(u_{h}) = u_{Fh} \text{ bzw. } \hat{u}_{h} = u_{\hat{h}}}$
+
+
+\begin{prop} % todo diese prob überprüfen
+	$F \colon \Sz'(\R^{d}) \rightarrow \Sz'(\R^{d})$ bijektiv, $(F^{-1}u)(f) = (Fu)(\tilde{f})$, wobei $\tilde{f}(x) = f(-x)$ \\
+		\[ F \cdot F^{-1} = Id_{\Sz} \]
+	Dualität: $(F^{-1})' F' = (F \cdot F^{-1})' = Id_{\Sz}' = Id_{\Sz}$ (und umgekehrt).
+		\[ \Rightarrow (F')^{-1} = (F^{-1})' \text{ und daher bijektiv} \]
+		Au{\ss}erdem $(F^{-1}u)(f) = u(F^{-1}f) \underset{\S 3}{=} u(Ff(-\cdot)) = F' u (F-\cdot) = F'u(\tilde{f})$
+\end{prop}
+ 
+
+\begin{definition}
+	Sei $u \in \Sz'(\R^{d})$, $\alpha \in \N_{0}^{d}$. Definiere $D_{u}^{\alpha} \in \Sz'(\R^{d})$ durch:
+	\[ (D^{\alpha}u)(f) = (-1)^{|\alpha|} u(D^{\alpha}f) \]
+\end{definition} 
+ 
+
+\begin{bemerkung}
+	\begin{enumerate}
+		\item $X^{\alpha} \colon \Sz(\R^{d}) \rightarrow \Sz(\R^{d}), \underset{\Sz'}{D^{\alpha}} u \coloneqq (-1)^{|\alpha|} (\underset{\Sz}{D^{\alpha}})'$ (im Sinne der Dualität in \hyperref[def:4.6]{4.6}), denn $(\underset{\Sz'}{D^{\alpha}}u)(f) = (-1)^{|\alpha|}\underbrace{u(D^{\alpha}f)}_{\underset{\Sz}{(D^{\alpha}}}$
+		\item Sei $h \in \Sz(\R^{d})$ und $u_{h} \in \Sz(\R^{d})'$.
+			\[ D^{\alpha}(u_{h})(f) = (-1)^{|\alpha|} u_{h}(D^{\alpha}f) = (-1)^{|\alpha|} \int h(x) D^{\alpha}f(x) dx \overset{P.I.}{=} \int (D^{\alpha}h)f(x)dx \]
+			Also: $\boxed{D^{\alpha}(u_{h}) = u_{D^{\alpha}h}}$ 
+	\end{enumerate}
+\end{bemerkung}
+ 
+
+\begin{prop}
+	\begin{enumerate}
+		\item Sei $h \in C^{\infty}(\R^{d})$ eine langsam wachsende Funktion und $u \in \Sz'(\R^{d})$. Dann:
+			\[ D_{x_{i}}(h \cdot u) = (D_{x_{i}}h)\cdot u + h \cdot D_{x_{i}}u \]
+		\item $u \in \Sz'(\R^{d}), \alpha, \beta \in \N_{0}^{d}$. Dann:
+			\[ D^{\alpha + \beta} u = D^{\alpha} (D^{\beta} u) \]
+	\end{enumerate}	
+\end{prop}
+
+\begin{beweis}
+	Übung.
+\end{beweis}
+ 
+
+\begin{beispiel}
+	\begin{enumerate}
+		\item $d = 1$, $H(x) = \begin{cases}
+			1 \text{ für } x \geq 0 \\ 0 \text{ für } x < 0 \end{cases}$. Beh.: $D(u_{H}) = \delta_{0}$ \\
+			\begin{beweis}
+				Für $\phi \in \Sz(\R)$ gilt:
+					\[ (D u_{H})(\phi) = - u_{H}(D\phi) = - \int H(x) \phi'(x) dx = - \int_{0}^{\infty} \phi'(x) dx = \phi(0) \]
+				Au{\ss}erdem: $(D^{\alpha}\delta_{a})(\phi) = (-1)^{|\alpha|}\delta_{a}(D^{\alpha}\phi) = (-1)^{|\alpha|} D^{\alpha} \phi(0)$
+			\end{beweis} 
+	\end{enumerate}
+\end{beispiel}
+ 
+
+Vorschau: Zu jedem $u \in \Sz'(\R^{d})$ gibt es eine langsam wachsende stetige Funktion $\psi \colon \R^{d} \rightarrow \C$ und $\alpha \in \N_{0}^{d}$, so dass $u = D^{\alpha} \psi$. (Keine Eindeutigkeit!)
+ 
+ 
  
 \newpage
