@@ -1,35 +1,26 @@
 \documentclass[a4paper,twoside,DIV15,BCOR12mm,11pt]{scrbook}
 
-
 \usepackage{Analysis}
-\usepackage{makeidx}
 \makeindex
 
 \begin{document}
-
-\pagenumbering{arabic}
-\setcounter{page}{1}
 
 \input{Titlepage}
 \input{Preface}
 
 \tableofcontents 
-\newpage
+ \newpage
 
 \markleft{Spektraltheorie}
 
-\input{chapter/0-section1}
+\input{chapter/0-section1} % todo skipped chapter 2
+\input{chapter/1-section3}
 
+\input{chapter/x-section1}
 
 \appendix
 \input{Abbreviations}
-
-
-\cleardoublepage
-\phantomsection
-\renewcommand{\indexname}{Stichwortverzeichnis}
-\addcontentsline{toc}{chapter}{\indexname}
-\printindex
+\cleardoublepage \phantomsection \renewcommand{\indexname}{Stichwortverzeichnis} \addcontentsline{toc}{chapter}{\indexname} \printindex
 
 
 \end{document}

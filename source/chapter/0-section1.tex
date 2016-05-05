@@ -4,57 +4,56 @@
 \setcounter{section}{1}
 
 
-\subsection*{I Kapitel: Fourieranalysis}
+\subsection*{Kapitel I: Fourieranalysis}
 
 Motivation:
 \begin{enumerate}[label=\alph*\upshape)]
-	\item $x \in C_{c}^{2}(\MdR^{d}) : \Delta x = \sum_{j = 1}^{d} \frac{\partial^{2}}{\partial x_{j}^{2} x(u)} \in L^{2}(\MdR^{d})$
-		$\Delta : C_{c}^{2}(\MdR^{d}) \rightarrow L^{2}(\MdR^{d}) $ unbeschränkter Operator
-		$(C_{c}^{2}(\MdR^{d}, \| \cdot \|_{\Delta}), \| x \|_{\Delta} = \| x \|_{L^{2}} + \| \Delta u \|_{L^{2}}$
-		Ist denn der Operator $\Delta$ genau dann abgeschlossen, wenn $(C_{c}^{2}(\MdR^{d}, \| \cdot \|_{\Delta})$ vollständig? Nein.
+	\item $x \in C_{c}^{2}(\R^{d}) : \Delta x = \sum_{j = 1}^{d} \frac{\partial^{2}}{\partial x_{j}^{2} x(u)} \in L^{2}(\R^{d})$
+		$\Delta : C_{c}^{2}(\R^{d}) \rightarrow L^{2}(\R^{d}) $ unbeschränkter Operator
+		$(C_{c}^{2}(\R^{d}, \| \cdot \|_{\Delta}), \| x \|_{\Delta} = \| x \|_{L^{2}} + \| \Delta u \|_{L^{2}}$
+		Ist denn der Operator $\Delta$ genau dann abgeschlossen, wenn $(C_{c}^{2}(\R^{d}, \| \cdot \|_{\Delta})$ vollständig? Nein.
 
-		%$\hat \Delta : \underbrace{C_{c}^{2}(\MdR^{d}, \| \cdot \|_{\Delta})^{\hat}}_{\underset{schwache Ableitung}{\hat \Delta \colon H^{2, 2}(\Omega)} \rightarrow L^{2}(\underset{abgeschlossen}{\MdR^{d}})} \rightarrow L^{2}(\MdR^{d})$
+		%$\hat \Delta : \underbrace{C_{c}^{2}(\R^{d}, \| \cdot \|_{\Delta})^{\hat}}_{\underset{schwache Ableitung}{\hat \Delta \colon H^{2, 2}(\Omega)} \rightarrow L^{2}(\underset{abgeschlossen}{\R^{d}})} \rightarrow L^{2}(\R^{d})$
 		$\< \Delta x , y \>_{L^{2}} = \< x , \Delta y \>$, $x, y \in C_{c}^{2}$ $\Delta$ selbstadjungiert auf $D(\Delta) = H^{2, 2}$, part. Integr.
-	\item Spektralsatz für $\Delta$L: $\exists f: L^{2}(\MdR^{2} \rightarrow L^{2}(\MdR^{d})$ unitär, sodass $\delta = f M f^{-1}$ mit
+	\item Spektralsatz für $\Delta$L: $\exists f: L^{2}(\R^{2} \rightarrow L^{2}(\R^{d})$ unitär, sodass $\delta = f M f^{-1}$ mit
 			\[ (M x)(u) = - | u|^{2} x(u) ~ \text{Multiplikationsoperator} \]
-		$D(M) = \{ x \in L^{2} \colon | u|^{2} x(u) \in L^{2} \}. L^{2}(\MdR^{d} \supset D(M) \rightarrow L^{2}(\MdR^{d})$
-		$x \in L^{1}(\MdR^{d}) \colon \hat x (u) = (f x)(u) = \int_{\MdR^{d}} e^{-2 \pi i u \cdot v} x(v) dc$ Fouriertransformation
+		$D(M) = \{ x \in L^{2} \colon | u|^{2} x(u) \in L^{2} \}. L^{2}(\R^{d} \supset D(M) \rightarrow L^{2}(\R^{d}), x \in L^{1}(\R^{d})$:
+	 		\[ \hat x (u) = (f x)(u) = \int_{\R^{d}} e^{-2 \pi i u \cdot v} x(v) dv \]
+	  	Fouriertransformation
 	\item Grundlegende Eigenschaften von $f$:
 		\begin{itemize}
-			\item Differentiation und Multiplikation
-				\[ (- 2 \pi i u)^{\alpha} f(u) \xrightarrow[f]{} D^{\alpha} \hat f(v), ~ \alpha = (\alpha_{1}, \cdots, \alpha_{n}) \]
-				\[ D^{\alpha} f(u) \xrightarrow[f]{} (2 \pi i v)^{\alpha} \hat f(v)\]
+			\item Differentiation und Multiplikation, mit $\alpha = (\alpha_{1}, \cdots, \alpha_{n})$
+				\[ (- 2 \pi i u)^{\alpha} f(u) \xrightarrow[f]{} D^{\alpha} \hat f(v) \text{ bzw. } D^{\alpha} f(u) \xrightarrow[f]{} (2 \pi i v)^{\alpha} \hat f(v)\]
 			\item Faltung
 				$( f \ast g)(u) = \int f(v - u) g(v) dv$
 				$todo$ %todo hier fehlt was
 			\item Translationen: $f(u + h ) \xrightarrow[\tilde f]{} \hat f(v) e^{2 \pi v \cdot h}$
 				$F(u) e^{- 2 \pi i u \cdot h} \xrightarrow[]{f} \hat(v + h)$
-			\item Stetigkeit von $f$
-				$ f \colon L^{1}(\MdR^{d}) \rightarrow L^{\infty}(\MdR^{d})$
-				$ f \colon L^{2} (\MdR^{d}) \rightarrow L^{2}(\MdR^{d})$ unitär
-				rcases über beide $f \colon L^{p} \rightarrow L^{p'}, 1 \leq p \leq 2, \frac{1}{p} + \frac{1}{p'} = 1$
+			\item Stetigkeit von $f$: 
+				\[ \begin{rcases} f \colon L^{1}(\R^{d}) \rightarrow L^{\infty}(\R^{d}) \\ f \colon L^{2} (\R^{d}) \rightarrow L^{2}(\R^{d}) \end{rcases} \text{ unitär } f \colon L^{p} \rightarrow L^{p'}, \]
+				mit $ 1 \leq p \leq 2$, $\frac{1}{p} + \frac{1}{p'} = 1$.
 		\end{itemize}
 \end{enumerate}
 
 
-\subsection*{II Kapitel: Spektraldarstellung selbstadjungierter Operatoren}
+\subsection*{Kapitel II: Spektraldarstellung selbstadjungierter Operatoren}
 
 Motivation: 
 \begin{itemize}
-	\item Schrödingeroperatpr $A = \Delta + \underbrace{V}_{Potential : V x(u) = V(u) x(u)}$
-	\item ellip. Operaator: $A x = \sum_{n, m} \frac{\partial}{\partial u_{n}} a_{n, m} \frac{\partial}{\partial u_{m} x(u)}$ wobei $(a_{n, m}) \in M(d, l)$ selbstadjungiert, $A \geq 0$
+	\item Schrödingeroperatpr $A = \Delta + \underbrace{V}_{\underset{V x(u) = V(u) x(u)}{Potential:}}$
+	\item ellip. Operator: $A x = \sum_{n, m} \frac{\partial}{\partial u_{n}} a_{n, m} \frac{\partial}{\partial u_{m} x(u)}$ wobei $(a_{n, m}) \in M(d, l)$ selbstadjungiert, $A \geq 0$
 	\item Laplace Beltr. Operatoren auf Mannigfaltigkeiten
 	\item Graphenlaplace auf Graphen
 	\item $\Delta$ auf Fraktalen
 \end{itemize}
 
 Ist $X$ ein Hilbertraum, $X \subset D(A) \xrightarrow[]{A} X$ selbstadjungiert
-\textbf{Spektralsatz}: Es gilt $(U, \mu)$ und $m \colon U \rightarrow \MdC$ und $J \colon L^{2}(U, \mu) \rightarrow X$ unitärer Operator, sodass
+\textbf{Spektralsatz}: Es gilt $(U, \mu)$ und $m \colon U \rightarrow \C$ und $J \colon L^{2}(U, \mu) \rightarrow X$ unitärer Operator, sodass
 	\[ A = J M J^{-1} x, ~ x \in D(A) \]
 	wobei $M \colon L^{2}(U, \mu) \rightarrow L^{2}(U, \mu), (M x)(u) = m(u)x(u)$
 
 
-\subsection*{III Kapitel: Funktionalkalkül für selbstadjungierte Operatoren}
+\subsection*{Kapitel III: Funktionalkalkül für selbstadjungierte Operatoren}
 
  Sei $A \in B(X)$ selbstadjunigert, $X$ ein Hilbertraum. Nach II gilt: $A = J M J^{-1}$.
  \begin{align*}
@@ -64,15 +63,15 @@ Ist $X$ ein Hilbertraum, $X \subset D(A) \xrightarrow[]{A} X$ selbstadjungiert
  $p(z) = \sum_{n} a_{n} z^{n}, \quad M^{n} x(u) = m(u)^{n} x(u)$
  $z = A$: $p(A) = \sum a_{n} A^{n} = J (\sum_{n} a_{n} M^{n} ) J^{-1} = J ( p(M) ) J^{-1}$
  $P(M)x(u) = ( \sum_{n} a_{n} m(u)^{n} ) x(u) = p(m(u)) x(u)$
- Allgemeine Definition: $f \in B_{b}(\MdR)$ - beschr. Borel.
+ Allgemeine Definition: $f \in B_{b}(\R)$ - beschr. Borel.
  	\[ f(A) = J f(M) J^{-1} \]
  mit $f(M) x(u) = f(m(u)) x(u)$.
  
- Eigenschaften des Funktionalkalküls: $f, g \in B_{b}(\MdR)$
+ Eigenschaften des Funktionalkalküls: $f, g \in B_{b}(\R)$
  \begin{enumerate}[label=\roman*\upshape)]
  	\item $(\underbrace{(f \cdot g)}_{punktweises Produkt von Funktionen}(A) = \underbrace{f(A) \cdot g(A)}_{Komposition von Operatoren}$
  	\item $\| f(A) \| = \| f \|_{L^{\infty}(U, \mu)} \underset{\text{stetig}}{\overset{f}{=}} \sup_{u \in \sigma(A)} |f(u) |$
- 	\item $f \colon U \rightarrow \MdC$ stetig
+ 	\item $f \colon U \rightarrow \C$ stetig
  		$\sigma( f(A) ) = \{ f(\lambda) : \lambda \in \sigma(A) \}$
  		Kurz: $f \in (B_{b}, \| \cdot \|_{\infty} ) \rightarrow f(A) \in B(X)$ stetiger Algebrenhomomorphismus
  \end{enumerate}
@@ -103,7 +102,7 @@ Ist $X$ ein Hilbertraum, $X \subset D(A) \xrightarrow[]{A} X$ selbstadjungiert
  Anwendung des Kalküls auf Evolutionsgleichungen:
  \begin{enumerate}[label=\roman*\upshape)]
  	\item  $y'(t) = A y(t), ~ y(0) = y_{0} $
- 		mit z.B. $A = \Delta$ und $y (t) \in L^{2}(\MdR^{d})$ erhalten wir die Wärmeleitungsgleichung.
+ 		mit z.B. $A = \Delta$ und $y (t) \in L^{2}(\R^{d})$ erhalten wir die Wärmeleitungsgleichung.
 		$y(t) = e^{tA} y_{0}, e^{t A} = \sum_{n} \frac{1}{n} t^{n} A^{n}, e^{tA} = f_{t}(A), f_{t}(z) = e^{tz}$ 
 	\item $y'(t) = i A y(t), y(0) = y_{0}$ 
 		$A = \Delta$: Schrödingergleichung
@@ -112,7 +111,7 @@ Ist $X$ ein Hilbertraum, $X \subset D(A) \xrightarrow[]{A} X$ selbstadjungiert
 		$A = \Delta$ Wellengelichung
 		$y(t) = \cos(A^{\frac{1}{2}}t) y_{0} + A^{-\frac{1}{2}} \sin(A^{\frac{1}{2}} t) y_{1}$
 		$A = \Delta$ Kapitel Fourieranalysis
-		$e^{tA}x(u) = \frac{1}{(2 \pi t)^{\frac{d}{2}}} \int_{\MdR^{d}} e^{\frac{-(u - v)^{2}}{2 \pi}} f(v) dv$
+		$e^{tA}x(u) = \frac{1}{(2 \pi t)^{\frac{d}{2}}} \int_{\R^{d}} e^{\frac{-(u - v)^{2}}{2 \pi}} f(v) dv$
  \end{enumerate}
 Eigenschaften der Lösung:
 \begin{itemize}
