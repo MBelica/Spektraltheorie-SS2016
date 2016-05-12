@@ -1,33 +1,966 @@
-\documentclass[a4paper,twoside,DIV15,BCOR12mm,11pt]{scrbook}
+\documentclass[11pt,a4paper,titlepage, ngerman]{scrartcl}
 
-\usepackage{Analysis}
-\makeindex
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage[ngerman]{babel} 
+
 
 \title{Spektraltheorie}
 \author{Prof. Dr. Lutz Weis}
 \date{Sommersemester 2016}
 \publishers{Karlsruher Institut für Technologie}
 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{caption}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{subfigure}
+\usepackage{stmaryrd}
+\usepackage[ngerman]{babel}
+\usepackage{mathrsfs}
+
+\usepackage[arrow, matrix, curve]{xy}
+\geometry{a4paper,left=20mm,right=20mm,top=25mm,bottom=20mm}
+
+\newtheorem{Satz}{Satz}[section]
+\newtheorem{Definition}[Satz]{Definition} 
+\newtheorem{Klass}[Satz]{Klassifizierung} 
+\newtheorem{Lemma}[Satz]{Lemma}	
+\newtheorem{Bemerkung}[Satz]{Bemerkung}	
+\newtheorem{Folgerung}[Satz]{Folgerung}  
+\newtheorem{Beispiel}[Satz]{Beispiel} 
+\newtheorem{DefBem}[Satz]{Definition + Bemerkung} 
+\newtheorem{Prop}[Satz]{Proposition}
+\newtheorem{PropDef}[Satz]{Proposition + Definition}
+\newtheorem{Erinnerung}[Satz]{Erinnerung}
+\newtheorem{Korollar}[Satz]{Korollar}
+\newtheorem{Example}{Example}
+\DeclareMathOperator{\trdeg}{trdeg}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Kern}{Kern}
+\DeclareMathOperator{\Bild}{Bild}
+\DeclareMathOperator{\Sh}{Sh}
+\DeclareMathOperator{\Quot}{Quot}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\Rang}{Rang}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\pic}{Pic}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\SetOp}{Set}
+\DeclareMathOperator{\KVecOp}{K-Vect}
+\DeclareMathOperator{\RModOp}{R-Mod}
+\DeclareMathOperator{\GroupOp}{Group}
+\DeclareMathOperator{\AbelianOp}{Ab}
+\DeclareMathOperator{\TopOp}{Top}
+\DeclareMathOperator{\HoTopOp}{HoTop}
+\DeclareMathOperator{\Graph}{Graph}
+\DeclareMathOperator{\spann}{span}
+\DeclareMathOperator{\supp}{supp}
+
+\numberwithin{equation}{section} 
+
+% einige Abkuerzungen
+\newcommand{\C}{\mathbb{C}} % komplexe
+\newcommand{\K}{\mathbb{K}} % komplexe
+\newcommand{\R}{\mathbb{R}} % reelle
+\newcommand{\Q}{\mathbb{Q}} % rationale
+\newcommand{\Z}{\mathbb{Z}} % ganze
+\newcommand{\N}{\mathbb{N}} % natuerliche
+
+\newcommand{\f}{\hat{f}}
+\newcommand{\g}{\hat{g}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\om}{\omega}
+\newcommand{\intR}{\int_{-\infty}^{\infty}}
+\newcommand{\m}{\cdot}
+\newcommand{\eF}{e^{-2i\pi \om t}}
+\newcommand{\eIF}{e^{-2i\pi \om t}}
+\newcommand{\Aff}{\mathbf{Aff}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\PR}{\mathbb{P}}
+\newcommand{\Bew}{\emph{Beweis: }}
+\newcommand{\pw}{\wp}
+\newcommand{\qscr}{\mathscr{Q}}
+\newcommand{\Ocal}{\mathcal{O}}
+\newcommand{\Hc}{\check{H}}
+\newcommand{\Ccal}{\mathcal{C}}
+
+\newcommand{\Set}{\underline{\SetOp}}
+\newcommand{\KVect}{\underline{\KVecOp}}
+\newcommand{\RMod}{\underline{\RModOp}}
+\newcommand{\Grp}{\underline{\GroupOp}}
+\newcommand{\Ab}{\underline{\AbelianOp}}
+\newcommand{\Top}{\underline{\TopOp}}
+\newcommand{\HoTop}{\underline{\HoTopOp}}
+
+
+%\newcommand{\L}{\mathcal{L}}
+\newcommand{\qed}{\begin{flushright}
+		$\square$
+	\end{flushright}}
+
+
 \begin{document}
+	\maketitle
+	
 
-\input{Titlepage}
-\input{Preface}
+	\section*{Vorwort}
+	Dieses Skript wurde im Sommersemester 2016 von David Bückel geschrieben und von Martin Belice korrekturgelesen und angepasst. Es ist ein inoffizielles Skript und beinhaltet die Mitschriften aus der Vorlesung von Prof.~Dr.~Weis am Karlsruhe Institut für Technologie sowie die Mitschriften einiger Übungen.
 
-\tableofcontents 
- \newpage
+	\thispagestyle{empty}
 
-\markleft{Spektraltheorie}
+	\subsection*{Einleitung}
 
-\input{chapter/0-section1} % todo skipped chapter 2
-\input{chapter/1-section3}
-\input{chapter/1-section4}
-% Übungen
-\input{chapter/x-section}
- \input{chapter/x-section1}
+	Die Spektraltheorie verallgemeinert die Theorie von Eigenwerten und Normalformen von Matrizen für unendlichdimensionale Operatoren auf Funktionenräumen, wie Differential- und Integraloperatoren. Sie vermittelt eine wesentliche Methodik für viele Anwendungsgebiete, wie partielle Differentialgleichungen, mathematische Physik und numerische Analysis. \\
 
-\appendix
-\input{Abbreviations}
-\cleardoublepage \phantomsection \renewcommand{\indexname}{Stichwortverzeichnis} \addcontentsline{toc}{chapter}{\indexname} \printindex
+	Zu den Themen gehören:
 
+  	\begin{itemize}
+    	\item Spektrum und Resolvente linearer (unbeschränkter) Operatoren
+    	\item Fouriertransformation und der Funktionalkalkül des Laplace-Operators
+    	\item Der Funktionalkalkül selbstadjungierter Operatoren
+    	\item Der holomorphe Funktionalkalkül sektorieller Operatoren
+    	\item Cauchy-Problem für sektorielle Operatoren
+ 	\end{itemize}
+  
+	Diese Vorlesung bereitet auf zukünftige Vorlesungen und Seminare im Bereich der deterministischen und stochastischen Evolutionsgleichungen vor.
 
+	\subsection*{Erforderliche Vorkenntnisse}
+	Wir setzen ein grundlegendes Verständnis funktionalanalytischer Methoden voraus, wie sie z.B. in den Vorlesungen "Differentialgleichungen und Hilberträume" oder "Funktionalanalysis" vermittelt werden.
+	
+	\newpage	
+	\tableofcontents
+	\newpage
+	
+	
+	\section{Wiederholung aus der Funktionalanalysis}
+	
+	\subsection{Abgeschlossene Operatoren}
+	
+	Sei $X$ ein Banachraum, $X\supset D(A)\overset{A}{\rightarrow} X$ linear auf einem linearen Teilraum $D(A)$ von $X$. $D(A)$ heißt \textbf{Definitionsbereich}. 
+	
+	\begin{Definition}[Abgeschlossener Operator]
+		$A$ heißt abgeschlossen, falls für alle $x_n\in D(A)$, $x_n\rightarrow x$ in $||.||_X$, $Ax_n\rightarrow y$ in $||.||_y$ $\Rightarrow$ $x\in D(A)$, $Ax= y$.
+	\end{Definition}
+	
+	Notation: $||x||_A = ||x||+||Ax||$, $x\in D(A)$ heißt Graphennorm von $A$. Also: 
+	$$A:(D(A),||.||_A)\rightarrow (X,||.||_X)$$
+	stetig.
+	
+	\begin{Satz}
+		$A:X\supset D(A)\rightarrow X$ ist abgeschlossen $\Leftrightarrow$ $\Graph(A) = \{(x,Ax)\in X\times X,~ x\in D(A) \}$ ist abgeschlossen in $X\times X$ $\Leftrightarrow$ $(D(A),||.||_A)$ vollständig normierter Raum.
+	\end{Satz}
+	
+	\begin{Korollar}
+		$X = D(A)$, $A$ abgeschlossen $\Leftrightarrow$ $A:X\rightarrow X$ stetig $\Leftrightarrow$ $A(U_X)$ beschränkt in $X$, $U_X = $ offene Einheitskugel in $X$.
+	\end{Korollar}
+	
+	Notation: $B(X)$ ist der Banachraum aller beschränkten/stetigen linearen Operatoren $A:X\rightarrow X$ mit der Norm $||A|| = \sup_{x\in U_X}||Ax|| <\infty$.
+	
+	\begin{Bemerkung}
+		Sei $D\subseteq X$ ein dichter, linearer Teilraum von $X$, d.h. $\bar{D} = X$. Sei $A:D\rightarrow X$ ein linearer Operator mit $||Ax||\leq C||x||$ für alle $x\in D$. Dann gibt es \textbf{genau eine} stetige Fortsetzung $\tilde{A}: X\rightarrow X$, d.h. $\tilde{A}\in B(X)$, $\tilde{A}|D = A$, $||\tilde{A}||\leq C$ (Sei $x\in X$ mit $x_n=\lim x_n$, $x_n\in D$. Dann $\tilde{A}x=\lim_{n\rightarrow\infty} Ax_n$).
+	\end{Bemerkung}
+	
+	\subsection{Spektrum und Resolvente}
+	
+	Sei $X$ ein Banachraum, $A:X\supset D(A)\rightarrow X$ linearer, abgeschlossener Operator.
+	
+	Sei gegeben: $\lambda x-Ax=y$,$\lambda\in \C$, $y\in X$, $x\in D(A)$ ist gesucht. Formal $x=(\lambda-A)^{-1}y$ ist Lösung, falls $(\lambda-A)^{-1}$ existiert.
+	
+	\begin{Definition}
+		$\lambda\in \rho(A)$ falls $\lambda -A: D(A)\rightarrow X$ bijektiv oder äquivalent: 
+		$$\lambda-A:(D(A),||.||_A)\rightarrow (X,||.||_X)$$
+		ist ein Isomorphismus. $\rho(A)$ heißt die \textbf{Resolventenmenge} von $A$. $\sigma(A)=\C\backslash\rho(A)$ heißt das \textbf{Spektrum} von $A$.
+		
+		$R(\lambda, A):= (\lambda-A)^{-1}: X\rightarrow D(A)\subset X$, für ein $\lambda\in \rho(A)$. $R(\lambda,A)\in B(X)$, aber $\Bild(R(\lambda,A))\subset D(A)$.
+	\end{Definition}
+	
+	\begin{Bemerkung}
+		Fall $A\in B(X)$, $D(A) = X$, dann ist $R(\lambda, A): X\rightarrow X$ ein 
+		Isomorphismus.
+	\end{Bemerkung}
+	
+	\begin{Satz}~
+		\begin{enumerate}
+			\item[a)] $\rho(A)$ ist offen, $\sigma(A)$ abgeschlossen.
+			\item[b)] Falls $A\in B(X)$, dann: $|\lambda|\leq ||A||$ für alle $\lambda\in \sigma(A)$. Insbesondere: $\sigma(A)$ Kompakt. $\sigma(A)\neq\emptyset$.
+		\end{enumerate}
+	\end{Satz}
+	
+	\begin{Satz}[Resolventendarstellung]~
+		\begin{enumerate}
+			\item[a)] Sei $\lambda_0\in \rho(A)$, $|\lambda-\lambda_0|\leq\frac{1}{||R(\lambda_0,A)||}$. Dann ist
+			$$R(\lambda,A) =\sum_{n = 0}^{\infty} (\lambda_0-\lambda)^n R(\lambda_0, A)^{n+1}$$
+			analytisch.
+			\item[b)] Sei $A\in B(X)$ und $|\lambda|>||A||$, dann ist 
+			$$R(\lambda, A) = \sum_{n = 0}^{\infty}\lambda^{-(n+1)}A^n.$$ 
+		\end{enumerate}
+	\end{Satz}
+	
+	
+	\begin{Satz}[Resolventenregel]
+		Für $\lambda,\mu\in \rho(A)$ gilt:
+		$$R(\lambda,A)-R(\mu,A) = (\mu-\lambda)R(\lambda,A)R(\mu,A).$$
+		Für $\mu\rightarrow \lambda$:
+		$$\frac{d}{d\lambda}R(\lambda,A) = -R(\lambda,A)^2.$$
+	\end{Satz}
+	
+	\begin{Beispiel}~
+		\begin{enumerate}
+			\item[a)] Sei $X=l^p$, $(x_n)\subset\C$.
+			$$D(A) = \{(x_n)\in l^p: (\sum_n |\lambda_n x_n|^p)^{1/p} \}$$
+			$A(x_n) = (\lambda_n x_n)\in l^p$ für $(x_n)\in D(A)$.
+			
+			Diagonaloperator: $\sigma(A) = \{\lambda_n\}$, $\lambda\notin \overline{\{\lambda_n\}}$ ist 
+			$$R(\lambda,A)(x_n) = (\lambda-A)^{-1}(x_n) = (\frac{1}{\lambda-\lambda_n}x_n).$$
+			\item[b)] $X=l^p$, $A(x_n) = (0,x_1,x_2,...)$ (Rechts-Verschiebeoperator). $\sigma(A) = \{\lambda:|\lambda|\leq 1 \}\subset \C$. 
+			\item[c)] $X = C[0,1]$, $Tf(t) = \int_0^t f(s)ds$, $t\in [0,1]$ (Volterraoperator). $\sigma(T) = \{0\}$, $||T|| \neq 0$.
+		\end{enumerate}
+	\end{Beispiel}
+	
+	\subsection{Spektrum und Kompaktheit}
+	
+	\begin{Satz}
+		Sei $X$ ein Banachraum, $A\in B(A)$ kompakt, d.h. $A(U_X)$ ist relativ kompakt in $(X,||.||)$ (z.B. $A\in \{T: X\rightarrow X |\dim\Bild(T)<\infty \}$). Falls $\dim X = \infty$, dann gilt $0\in \sigma(A)$. $\sigma(A)\backslash \{0\}$ besteht aus einer Folge $(\lambda_n)\subset \C$, die aus Eigenwerten von $A$ besteht, mit endlich dimensionalem Eigenraum $\Kern(\lambda_n-A).$ $(\lambda_n)$ ist endlich oder $|\lambda_n|\rightarrow 0$.
+	\end{Satz}
+	
+	Sei ab jetzt $X$ ein Hilbertraum mit $<.,.>$. 
+	
+	\begin{Definition}
+		$(h_n)\subset X$ heißt Orthonormalbasis von $X$, falls $<h_n, h_m> = \delta_{n,m}$, $\overline{\spann(h_n)} = X$.
+	\end{Definition}
+	
+	\begin{Satz}
+		Jeder seperable Hilbertraum besitzt eine Orthonormalbasis $(h_n)$ und für alle $x\in X$ gilt
+		\begin{eqnarray}
+			x &=& \sum_n <x,h_n>h_n,\nonumber\\
+			||x||^2 &=& \sum_n|<x,h_n>|^2 \nonumber
+		\end{eqnarray}	
+	\end{Satz}
+	
+	\begin{Satz}[Spektralsatz]
+		Für kompakte, selbstadjungierte Operatoren auf einem seperablen Hilbertraum.
+		Sei $A$ kompakt, selbstadjungiert, d.h. $<Ax, y> = <x, Ay>$. Dann gibt es eine Orthonormalbasis $(h_n)$ von $H$ und eine Folge $(\lambda_n)\subset\R$ mit $|\lambda_1|\geq |\lambda_2|\geq...\geq 0$, $\lim\limits_{n\rightarrow\infty} \lambda_n = 0$, sodass
+		$$ Tx= \sum_n \lambda_n<x,h_n>h_n.$$
+	\end{Satz}
+	
+	\begin{Bemerkung}~
+		\begin{enumerate}
+			\item[a)] $\lambda_n$ sind Eigenwerte von $A$, denn $Th_n = \lambda_nh_n$, $|\lambda_n|\rightarrow 0$.
+			\item[b)] $||A|| = \sup_{n\in \N}|\lambda_n| = \lambda_1$.
+			\item[c)] $\Kern A = \overline{\spann}\{h_n:\lambda_n = 0 \}$. $\overline{\Bild(A)} = \overline{\spann}\{h_n: \lambda_n\neq 0\}$. $X = (\Kern(A))\oplus\overline{\Bild(A)}$ (orthogonal). $A$ injektiv $\Leftrightarrow$ $\overline{\Bild(A)} = X$ $\Leftrightarrow$ $\lambda_n \neq 0$ $\forall n\in \N$.
+			\item[d)] $J:l^2\rightarrow X$, $J(e_n) = h_n$ ($e_n$ Einheitsvektor). $J$ ist Isometrie, denn
+			$$||\sum \alpha_n e_n||_{l^2} = (\sum |\alpha_n|^2)^{1/2} = ||\sum_n \alpha_n h_n||_X$$
+			$$\xymatrix{
+				l^2\ar[r]^D \ar[d]_J & l^2\\
+				X\ar[r]_A & X\ar[u]_{J^{-1}}
+				}$$
+			$D = JJ^{-1}A$, $D(x_n) = (\lambda_n x_n)$ für $x= (x_n) \in l^2$. $A$ ist ähnlich zu einem Diagonaloperator $D$ mit $|\lambda_n|\rightarrow 0$.
+		\end{enumerate}
+	\end{Bemerkung}
+	
+	\section{Verpasst}
+	
+	\newpage
+	\section{Fourieranalysis}
+	
+	\subsection{Die Fouriertransformation auf $L^1$, $S$ und $L^2$}
+	
+	\begin{Definition}
+		Für $f\in L^1(\R^d)$ setze 
+		$$\f(\xi) = \F(f(\xi))) = \int_{\R^d} e^{-2\pi ix\xi}f(x)dx$$
+		mit $x\m \xi = \langle x,\xi\rangle$.
+	\end{Definition}
+	
+	\paragraph{Bemerkung:} $d = 1$, $f\in L^2[0,\pi]\subset L^2(\R)$.
+	$$\f(n) = \int_{0}^{2\pi} e^{-2\pi i n x}f(x) dx = \F(f(n))$$
+	Klassische Fourier Koeffizienten $f\in L^[0,2\pi]$ sind die Werte von $\F f(\xi)$ für $\xi = n\in \Z$.
+	$$f= \sum_{n \in \Z} \f(n) e^{2\pi i n x} \text{ Fourierreihen.}$$
+	Ziel: $\sum\rightarrow \int$. Damit folgt $f(x) = \int_{\R}e^{2\pi i x \xi}\f(\xi)d\xi$.
+	
+	\begin{Prop}
+		Für $f\in L^1(\R^d)$ ist $\F f\in L^{\infty}(\R^d)$ und $||\F f||_{L^\infty}\leq ||f||_{L^1}$. Es gilt sogar $\F f\in C_0(\R^d)$, d.h. 
+		$$\lim\limits_{|x|\rightarrow 0}\F f(x) = 0.$$
+	\end{Prop}
+	
+	\Bew $|\F f(\xi)|\leq \int |e^{-2\pi i x\xi}| |f(x)| dx$. FÜr $\F f\in C_0(\R^d)$ siehe Übung.
+	\qed
+	
+	\begin{Prop}
+		~
+		\begin{enumerate}
+			\item[a)] Für die Dilation $f_\delta(x) = f(\delta x)$, $\delta>0$ fest:
+			$$f(\delta x) \overset{\F}{\rightarrow} \delta^{-d}\f(\delta^{-1}\xi).$$
+			Beweis durch Substitution $x' = x\m \delta$ in der Definition von $\F$.
+			\item[b)] $f(x+h) \overset{\F}{\rightarrow} \f(\xi)e^{2i\pi \xi h}$, $h\in \R^d$ fest. 
+			
+			$f(x)e^{-2i\pi x h}\overset{\F}{\rightarrow} \f(\xi+h)$. 
+		\end{enumerate}
+	\end{Prop}
+	\Bew b) $\F[f(\m+h)](\xi) = \int e^{-2i\pi x\xi}f(x+h) dx = (*)$. Substituiere $x' = x+h$
+	\begin{eqnarray}
+		(*) &=& \int e^{-2i\pi (x'-h)\xi}f(x')dx'\nonumber\\
+		&=& e^{2\pi i h\xi}\f(\xi).\nonumber
+	\end{eqnarray}
+	\qed
+	
+	\begin{Definition}[Faltung von $f,g\in L^1(\R^d)$]
+		$$(f*g)(x):= \int_{\R^d}f(x-y)g(y)dy = \int_{\R^d}f(y) g(x-y) dy$$
+		\textbf{Bemerkung:} $||f*g||_{L^1}\leq ||f||\m ||g||$.
+	\end{Definition}
+	
+	\begin{Prop}
+		$$\F(f*g)(\xi) = \f(\xi)\m \g(\xi).$$
+	\end{Prop}
+	
+	\Bew $\F(f*g)(x) = \int e^{-2i\pi x\xi}(\int f(x-y)g(y)dy)dx$. Fubini liefert:
+	\begin{eqnarray}
+		\F(f*g)(x) &=& \int e^{-2i\pi y\xi}g(y) (\int e^{-2i\pi (x-y)\xi}f(x-y)dx)dy\nonumber\\
+		&=&(\int e^{-2i\pi y\xi}g(y)dy)\m(\int e^{-2i\pi x\xi}f(x)d(x)) = \g(\xi)\m \f(\xi)\nonumber
+	\end{eqnarray}
+	\qed
+	
+	\paragraph{Zur Erinnerung:} $f\rightarrow f*g$ ist eine Glättung.
+	
+	\begin{Definition}
+		$f\in C^{\infty}(\R^d)$ heißt schnell fallend, falls für alle Multiindizes $\alpha,\beta \in \N_0^d$ gilt: 
+		$$||f||_{\alpha,\beta} := \sup_{\xi\in \R^d}|\xi^\beta(D^\alpha f)(\xi)| <\infty.$$
+		Notation: $f\in S(\R^d)$ (Raum der schnell fallenden Funktionen/Schwarzraum). $\alpha\in \N_0^d$, $\alpha = (\alpha_1,...,\alpha_d)$, $D^\alpha = D_{x_1}^{\alpha_1}...D_{x_n}^{\alpha_n}$ und $x^\alpha$ beschreibt das komponentenweise Potenzieren mit $\alpha_i$.
+	\end{Definition}
+	
+	\paragraph{Bemerkung:} Alle Ableitungen gehen schneller gegen Null als jedes Polynom gegen $\infty$ geht für $|x|\rightarrow \infty$, d.h. $\forall\alpha,\beta\in \N_0^d$, $\forall m\in \N$ gilt:
+	$$(I+|x|)^m x^\beta D^\alpha f(x)\in L^\infty(\R^d).$$
+	Insbesondere: $f\in S(\R^d)$ $\Rightarrow$ $f\in \bigcap_{p\geq 1} L^p(\R^d)$ (Himmelreich für Fubini, Differentiation unter dem Integralzeichen, Lebesgue Konvergenz...).
+	
+	\begin{Beispiel}
+		~
+		\begin{enumerate}
+			\item[a)] $C_c^{\infty}(\R^d)\subset S(\R^d)$. Aber $\f(\xi) = \int_K e^{-2i\pi x\xi}f(x) dx\notin C_c^{\infty}(\R^d)$, $K$ kompakt = $\supp f$.
+			\item[b)] $h(x) = e^{-\pi|x|^2}$, $h\in S(\R^d)$. Später: $\F(h) = h$.
+		\end{enumerate}
+	\end{Beispiel}
+	
+	\begin{Satz}
+		Mit $f\in S(\R^d)$ sind auch $x\m f(x)$, $D^\alpha f$, $D^\alpha\F f$, $\F(D^\alpha f)$ in $S(\R^d)$ und 
+		\begin{enumerate}
+			\item[a)] $D^{\alpha}\F f= \F[(-2i\pi x)^\alpha f(x)]$.
+			\item[b)] $(2i\pi \xi)^\alpha\F(f)(\xi) = \F(D^\alpha f)(\xi)$.
+		\end{enumerate}
+	\end{Satz}
+	
+	\Bew a) $D_{\xi_1}(\F f)(\xi) = \int D_{\xi_1}[e^{-2i\pi x\xi}]f(x) dx$
+	\begin{eqnarray}
+		D_{\xi_1}(\F f)(\xi) = \int (2i\pi x_1)e^{-2i\pi x\xi}f(x)dx\nonumber
+	\end{eqnarray}
+	Analog 
+	$$D_{\xi_1}D_{\xi_2}\F f(\xi) = \int e^{-2i\pi x\xi}(-2i\pi x_2)(-2i\pi x_1)f(x) dx...$$
+	b) \begin{eqnarray}
+		\F f(x) &=& \lim\limits_{R\rightarrow \infty} \int_{-R}^R...\int_{-R}^{R} e^{-2i\pi x y}f(y)dy\nonumber\\
+		&=& \lim\limits_{R\rightarrow\infty}\int_{-R}^R e^{-2i\pi x_1y_1}\left(\int_{-R}^{R} e^{-2i\pi x_2y_2}...e^{-2i\pi x_dy_d} f(y_1,...,y_d) dy_2...dy_d\right)dy_1 \nonumber\\
+		&=& \lim\limits_{R\rightarrow\infty} \int_{-R}^{R}\frac{1}{-2i\pi x_2}e^{-2i\pi x_1 y_1}D_{y_1}I_R(y_1)dy_1 + \lim\limits_{R\rightarrow\infty}\left[\frac{1}{-2i\pi x_2} I_R(y_1)\right]_{y_1 = -R}^R \nonumber\\
+		&=& \frac{1}{-2i\pi x_1}\F(Dy_1 f)(x)\nonumber
+	\end{eqnarray}
+	mit $I_R = \int_{-R}^{R} e^{-2i\pi x_2y_2}...e^{-2i\pi x_dy_d} f(y_1,...,y_d) dy_2...dy_d$.
+	
+	\begin{Beispiel}
+		$\F[e^{-\pi |x|^2}](\xi) = e^{-\pi|\xi|^2}$, denn (für $d= 1$):
+		
+		Setze $h(\xi) = \intR e^{-\pi x^2-2i\pi x\xi}dx$, d.h. $h(\xi) = \F[e^{-\pi|x|^2}](\xi)$.
+		\begin{eqnarray}
+			h'(\xi) &=& \intR (-2i\pi x)e^{-\pi x^2- 2i\pi x\xi}dx \nonumber \\
+			&=& i\intR \frac{d}{dx}[e^{-\pi x^2}]e^{-2i\pi x\xi}dx \nonumber\\
+			&=& i \F\left[\frac{d}{dx}e^{-\pi x^2} \right](\xi)\nonumber\\
+			&=& i(2i\pi\xi)\F\left[e^{-\pi x^2} \right](\xi) = -2\pi\xi h(\xi)\nonumber
+		\end{eqnarray}
+		Differentialgleichung: $h'(\xi) = -2\pi\xi h(\xi)$.
+		\begin{eqnarray}
+			\frac{h'(\xi)}{h(\xi)}=-2\pi \xi ~~\Rightarrow~~ \ln(h(\xi)) = 2\pi\int_0^x(-\xi)d\xi\nonumber\\
+			\Rightarrow h(\xi) = e^{-\pi\xi^2} = \F[e^{\pi x^2}](\xi)\nonumber
+		\end{eqnarray}
+		Für $d>1$: 
+		\begin{eqnarray}
+			\F[e^{-\pi|x|^2}](\xi) &=& \int e^{-2i\pi \xi x}e^{-\pi|x|^2}dx \nonumber\\
+			&=& \prod_{j = 1}^{d}\int_{\R}e^{-\pi x_j^2}e^{-2i\pi \xi_j x_j}dx_j = \prod_{j = 1}^{d} e^{-\pi\xi_j^2}\nonumber\\
+			&=& e^{-\pi|\xi|^2}\nonumber
+		\end{eqnarray}
+		Damit folgt $\F(\exp(-\pi\epsilon^2|x|^2)) = \epsilon^{-d}\exp(-\pi|\xi|^2/\epsilon^2)$.
+	\end{Beispiel}
+	
+	\begin{Satz}
+		$\F:S(\R^d)\rightarrow S(\R^d)$ ist bijektiv und 
+		$$\F^{-1}\phi(x) = \int_{R^d} e^{2i\pi x\xi}\phi(\xi)d\xi.$$
+	\end{Satz}
+	
+	\Bew Seien $\phi,\psi\in S(\R^d)$, $\F(\phi)\in S(\R^d)$, $x\in \R^d$ fest:
+	\begin{eqnarray}
+		\int e^{2i\pi x\xi}(\F\phi)(\xi)d\xi &=& \int \left(\int e^{-2i\pi \xi y}\phi(y) dy\right) e^{2i\pi x\xi} \psi(\xi)d\xi\nonumber\\
+		&\overset{\text{Fubini}}{=}& \int\left(\int e^{2i\pi (x-y)\xi}\psi(\xi)d\xi\right)\phi(y)dy\nonumber\\
+		&=& \int\F\psi(x-y)\phi(y)dy \nonumber\\
+		&=& \int \F\psi(y)\phi(x+y)dy\nonumber
+	\end{eqnarray}
+	Wähle $\psi(x) = e^{-\pi\epsilon^2|x|^2}$.
+	\begin{eqnarray}
+		\int e^{2i\pi x\xi}(\F\phi)(\xi)e^{-\pi\epsilon^2|\xi|^2}d\xi &=& \int \epsilon^{-d} e^{-pi|y|^2}\phi(y+x)dy\nonumber\\
+		&\overset{y' = y/\epsilon}{=}& \int e^{2i\pi x\xi}\F\phi (\xi) e^{-\pi\epsilon^2|\xi|^2}d\xi \nonumber \\
+		&=& \int e^{-\pi |y|^2}\phi (x+\epsilon y)dy\nonumber
+	\end{eqnarray}
+	Für $\epsilon>> 0$ folgt mit Lebesgue Konvergenz und
+	\begin{eqnarray}
+		\phi(x+\epsilon y)&\overset{\epsilon\rightarrow 0}{\longrightarrow}&\phi(x),~|\phi(x)|\leq C\nonumber\\
+		e^{-\pi\epsilon^2|\xi|^2}&\overset{\epsilon\rightarrow 0}{\longrightarrow}& 1, ~|e^{-\pi\epsilon^2|\xi|^2}\leq 1\nonumber
+	\end{eqnarray}
+	Für $\epsilon\rightarrow 0$:
+	\begin{eqnarray}
+		\int e^{2i\pi x\xi}\F\phi(\xi)d\xi &=& \left(\int e^{-\pi|y|^2}dy \right)\phi(x)\nonumber\\
+		\G f(x)&:=& \int e^{2\i\pi x\xi}f(\xi)d\xi\nonumber
+	\end{eqnarray}
+	Also $\G(\F) = \text{Id}$ und $\F(\G) = \text{Id}$ $\Rightarrow$ $\F^{-1} = \G$.\qed
+	
+	\paragraph{Folgerung:} $\F^{-1}\phi(x) = \F\phi(-x)$.
+	
+	\paragraph{Bemerkung} Vergleich zu Fourierreihen: 
+	$$f(x)=\sum_{n\in \Z} e^{2i\pi n x}\f(n),~~ \f(n) = \int_{0}^{2\pi}e^{-2i\pi n x}f(x) dx.$$
+	
+	\begin{Prop}
+		Seien $f, g\in S$. Dann sind $f\m g$ und $f*g$ wieder $\in S$.
+	\end{Prop}	
+	\Bew Zeige $f(x)g(x) \in S$, benutze Produktformel.\\
+	$D^\alpha(f*g)(x) = \int (D_\alpha f)(x-y)g(y) dy$.
+	\begin{eqnarray}
+		(1+|x|)^n D^{\alpha}(f*g)(x) &=& \int(1+|x-y|)^n D^\alpha f(x-y) (1+|y|)^ g(y) \frac{(1+|x|)^n}{(1+|x-y|)^n (1+|y|)^n}dx \nonumber\\
+		&\leq& C\int(1+|y|)^{-m}(1+|y|)^{n+m}g(y) dy\nonumber
+	\end{eqnarray}
+		
+	\paragraph{Zusammenfassung:} 
+	$$\xymatrix{
+		S\ar[d]_\F \ar[r]^{D^\alpha} & S\ar[d]^\F\\
+		S\ar[r]_{M_\alpha} & S
+		}$$
+	Mit $M_\alpha f(x) = (2i\pi x)^{\alpha} f(x)$.
+	$$\xymatrix{
+		S\ar[r]^{T_g}\ar[d]_\F & S\ar[d]^\F\\
+		S\ar[r]_{M_g} & S
+		}$$
+	Mit $T_g f = f*g$, $M_g f= \g f$.
+	
+	\begin{Bemerkung}[Zur Lösung von Differentialgleichungen (formale Rechnung)]~
+		\\
+		$(*)$ $(I-D^{\alpha})f = g$, $g$ gegeben, $f$ gesucht.
+		\begin{eqnarray}
+			[1-(2i\pi x)^{\alpha}]\f(x) = \g(x) &\Rightarrow& \f(x) = [1 - (2i\pi x)^{\alpha}]^{-1}\g(x)\nonumber 
+		\end{eqnarray}
+		$m(x) = 1-(2i\pi x)^{\alpha}$. Falls $m(x)\neq 0$.
+		\begin{eqnarray}
+			f = [\F^{-1}[(1-2i\pi x)^{\alpha}]\g(x)]\nonumber
+		\end{eqnarray}
+		Angenommen $\exists k\in L^1$ mit $\hat{k}(x) = \frac{1}{m(x)}$.
+		\begin{eqnarray}
+		\Rightarrow f &=& [\F^{-1}[(1-2i\pi x)^{\alpha}]\g(x)]\nonumber\\
+		 &=& \F^{-1}[\hat{k}\m \g]\nonumber\\
+		&=& \F^{-1}\hat{k}*\F^{-1} \g = k*g\nonumber
+		\end{eqnarray}
+		Die Lösung von $(*)$ ist oft durch einen Faltungsoperator gegeben.
+	\end{Bemerkung}
+	
+	\subsection{Fouriertransformation auf $L^2(\R^d)$}
+	
+	\begin{Lemma}
+		Für $f, g\in S(\R^d)$ gilt mit $<f,g> = \int_{\R^{d}} f(x) \overline{g(x)}dx$.
+		\begin{enumerate}
+			\item[a)] $<\F f,\F g> = <f,g>$, $\F$ unitär.
+			\item[b)] $||\F f||_{L^2} = ||f||_{L^2}$, $\F$ Isometrie.
+		\end{enumerate}
+	\end{Lemma}
+	\Bew a) $\F^{-1}\F f = f$. Daraus folgt:
+	\begin{eqnarray}
+		<f,g> &=&\int f(x)\overline{g(x)}dx\nonumber\\
+		&=& \int\left(\int e^{2i\pi x y}\F f(y)dy \right)\overline{g(x)}dx \nonumber \\
+		&\overset{\text{Fubini}}{=}& \int \F(y)\left(\int e^{2i\pi xy} \overline{g(x)}dx\right)dy\nonumber\\
+		&=& \int \F f(y) \int e^{-2i\pi xy}g(x)dx dy\nonumber\\
+		&=& <\F f, \F g>\nonumber
+	\end{eqnarray}
+	b) $<f,f>$ liefert Behauptung.
+	\qed
+	
+	\begin{Definition}[der Fouriertransformation auf $L^2(\R^d)$]
+		Da $S(\R^d)$ dicht in $L^{2}(\R^d)$ liegt, gibt es zu jedem $f\in L^{2}(\R^d)$ eine Folge $(f_n)\subset S(\R^d)$ mit $||f-f_n||_{L^2}\rightarrow 0$.
+		
+		Setze $\F f =\lim\limits_{n\rightarrow\infty}\F(f_n)$ (in $L^2$), d.h. $\F$ ist die stetige Fortsetzung von 
+		$$\F:S(\R^d)\rightarrow L^2(\R^d) \text{ auf } L^2(\R^d),$$	
+		denn $||\F f||_{L^2} = ||f||^{L^2}$ für alle $f\in S(\R^d)$.
+	\end{Definition}
+	Achtung: Für $f\in L^2(\R^d)$ ist $\int e^{-2i\pi xy}f(y)dy$ nicht immer für fast alle $x$ als Lebesgue-Integral definiert.
+	
+	\begin{Korollar}
+		Für $f, g\in L^2(\R^d)$ gilt:
+		\begin{enumerate}
+			\item[a)] $<\F f,\F g> = <f,g>$.
+			\item[b)] $||\F f||_{L^2} = ||f||_{L^2}$.
+		\end{enumerate}
+	\end{Korollar}
+	\Bew $f_n,g_n\in S^n$ mit $f_n\rightarrow f$, $g_n\rightarrow g$, $f,g\in L^2$. 3.13 und 3.14 liefern Behauptung.
+	\qed
+	
+	\begin{Korollar}
+		Sei $g\in L^{1}(\R^d)$, $T_g f= g*f$. Dann ist 
+		$$||T_g||_{L^2\rightarrow L^2} = \sup_{x\in \R^d}|\g(x)|.$$
+	\end{Korollar}
+	\Bew $||f*g||_{L^2} = ||\F[f*g]||_{L^2} = ||\f\m\g||_{L^2}$.  Damit folgt
+	$$||\f\m\g||_{L^2} = \left(\int |f(x)\bar{\g(x)}|^2 dx \right)^{1/2}\leq \sup_{x\in \R^d}|\g(x)|\m||\f||_{L^2} = \sup|\g(x)|\m ||f||_{L^2}.$$
+	Somit $||T_g||\leq \sup|\g(x)|$.
+	\qed 
+	
+	\paragraph{Bemerkung:} $||T_g||_{L^2\rightarrow L^2}\leq||g||_{L^1}$ (Youngsche Ungleichung), denn $\sup|\g(x)| \leq ||g||_{L^1}$.
+	
+	\section{Temperierte Distributionen und die Fouriertransformation}
+	
+	Idee $S'(\R^d)$ soll der Dualraum von $S(\R^d)$ sein. 
+	\paragraph{Wiederholung:} Für $N\in \N$ setze $||f||_N = \sup\{|x^\alpha D^\beta f(x)|: x\in \R^d, \alpha,\beta\in \N_0^d, |\alpha|,|\beta|\leq N \}$.
+	
+	\begin{Definition}
+		Für $f_n,f\in S(R^d)$ gilt $f_n\overset{S}{\rightarrow}f$ $\Leftrightarrow$ $||f-f_n||_N\rightarrow 0$ $\forall N\in \N$.
+	\end{Definition}
+	
+	\paragraph{Bemerkung:} $f_n\overset{S}{\rightarrow} f$ ist äquivalent zu $d(f_n,f)\rightarrow 0$ für die Metrik
+	$$d(f,g)=\sum_{N\in \N}2^{-N}\frac{||f-g||_N}{1+||f-g||_N}$$
+	und $d(f_n,f)\rightarrow 0$ $\Leftrightarrow$ $||f-f_n|_N\rightarrow 0$ für alle $N$.
+	
+	\begin{Definition}
+		$S'(\R^d) = \{u:S(\R^d)\rightarrow K, \text{ linear, stetig bezüglich } f_n\overset{S}{\rightarrow} f \}$. $S'(\R^d)$ ist der Dualraum von $S(\R^d)$. Mann nennt ihn auch den Raum der temperierten Distributionen.
+	\end{Definition}
+	
+	\begin{Beispiel}
+		~
+		\begin{enumerate}
+			\item[a)] Sei $h:\R^d\rightarrow \C$ lokal integrierbar und es gebe $n,C$, sodass $\int_{|x|\leq R}|h(x)|dx\leq C R^n$ für $R\rightarrow \infty$. Dann setze $$u_h(f) = \int f(x)h(x) dx.$$
+			Zu zeigen: $u_h\in S'$. Insbesondere: $L^p(\R^d)\subset S'(\R^d)$ für alle $p$, denn 
+			$$\int_{|x|\leq R}|f(x)|d<\leq R^{1/p}||f\chi_{|x|\leq R}||_{L^p}.$$
+			\item[b)] Dirac Maß: $\delta_x\in S'(\R^d)$, $\delta_x(u) = u(x)$.
+		\end{enumerate}
+	\end{Beispiel}
+	
+	\begin{Satz}
+		Sei $u:S(\R^d)\rightarrow \C$ linear, $u$ stetig, d.h. $u\in S'(\R^d)$ genau dann, wenn es ein $N$ gibt, sodass 
+		$$|u(f)|\leq C||f||_N~~\forall f\in S(\R^d).$$
+	\end{Satz}
+	
+	\Bew \glqq$\Leftarrow$\grqq\ klar. \glqq$\Rightarrow$\grqq: Andernfalls gibt es zu jedem $n\in \N$ ein $f_n\in S$ mit $||f_n||_n = 1$ aber $|u(f_n)|\geq n$. Setze $g_n = f_n/\sqrt{n}$. Dann gilt $||g_n||_N \leq n^{1/2}\overset{n\rightarrow\infty}{\rightarrow} 0$ für $n\geq N$.
+	
+	Aber $|u(g_n)|\geq \sqrt{n}\overset{n\rightarrow\infty}{\rightarrow}\infty$. Also Widerspruch zur Stetigkeit von $u$.
+	
+	
+	\begin{Beispiel}
+		~
+		\begin{enumerate}
+			\item[a)] \glqq$L^p(\R^d)\subset S'(\R^d)$\grqq. Sei $h:\R^d\rightarrow \C$ lokal integrierbar und
+			$$(*)~~~\int_{|x|\leq R}|h(x)|dx\leq C R^n\text{ für } R> 1$$
+			für ein festes $C<\infty$, $n\in \N$ fest. Dann wird durch 
+			$$u_h(f)= \int_{\R^d} h(x)f(x)dx$$
+			eine Distribution $u_h\in S'(\R^d)$ definiert, d.h. man erhält eine Einbettung von Funktionen $h$ mit $(*)$ nach $u_h\in S'(\R^d)$.
+			\item[b)] Sei $\psi\in C^\infty(\R^d)$ und langsam wachsend, d.h. für alle $\alpha\in \N$ gibt es $N_\alpha, C_\alpha\leq \infty$ mit 
+			$$|D^\alpha\psi(x)|\leq C_\alpha(1+|x|)^{N_\alpha},~~ x\in \R^d.$$
+			Dann kann man für jedes $u\in S'(\R^d)$ ein Produkt $\psi\m u\in S'(\R^d)$ definieren durch $(\psi\m u)(f) = u(\psi f)$ für $f\in S(\R^d)$.
+			\item[c)] Dirac Distribution: $\delta_x\in S'(\R^d)$. $\delta_x(f) = f(x)$ für $f\in S(\R^n)$.
+			\item[d)] $h(x) = e^{|x|^2}$. Dann $u_h\notin S'(\R^d)$, den $f(x) = e^{-|x|^2}\in S(\R^d)$
+			$$u_h(f)=\int h(x) g(x) dx = \int 1 dx = \infty.$$
+		\end{enumerate}
+	\end{Beispiel}
+	\Bew a) Benutze 4.4. 
+	\begin{eqnarray}
+		|u_h(f)| &=& \int h(x)f(x)dx\nonumber\\
+		&=& \int h(x)(1+|x|^2)^{-2-n}(1+|x|^2)^{2+n}f(x) dx \nonumber\\
+		&\leq& \int |h(x)|(1+|x|^2)^{-2-n}dx\m \sup_{x\in \R^d}(1+|x|^2)^{2+n}|f(x)|\nonumber\\
+		&\leq& C||f||_N\nonumber
+	\end{eqnarray}
+	Für $h\in L^p(\R^d)$ gilt mit Hölder $\int_{|x|\leq R}|h(x)|dx\leq \left(\int_{|x|\leq R}|h(x)|^p dx \right)^{1/p} R^{d/p'}$. Hier ist $(*)$ erfüllt mit $n>d/p'$.\\
+	b) z.B. $\psi f\in S(\R^d)$.
+	\qed
+	
+	\begin{Definition}[Prinzip der Dualität]
+		Sei $T:S(\R^d)\rightarrow S(\R^d)$ linear und stetig. Dann definiere die \textbf{duale Abbildung} $T':S'(\R^d)\rightarrow S'(\R^d)$ durch $(U\in S'(\R^d), f\in S(\R^d))$
+		$$(T'u)(f) = u(T(f)).$$
+	\end{Definition}
+	
+	
+	\paragraph{Bemerkung.} $f_n\overset{S}{\rightarrow} f$ $\Rightarrow$ $Tf_n\overset{S}{\rightarrow} Tf$. $u(Tf_n) \rightarrow u(Tf)$, $T'u(f_n)\rightarrow T'u(f)$, da $T$ und $u$ stetig und linear nach Definition.
+	
+	\begin{Definition}
+		$\F:S(\R^d)\rightarrow S(\R^d)$ $\Rightarrow$ $\F':S'(\R^d)\rightarrow S'(\R^d)$ mit 
+		$$(\F'u)(f) = u(\f),~~ f\in S,~ u\in S'.$$
+	\end{Definition}
+	
+	\paragraph{Bemerkung.} $h\in L^1(\R^d)\rightarrow u_h\in S'(\R^d)$. Für $f\in S(\R^d)$ gilt 
+	$$(\F'u_h)(f) = u_h(\f) = \int h(x) \f(x) dx \overset{\text{Sec. 3}}{=}\int \hat{h}(x)f(x) dx = u_{\hat h (x)}(f),~\forall f\in S.$$
+	Also $\F'u_h = u_{\F h}$.
+	
+	Notation: $\F'\hat{=}\F$. Dann $\boxed{\F(u_h)=u_{\F h}$, $\hat{u}_h = u_{\hat h}.}$
+	
+	\begin{Prop}
+		$\F: S'(\R^d)\rightarrow S'(\R^d)$ ist bijektiv.
+		$$(\F^{-1}u)(f) = (\F u)(\tilde{f}), \text{ wobei } \tilde{f}(x) = f(-x).$$
+	\end{Prop}
+	
+	\Bew $\F\m\F^{-1} = \id_S$. Dualität: 
+	$$(\F^{-1})'\F' = (\F\F^{-1})' = \id_S'= \id_{S'}.$$
+	$\Rightarrow$ $(\F')^{-1} = (\F^{-1})'$ und damit bijektiv. Außerdem 
+	$$(F^{-1}u)(f) = u(\F^{-1}f) = u(\F f(-\bullet)) =  \F'u(f(-\bullet)) = \F'u(\tilde{f}).$$
+	\qed
+	
+	
+	\begin{Definition}
+		Sei $u\in S'(\R^d)$, $\alpha\in \N_0^d$. Definiere $D^\alpha u$ durch
+		$$(D^\alpha u)(f) = (-1)^{|\alpha|}u(D^\alpha f)\text{ und } D^\alpha u\in S'(\R^d).$$
+	\end{Definition}
+	
+	\paragraph{Bemerkung:} ~
+	\begin{enumerate}
+		\item[a)] $D^\alpha: S(\R^d)\rightarrow S(\R^d)$. 
+		$$D^\alpha u := (-1)^{|\alpha|}(D_S^\alpha)'u \text{ (im Sinne der Dualität)}$$
+		denn $(D_{S'}^\alpha u)(f) = (-1)^{|\alpha|} u(D^\alpha f)$.
+		\item[b)] Sei $h\in S(\R^d)$ und $u_h\in S'(\R^d)$. 
+		$$D^\alpha(u_h)(f) = (-1)^{|\alpha|} u_h(D^\alpha f) = (-1)^{|\alpha|}\int h(x) D^\alpha f(x) dx \overset{\text{p.I.}}{=} \int(D^\alpha h)(x) f(x) dx.$$
+		Also: $\boxed{D^\alpha (u_h) = u_{D^\alpha h}.}$
+	\end{enumerate}
+	
+	\begin{Prop}
+		Sei $h\in C^{\infty}(\R^d)$ eine langsam wachsende Funktion, $u\in S'^{\R^d}$. Dann gilt
+		$$D_{x_i}(h\m u) = (D_{x_i}h) \m u + h D_{x_i}u$$
+		sowie für $\alpha,\beta\in \N_0^d$
+		$$D^{\alpha+\beta}u = D^\alpha(D^\beta u).$$
+	\end{Prop}
+	
+	\Bew Übung.
+	\qed
+	
+	\begin{Beispiel}
+		~
+		\begin{enumerate}
+			\item[a)] Sei $d= 1$, $H(x) =\left\{\begin{array}{l}
+			1, ~x\geq 0\\
+			0, ~x< 0
+			\end{array}
+			\right.$. Behauptung: $D(u_H) = \delta_0$, denn für $\phi\in S(\R)$ gilt
+			\begin{eqnarray}
+				(Du_h)(\phi) = -u_h(D\phi) = -\int H(x)\phi'(x)dx = \int_0^\infty \phi'(x) dx = \phi(0)\nonumber
+			\end{eqnarray}
+			Außerdem: für $\delta_a$
+			$$(D^\alpha\delta_a)(\phi) = (-1)^{|\alpha|}(D^\alpha\phi) = (-1)^{|\alpha|}D^\alpha\phi(0).$$
+		\end{enumerate}
+	\end{Beispiel}
+	
+	\paragraph{Vorschau:} Zu $u\in S'(\R^d)$ gibt es eine langsam wachsende, stetige Funktion $\psi:\R^d\rightarrow\C$ und $\alpha\in \N_0^d$, sodass $u= D^\alpha\psi$.
+	
+	\begin{Prop}
+		Für $u\in S'(\R^d)$ und $\alpha\in \N_0^d$ gilt:
+		\begin{enumerate}
+			\item[a)] $\F(D^\alpha u) = (2i\pi \m)^\alpha \F u$.
+			\item[b)] $D^\alpha (\F u) = \F((-2i\pi \m)^\alpha u)$.
+		\end{enumerate}
+	\end{Prop}
+	\Bew a) Für $f\in S(\R^d)$ erhält man nach Kapitel 3
+	\begin{eqnarray}
+		[\F(D^\alpha u)](f)&\overset{\text{Def.}}{=}& (D^\alpha u)(\F f)\nonumber\\
+		&\overset{\text{Def.}}{=} & (-1)^{|\alpha|} u(D^\alpha \F f)\nonumber\\
+		&=& (-1)^{|\alpha|} u (\F((-2i\pi\m)^\alpha f)) \nonumber\\
+		&\overset{\text{Def.}}{=}& (-1)^{|\alpha|}(\F u)((-2i\pi\m)^\alpha f)\nonumber\\
+		&=& [(2i\pi)^\alpha \F u](f)\nonumber
+	\end{eqnarray}
+	b) analog.
+	\qed
+	
+	\paragraph{Erinnerung:} Für $f\in S(\R^d)$, $y\in \R^d$, $a>0$ gilt
+	\begin{eqnarray}
+		(\tau^Y f)(x) &:=& f(x-y)\nonumber\\
+		(\delta^a f)(x)&:=& f(ax)\nonumber\\
+		\tilde{f}(x) &:= & f(-x)\nonumber
+	\end{eqnarray}
+	Dann folgt mit einfacher Substitution
+	\begin{eqnarray}
+		u_{\tau^y g}(f) &=& \int_{\R^d} \tau^Y(g)f dx \nonumber\\
+		&=& \int_{\R^d}g(x-y) f(x) dx \nonumber\\
+		&\overset{\text{Subst.}}{=}& \int_{\R^d} g(x)f(x+y)dx = u_g(\tau^{-y}f)\nonumber\\\nonumber \\
+		u_{\delta^a g}(f) &=& \int_{\R^d}g(ax)f(x)dx \nonumber\\
+		&\overset{\text{Subst.}}{=}& a^{-d}\int_{\R^d} g(x)f(\frac{1}{a}x)dx \nonumber\\
+		&=& a^{-d}u_g(\delta^{1/a}f)\nonumber\\\nonumber\\
+		u_{\tilde{g}}(f) &=& \int_{\R^d}g(x)f(x)dx \nonumber\\
+		&=& \int_{\R^d}g(x)f(-x) dx\nonumber\\
+		&=& u_g(\tilde{f})\nonumber
+	\end{eqnarray}
+	
+	\begin{Prop}
+		Es gelten für $u\in S'(\R^d)$, $y\in \R^d$, $a>0$ die Regeln:
+		\begin{enumerate}
+			\item[a)] $\F(\tau^y u) = e^{-2i\pi y x} \hat{u}$.
+			\item[b)] $\tau^y \hat u =\F(e^{2i\pi x y} u)$.
+			\item[c)] $\F(\delta^a u) = a^{-d}\delta^{1/a} \hat u$.
+			\item[d)] $\F(\tilde{u}) = \widetilde{\F(u)}$.
+		\end{enumerate}
+	\end{Prop}
+	
+	\Bew a) Für $f\in S(\R^d)$ gilt
+	\begin{eqnarray}
+		[F(\tau^y u)](f) &\overset{\text{Def}}{=}& (\tau^y u)(\f)\nonumber\\
+		&\overset{\text{Def}}{=}& u(\tau^{-y}\f)\nonumber\\
+		&\overset{\text{Def.}}{=}& u(\F(e^{-2i\pi xy}f))\nonumber\\
+		&\overset{\text{Def.}}{=}& \hat u (e^{-2i\pi xy}f)\nonumber\\
+		&\overset{\text{Def.}}{=}& [e^{-2i\pi xy}\hat u](f)\nonumber
+	\end{eqnarray}
+	b), c), d) analog
+	\qed
+	
+	\begin{Satz}
+		Zu $u\in S'(\R^d)$ existiert eine langsam wachsende Funktion $\varphi:\R^d\rightarrow \C$ und $\gamma\in \N_0^d$, sodass
+		\begin{eqnarray}
+			u &=& D^\gamma\varphi (= D^\gamma u_\varphi)\nonumber\\
+			( u(f) &=& (-1)^{|\gamma|}\int_{\R^d}\varphi(x) D^{\gamma} f(x)dx ) \nonumber
+		\end{eqnarray}
+	\end{Satz}
+	
+	\Bew Idee: Verwende Darstellungssatz von Riesz für $L^1$.
+	\begin{enumerate}
+		\item Für $N\in \N$ definiere $S_N:=(S(\R^d),||.||_N)$, wobei
+		$$||f||_N = \sup_{\lambda\in \R^d}\sup_{|\alpha|,|\beta|\leq N}|x^\beta D^\alpha f(x)|$$
+		und sei $S'_N$ der Dualraum von $S_N$. Definiert man 
+		$$I_N:= \{\alpha\in \N_0^d: |\alpha|\leq N \}$$ 
+		und $M:= \# I_N$ zu $f\in S(\R^d)$ und außerdem 
+		$$\psi_f:\R^d\rightarrow \R^d,~~\psi_{f,\alpha}(x)= (1+|x|)^N D^{\alpha+1}f(x),~~\alpha \in I_N$$
+		mit $1=(1,...,1)\in \N_0^d$. Dann ist $\psi_{f,\alpha}\in L^1(\R^d)$ für alle $\alpha\in I_N$, d.h. $\psi_f\in L^1(\R^d)^M$. 
+		Außerdem ist $\psi_f$ durch $f$ eindeutig bestimmt.
+		\item Sei nun $u\in S'(\R^d)$. Nach Satz 4.3 ist dann $u\in S'_N$ für ein $N\in \N$. Definiere außerdem $L(\psi_f):= u(f)$, $f\in S(\R^d)$. Nach 1. ist dann $L$ wohldefiniert.
+		
+		Weiter $|L(\psi_f)| = |u(f)|\leq C||f||_N = C\sup_x \sup_{|\alpha|,|\beta|\leq N}|x^\beta D^\alpha f(x)$
+		\begin{eqnarray}
+			|L(\psi_f)| &=& |u(f)|\leq C||f||_N\nonumber\\
+			&=& C\sup_x \sup_{|\alpha|,|\beta|\leq N}|x^\beta D^\alpha f(x)\nonumber\\
+			&\leq & C\sum_{|\alpha|\leq N} \sup_x(1+|x|)^N|D^\alpha f(x)|\nonumber\\
+			&\overset{x_0 = x_{0,\alpha}}{=}& C\sum_{|\alpha|\leq N} (1+|x_{0,\alpha})^N|D^\alpha f(x_{0,\alpha}|)\nonumber\\
+			&=& C \sum_{|\alpha|\leq N} (1+|x_0|)^N \left( \int_{-\infty}^{x_{0,d}}...\int_{-\infty}^{x_{0,k+1}}...\int_{x_{0,k}}^{\infty}... D^{\alpha+1}(f(y_1,...,y_d))dx  \right)\nonumber\\
+			&\leq& C||\psi_f||_{L^1(\R^d)^M}\nonumber
+		\end{eqnarray}
+		Definiere nun $\mathcal{L}^M:=\{\psi_f:\R^d\rightarrow\R^M: f\in S(\R^d) \}\subseteq L^1(\R^d)^M$. Wegen $\alpha\psi_f+\psi_g = \psi_{\alpha f+g}$ und der Linearität von $U$ ist $L$ linear auf $\mathcal{L}^M$ und nach obigem beschränkt auf $(\mathcal{L}^M,||.||_{L^1(\R^d)^M})$, d.h. $L\in (\mathcal{L}^{M})'$. Nach Hahn-Banach existiert nun eine Erweiterung $\tilde{L}\in (L^1(\R^d)^M)'$ und nach Darstellungssatz von Riesz gilt
+		$$(L^1(\R^d)^M)'\cong (L^1(\R^d)')^M\cong L^\infty(\R^d)^M.$$
+		Damit gilt 
+		\begin{eqnarray}
+			u(f) = \tilde{L}(\psi_f) &=& \sum_{|\alpha|\leq N}\int_{\R^d}\psi_{f,\alpha}g_\alpha dx\nonumber\\
+			&=&\sum_{|\alpha|\leq N}\int_{\R^d} (1+|x|)^N D^{\alpha + 1}f(x) g_\alpha(x) dx\nonumber
+		\end{eqnarray}
+		mit $g_\alpha\in L^\infty(\R^d)$ für $\alpha\in I_N$.
+		Mit mehrfacher partieller Integration kann man dies weiter vereinfachen zu
+		$$u(f) = \int_{\R^d} \tilde{\varphi}D^{\tilde{\gamma}}f dx$$
+		mit $\tilde{\gamma} = (N+1,...,N+1)$ und $\tilde{\varphi}=$ Linearkombinationen aus $(1+|x|)^Ng_\alpha$ und deren Stammfunktionen. Insbesondere ist $\tilde{\varphi}$ langsam wachsende Funktion. Nochmals partielles Integrieren liefert dann ein stetiges $\varphi$ und $\gamma\in \N_0^d$ mit gewünschter Eigenschaft.
+	\end{enumerate}
+	\qed
+	
+	\section{Faltung und Distributionen}
+	
+	Wir begnügen uns damit Distributionen $u$ mit Schwarzfunktionen $f$ zu falten. Die Definition wird motiviert durch
+	$$(f*g)(x)=\int_{\R^d}f(x-y)g(y) dy = u_g(f(x-\m)).$$
+	
+	\begin{Definition}
+		Sei $u\in S'(\R^d)$ und $f\in S(\R^d)$. Dann definiere
+		$$(f*u)(x):= u(f(x-\m)),~ x\in \R^d.$$
+	\end{Definition}
+	
+	\begin{Satz}
+		Sei $u\in S'(\R^d)$, $f\in S(\R^d)$. Dann ist die Funktion $x\mapsto (f*u)(x)$ eine langsam wachsende $C^\infty-$Funktion, mit 
+		$$D(f*u) = (D^\alpha f)*u = f*(D^\alpha u).$$
+	\end{Satz}
+	
+	\Bew Nach Kapitel 4 existiert zu $u\in S'(\R^d)$ ein $N\in \N$, $C<\infty$ mit 
+	$$|u(f)|\leq C||f||_N.$$
+	Damit folgt
+	\begin{eqnarray}
+		|(f*u)(x)| &=& |u(f(x-\m))|\nonumber\\
+		&\leq& C\sup_y \sup_{|\alpha|,|\beta|\leq N}|y^\alpha D^\beta f(x-y)|\nonumber\\
+		&=& C\sup_y\sup_{|\alpha|,|\beta|\leq N} |(x-y)^\alpha D^\beta f(y)|\nonumber\\
+		&\leq& C\m \tilde{C}(1+|x|)^N, \nonumber
+	\end{eqnarray}
+	wobei $\tilde{C}\geq \sup_{|\alpha|,|\beta|\leq N}(1+|y|)^N|D^\beta f(u)|$.
+	
+	Zeige nun
+	$$D_{x_i}(f*u) = (D_{x_i}f*u).$$
+	Betrachte dazu den Differenzenquotienten
+	\begin{eqnarray}
+		\frac{1}{n}[(f*u)(x+h e_i)-(f*u)(x)] &\overset{\text{Def.}}{=}& u(\frac{1}{n}[f(x+he_i -\m)-f(x-\m)])\nonumber
+	\end{eqnarray}
+	Da jedes $f\in S(\R^d)$ gleichmäßig stetig (und alle Ableitungen ebenso) ist, folgt für festes $x\in \R^d$ und $N\in \N$.
+	$$||[\frac{1}{n}f(x+he_i-\m)-f(x-\m)]-D_{x_i}f(x-\m)||_N\rightarrow 0\text{ für } h\rightarrow 0.$$
+	Mit der Stetigkeit von $u$ folgt nun
+	\begin{eqnarray}
+		D_{x_i}(f*u)(x) &=& u(D_{x_i}f(x-\m))\nonumber\\
+		&=& ((D_{x_i}f)*u)(x)\nonumber
+	\end{eqnarray}
+	Wiederholung des Arguments liefert
+	$$D^\alpha (f*u) = (D^\alpha f)*u).$$
+	Die letzte Behauptung folgt aus 
+	\begin{eqnarray}
+		(D^\alpha f*u)(x) &=& u((D^\alpha f)(x-\m))\nonumber\\
+		&=& u((-1)^{|\alpha|}D^\alpha (f(x-\m))\nonumber\\
+		&=& (D^\alpha u)(f(x-\m)) = (f*D^\alpha u)(x)\nonumber
+	\end{eqnarray}
+	\qed
+	
+	Für alternative Darstellungen benötigen wir das folgende
+	
+	\begin{Lemma}
+		Seien $u\in S'(\R^d),~f,g\in S(\R^d)$. Dann gilt 
+		$$u\left(\int_{\R^d}f(u-\m)g(y) dy \right) = \int_{\R^d}u(f(y-\m))g(y) dy.$$
+	\end{Lemma}
+	
+	\Bew 
+	\begin{enumerate}
+		\item Für jedes $N\in \N$ sei $(Q_m)_{m= 1}^{(2N^2)^d}$ die Zerlegung von $[-N,N]^d$ in Würfel der Seitenlänge $1/N$ mit Mittelpunkt $y_m$. Zeige nun, dass die Riemannsumme $R_N(x) := \sum_{m=1}^{(2N^2)^d}f(y_m-x)g(y_m)|Q_m|$ in $S(\R^d)$ gegen $\int_{\R^d}f(y-x)g(y)dy$ konvergiert, d.h.
+		$$||R_N-\int_{\R^d}f(y-\m)g(y) dy||_{x,\beta} = \sup_{\lambda\in \R^d}|\sum_{m= 1}^{(2N^2)^d}x^\alpha D^\beta(f(y_m-x))g(y_m)|Q_m| - \int_{\R^d}x^\alpha D_x^\beta (f(y-x))g(y)dy|\overset{N\rightarrow\infty}{\rightarrow} 0.$$
+		Es gilt zum einen: 
+		\begin{eqnarray}
+			x^\alpha (-1)^{|\beta|}(D^\beta f)(y_m-x)g(y_m)|Q_m|&-&(-1)^{|\beta|}\int_{\Q_m} x^\alpha(D^\beta f)(y-x)g(y) dy\nonumber\\
+			&=& (-1)^{|\beta|}\int_{Q_m}x^\alpha ((D^\beta f)(u_m-x)g(y_m)-(D^\beta f) (y-x)g(y)) dy \nonumber\\
+			&=& (-1)^{|\beta|}\int_{Q_m} x^\alpha(y_m-y)[\nabla_y (D^\beta f(\m-x)g)](\xi) dy = (*)\nonumber
+		\end{eqnarray}
+		 für $\xi = y+\theta(y_m-y)$, $\theta \in [0,1]$. Wegen $|y|\leq |\xi|+\theta|y_m-y|\leq |\xi|+\frac{\sqrt{d}}{N}\leq |\xi|+1$ für $N>\sqrt{d}$, folgt
+		 \begin{eqnarray}
+		 	|(*)| &\leq& c_1\frac{|x|^{|\alpha|}}{(1+|x|)^M}\frac{\sqrt{d}}{N}\int_{Q_m} \frac{1}{(1+|y|)^M}dy\nonumber
+		 \end{eqnarray}
+		 Damit erhält man 
+		 \begin{eqnarray}
+		 	|D_N(x)|&\leq& c_1\frac{|x|^{|\alpha|}}{(1+|x|)^M}\frac{\sqrt{d}}{N} \int_{|y|\leq N}\frac{1}{(1+|y|)^M}dy+ \int_{|y|> N} |x^{|\alpha|}D^\beta f(y-x)g(y)dy \nonumber\\
+		 	&\leq& c_1 \frac{|x|^{|\alpha|}}{(1+|x|)^M}\frac{\sqrt{d}}{N}\int_{|y|_\infty\leq N} \frac{1}{(1+|y|)^M}dy + c_2 \frac{|x|^{|\alpha|}}{(1+|x|)^M} \int_{|y|_\infty> N} \frac{1}{(1+|y|)^M} dy\nonumber\\
+		 	&\rightarrow& 0 \text{ für } N\rightarrow 0 \text{ (unabhängig von x)}\nonumber
+		 \end{eqnarray}
+		 \item Mit 1. erhält man schließlich 
+		 \begin{eqnarray}
+		 	u\left(\int_{\R^d} f(y-\m)g(y) dy \right) &=& \lim\limits_{N\rightarrow \infty} u(R_N)\nonumber\\
+		 	&=& \lim\limits_{N\rightarrow \infty}\sum_{m = 1}^{(2N^2)^d}u(f(y_m-\m))g(y_m)|Q_M|\nonumber\\
+		 	&=& \int_{\R^d} u(f(y-\m))g(y)dy\nonumber
+		 \end{eqnarray}
+		 da $y\mapsto u(f(y-\m))g(y)\in S(\R^d)$ und damit Riemann-integrierbar
+	\end{enumerate}
+	\qed
+	
+	Damit erhält man
+	\begin{Prop}
+		Für $u\in S'(\R^d)$, $f\in S(\R^d)$ gilt $$(f*u)(g) = u(\tilde{f}*g) ~\forall g\in S(\R^d)$$
+		($f*u$ als Distribution aufgefasst).
+	\end{Prop}
+	
+	\Bew Nach Kapitel 3 gilt $\tilde{f}*g\in S(\R^d)$, d.h. die rechte Seite ist wohldefiniert. Außerdem gilt
+	\begin{eqnarray}
+		u(\tilde{f}*g) &=& u\left(\int_{\R^d}f(y-\m)g(y) dy \right)\nonumber\\
+		&\overset{\text{5.3}}{=} & \int_{\R^d} u(f(y-\m))g(y)dy\nonumber\\
+		&=& \int_{\R^d}(f*u)(y) g(y) dy\nonumber\\
+		&=& (f*u)(g)\nonumber.
+	\end{eqnarray}
+	\qed
+	
+	\begin{Prop}
+		Für $u\in S'(\R^d)$, $f,g\in S(\R^d)$ gilt 
+		$$f*(g*u)= (f*g)*u.$$
+	\end{Prop}
+	
+	\Bew 
+	\begin{eqnarray}
+		\left[(f*g)*u \right](x) &=& u((f*g)(x-\m)\nonumber\\
+		&=& u\left(\int_{\R^d} g(x-y-\m)f(y) dy \right) \nonumber\\
+		&\overset{\text{5.3}}{=}& \int_{\R^d} u(g(x-y-\m))f(y) dy\nonumber\\
+		&=& \int_{\R^d} (g*u)(x-y)f(y)dy\nonumber\\
+		&=& [f*(g*u)](x)\nonumber.
+	\end{eqnarray}
+	\qed
+	
+	\begin{Prop}
+		Für $u\in S'(\R^d)$, $f\in S(\R^d)$ gilt
+		\begin{enumerate}
+			\item[a)] $\F(f*u) = \f\m \hat{u}$.
+			\item[b)] $\F(f\m u) = \f *\hat{u}$.
+		\end{enumerate}
+	\end{Prop}
+	
+	\Bew a) Für $g\in S(\R^d)$ gilt
+	\begin{eqnarray}
+		\F(f*u)(g) &=& (f*u)(\g) \overset{\text{5.4}}{=} u(\tilde{f}*\tilde{g})\nonumber\\
+		(\f\m \hat{u})(g) &=& \hat{u}(\f\m g) = u(\F(\f\m g)) = u(\F(\f)*\g) = u(\tilde{f}* g). \nonumber
+	\end{eqnarray}
+	b) analog.
+	\qed
+	
+	So kommt man schließlich zu einem Dichtheitsresultat:
+	
+	\begin{Satz}
+		Zu jedem $u\in S'(\R^d)$ existiert eine Folge $(f_k)_{k\in \N}\subseteq C_c^\infty(\R^d)$ mit $f_k\rightarrow u$ \glqq im distributiven Sinne\grqq, d.h.
+		$$u_{f_k}(g)\overset{k\rightarrow \infty}{\rightarrow}u(g) ~\forall g\in S(\R^d).$$
+	\end{Satz}
+	
+	\Bew Sei $\varphi\in C_c^\infty(\R^d)$ mit $\varphi(x) = 1$ auf $B(0,R)$ für ein $R>0$ und setze $\varphi_k(x) = \varphi(\frac{1}{k}x)$. Zeige zunächst zwei Hilfsbehauptungen. Für $f\in S(\R^d)$ gilt
+	\begin{enumerate}
+		\item $\lim\limits_{k\rightarrow \infty}\varphi_k f= f$ in $S(\R^d)$.
+		\item $\lim\limits_{k\rightarrow\infty}\varphi_k\F(\varphi_k f) = \f$ in $S(\R^d)$.
+	\end{enumerate}
+	
+	\Bew 1. Seien $\alpha,\beta\in \N_0^d$ beliebig. Dann gilt
+	\begin{eqnarray}
+		||\varphi_k f- f||_{\alpha,\beta} &=& \sup_{x\in \R^d}|x^\alpha D^\beta((\varphi_k(x)-1)f(x))| \nonumber\\
+		&\overset{\text{Leibnitz}}{=}& \sup_{x\in \R^d} |x^\alpha \sum_{\gamma_1 = 0}^{\beta_1}...\sum_{\gamma_d = 0}^{\beta_d}\left(\begin{matrix}
+		\beta_1\\
+		\gamma_1
+		\end{matrix}\right)\m...\m \left(\begin{matrix}
+		\beta_d\\
+		\gamma_d
+		\end{matrix}\right) (D^\gamma(\varphi_k-1)) (D^{\beta\gamma}f)|\nonumber\\
+		&\leq& \sup_{x\in \R^d}\left[|x^\alpha (\varphi_k (x)-1) D^\beta f(x)  + \sum_{\gamma\neq 0} \left(\begin{matrix}
+		\beta\\
+		\gamma
+		\end{matrix}\right) \frac{1}{k^{|\gamma|}}|x^\alpha (D^\gamma\varphi)(\frac{x}{k}) D^{\beta-\gamma} f(x)|\right]\nonumber\\
+		&\leq& \sup_{x\in \R^d}|x^\alpha(\varphi_k(x)- 1)D^\beta f(x)| +\frac{1}{k} c_\beta ||\varphi||_N ||f||_N
+	\end{eqnarray} Nun ist $\varphi_k(x)-1 = 0$  für $|x|<kR$ und $|x^\alpha D^\beta f(x)| \leq c\frac{1}{|x|}\leq c\frac{1}{kR}$ für $|x|\leq kR$.
+	Damit folgt
+	$$||\varphi_k f-f||_{\alpha,\beta}\leq \frac{c}{kR}+\frac{1}{k}c_\beta||\varphi||_N ||f||_N\rightarrow 0 ~~(k\rightarrow 0).$$
+	
+	2. Seien $\alpha,\beta\in \N_0^d$ beliebig. Nach 1. und wegen der Stetigkeit von $\F: S\rightarrow S$ gilt
+	$$\lim\limits_{k\rightarrow\infty}\F(\varphi_k f) = \f$$ 
+	in $S(\R^d)$ für alle $f\in S(\R^d)$. Nach 1. und da $\F(\varphi_j f)\in S(\R^d)$ folgt dann auch 
+	$$\lim\limits_{k\rightarrow\infty}\varphi_k \F(\varphi_j f) = \F(\varphi_j f)$$
+	in $S(\R^d)$ für alle $j\in \N$. Wähle nun zu $\epsilon>0$ ein $j_\epsilon\in \N$ mit $||\F(\varphi_j f)-\f||_{\alpha,\beta} <\epsilon$ und $||\F(\varphi_k f)-\F(\varphi_j f)||_{\alpha,\beta}<\epsilon$ für alle $k,j\geq j_\epsilon$. Dann gilt für $j\geq j\epsilon$
+	\begin{eqnarray}
+		||\varphi_k\F(\varphi_k f)-\f||_{\alpha,\beta}&\leq & ||\varphi_k\F(\varphi_k f) - \varphi_k\F(\varphi_j f)||_{\alpha,\beta}\nonumber\\
+		&+& ||\varphi_k\F(\varphi_j f) - \F(\varphi_j f)||_{\alpha,\beta}\nonumber\\
+		&+& ||\F(\varphi_j f) - \f||_{\alpha,\beta}\nonumber\\
+		&\rightarrow& 2\epsilon \text{ für } k\rightarrow\infty\nonumber
+	\end{eqnarray} % TODO fehlt ein Teil
+	\qed
+	
+	Sei nun $u\in S'(\R^d)$. Dann definiere 
+	$$f_k: = \varphi_k(\hat{\varphi}* u)\in C_c^\infty(\R^d) \text{ nach Satz 5.2}.$$
+	Damit folgt 
+	\begin{eqnarray}
+		u_{f_k}(g) &\overset{\text{5.6}}{=}& \varphi_k\m\F(\varphi_k\m\F^{-1}(u))(g) \nonumber\\
+		&=& \F^{-1}(\varphi_k\F(\varphi_k g))\nonumber\\
+		&\rightarrow& \F^{-1}u(\g) = u(g)~(k\rightarrow\infty)\nonumber
+	\end{eqnarray}
+	nach Behauptung 2.
+	\qed
+	
+	
+	
+	\newpage
+	
+	
+	
 \end{document}

@@ -1,8 +1,25 @@
 \select@language {ngerman}
-\contentsline {chapter}{{\"U}berblick \IeC {\"u}ber die Vorlesung Spektraltheorie}{4}{chapter*.5}
-\contentsline {chapter}{Fourieranalysis}{7}{chapter*.24}
-\contentsline {section}{\numberline {3}Die Fouriertransformation auf $L^{1}$, $\ensuremath {\mathcal {S}}$ und $L^{2}$}{7}{section.25}
-\contentsline {section}{\numberline {4}Don't know}{10}{section.52}
-\contentsline {chapter}{\IeC {\"U}bungen}{13}{chapter*.78}
-\contentsline {chapter}{Abk\IeC {\"u}rzungsverzeichnis}{14}{appendix*.82}
-\contentsline {chapter}{Stichwortverzeichnis}{15}{section*.83}
+\contentsline {section}{\numberline {1}Wiederholung aus der Funktionalanalysis}{4}
+\contentsline {subsection}{\numberline {1.1}Abgeschlossene Operatoren}{4}
+\contentsline {subsection}{\numberline {1.2}Spektrum und Resolvente}{4}
+\contentsline {subsection}{\numberline {1.3}Spektrum und Kompaktheit}{5}
+\contentsline {section}{\numberline {2}Verpasst}{6}
+\contentsline {section}{\numberline {3}Fourieranalysis}{7}
+\contentsline {subsection}{\numberline {3.1}Die Fouriertransformation auf $L^1$, $S$ und $L^2$}{7}
+\contentsline {paragraph}{\nonumberline Bemerkung:}{7}
+\contentsline {paragraph}{\nonumberline Zur Erinnerung:}{8}
+\contentsline {paragraph}{\nonumberline Bemerkung:}{8}
+\contentsline {paragraph}{\nonumberline Folgerung:}{10}
+\contentsline {paragraph}{\nonumberline Bemerkung}{10}
+\contentsline {paragraph}{\nonumberline Zusammenfassung:}{10}
+\contentsline {subsection}{\numberline {3.2}Fouriertransformation auf $L^2(\mathbb {R}^d)$}{11}
+\contentsline {paragraph}{\nonumberline Bemerkung:}{12}
+\contentsline {section}{\numberline {4}Temperierte Distributionen und die Fouriertransformation}{12}
+\contentsline {paragraph}{\nonumberline Wiederholung:}{12}
+\contentsline {paragraph}{\nonumberline Bemerkung:}{12}
+\contentsline {paragraph}{\nonumberline Bemerkung.}{13}
+\contentsline {paragraph}{\nonumberline Bemerkung.}{13}
+\contentsline {paragraph}{\nonumberline Bemerkung:}{14}
+\contentsline {paragraph}{\nonumberline Vorschau:}{15}
+\contentsline {paragraph}{\nonumberline Erinnerung:}{15}
+\contentsline {section}{\numberline {5}Faltung und Distributionen}{17}
