@@ -23,3 +23,5 @@
 \contentsline {paragraph}{\nonumberline Vorschau:}{15}
 \contentsline {paragraph}{\nonumberline Erinnerung:}{15}
 \contentsline {section}{\numberline {5}Faltung und Distributionen}{17}
+\contentsline {section}{\numberline {6}Sobolevr\IeC {\"a}ume}{22}
+\contentsline {paragraph}{\nonumberline Bemerkung:}{24}

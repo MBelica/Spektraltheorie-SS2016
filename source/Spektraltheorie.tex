@@ -956,10 +956,179 @@
 	\end{eqnarray}
 	nach Behauptung 2.
 	\qed
-	
-	
-	
+
 	\newpage
+	
+	\section{Sobolevräume}
+	
+	Sei $f\in L^2(\R^d)\rightarrow u_f\in S'$, $u_f(h) =\int f(x)g(x) dx$. Wann gilt $D^\alpha u_f\in S'$ $\Rightarrow$ $D^\alpha u_f \in L^2$?.
+	
+	\begin{Definition}
+		Für $K\in \N$: 
+		\begin{eqnarray}
+			H^K(\R^d) =\{f\in L^2(\R^d): D^\alpha f\in L^2, \forall |\alpha|\leq K \}\nonumber\\
+			\text{genauer } f\in H^\alpha\Leftrightarrow \forall|\alpha|\leq K\exists f_\alpha: U-f=D^\alpha u_f\nonumber
+		\end{eqnarray}
+		mit der Norm
+		$$||f||_K:= \left(\sum_{|\alpha|\leq K}||D^\alpha f||_{L^2(\R^d)}^2 \right)^{1/2}.$$
+	\end{Definition}
+	
+	\begin{Bemerkung}
+		~\begin{enumerate}
+			\item[a)] (schwache Ableitung) Zu $D^\alpha f\in L^2(\R^d)$ gibt es ein $f_\alpha\in L^2$, sodass für $h\in S(\R^d)$ gilt:
+			\begin{eqnarray}
+				\int f_\alpha(x) h(x) dx &=& D^\alpha(u_f)(h) \nonumber\\
+				&=& (-1)^{|\alpha|}u_f(D^\alpha h)\nonumber\\
+				&=& (-1)^{|\alpha|}\int f(x) (D^\alpha h)(x) dx.\nonumber
+			\end{eqnarray}
+			\item[b)] Die Räume $H^K$ sind vollständig.
+			\item[c)] $H^K$ sind Hilberträume bezüglich 
+			$$<f,g>_K = \sum_{|\alpha|\leq K} \int_{\R^d} (D^\alpha f)(x) \overline{D^\alpha g(x)}dx,~~ <f,f>_K = ||f||_K^2.$$
+			\item[d)] Berechne $||f||_K$ mit Hilfe von $\F$.
+			\begin{eqnarray}
+				||D^\alpha f||_{L^2}^2 &=&||\F(D^\alpha f)||_{L^2}^2\nonumber\\
+				&=& ||(2i\pi\xi)^\alpha\f(\xi)||_{L^2}^2 \nonumber\\ 
+				&=& (2\pi)^{|\alpha|}\int_{\R^d}|\xi^\alpha||\f(\xi)^2 d\xi\nonumber\\
+				\Rightarrow \sum_{|\alpha|\leq K}(2\pi)^{|\alpha|}\int |\xi^\alpha|^2 |\f(\xi)|^2d\xi &=& \int_{\R^d}\left(\sum_{|\alpha|\leq K} (2\pi)^{|\alpha|} |\xi^\alpha| \right)|\f(\xi)|^2d\xi\approx (1+|\xi|^2)^K\nonumber
+			\end{eqnarray}
+			denn:
+			\begin{eqnarray}
+				|x^\alpha|&\leq& 1+|x|^{2k}\nonumber\\
+				(1+|x|^K)^2 &=& (1+(\sum |x_i|^2)^{K/2})^2\nonumber\\
+				&\leq& (1+(\sum_{i = 1}^{d}|x_i|^K))^2\nonumber\\
+				&\leq& C(\sum_{|\alpha|\leq K}|x^\alpha|^2)\nonumber
+			\end{eqnarray}
+			Also 
+			$$||f||_K^2\cong \int_{\R^d}(1+|\xi|^2)^{K/2}|\f(\xi)|^2 d\xi,K\in \N. $$
+		\end{enumerate}
+	\end{Bemerkung}
+	
+	\begin{Definition}
+		Für alle $s\in \R$ definiere den Sobolevraum
+		\begin{eqnarray}
+			H^s(\R^d) &=& \{f\in S'(\R^d): (1+|\xi|^2)^{s/2}\f(\xi)\in L^2(\R^d) \}\nonumber\\
+			||f||_{H^s} &=& \left(\int_{\R^d}|\f(\xi)|^2(1+|\xi|^2)^sd\xi \right)^{1/2}\nonumber\\
+			<f,g>_{H^s} &=& \int_{\R^d} \f(\xi)\overline{\g(\xi)}(1+|\xi|^2)^s d\xi\nonumber
+		\end{eqnarray}
+		für $s=K\in\N: ||f||_{H^s}\cong ||f||_{H^\alpha}$.
+	\end{Definition}
+	
+	\begin{Prop}
+		Die Räume $H^s(\R^d)$, $s\in \R$ sind Hilberträume, also insbesondere vollständig. $C_c^\infty(\R^d)$ ist dich in $H^s(\R^d)$.
+	\end{Prop}
+	
+	\Bew $\F:S'(\R^d)\rightarrow S'(\R^d)$, $H^s\overset{\F|_{H^s}}{\leftrightarrow} L^2(\R^d, (1+|\xi|^2)^s)$, Isometrie von $H^s$ auf $L^2(\R^d, (1+|\xi|^2)^s)$, wobei $L^2(\R^d, (1+|\xi|^2)^s)$ vollständig ist. Somit ist auch $H^s$ vollständig und damit ein Hilbertraum.
+	\begin{eqnarray}
+		\F^{-1}: L^2(\R^d,(1+|\xi|^2)^s d\xi) &\overset{\F^{-1}}{\rightarrow}& H^s\nonumber\\
+		S(\R^d)&\overset{\F^{-1}}{\rightarrow}& S(\R^d)\nonumber
+	\end{eqnarray}
+	Also liegt $S(\R^d)$ dicht in $H^s(\R^d)$. Elementar: $C_0^\infty(\R^d)$ in $S(\R^d)$.
+	\qed
+	
+	\begin{Prop}
+		$J:H^{-s}\rightarrow (H^s)'$, $J(u)(h) = \int \hat u(\xi) \hat h(\xi)d\xi$ für $u\in H^{-s}$, $h\in H^s$ definiert eine surjektive Isometrie von $H^{-s}$ auf $(H^s)'$ - den Banachraum dual von $H^s$ bezüglich der Dualität 
+		$$(f,g) = \int \f(\xi)\g(\xi)d\xi \text{ (bilineare Abbildung)}.$$
+	\end{Prop}
+	
+	\Bew Sei $u\in H^{-s}$, $h\in H^s$. 
+	\begin{eqnarray}
+		J(u)(h) &=& \int\hat u(\xi)\hat h(\xi)d\xi\nonumber\\
+		&=& \int\hat u(\xi) (1+|\xi|^2)^{-s/2}\hat h(\xi)(1+|\xi|^2)^{s/2}d\xi\nonumber\\
+		&\leq& \left(\int |\hat u(\xi)|^2 (1+|\xi|^2)^{-s} d\xi \right)^{1/2}\m \left(\int |\hat h(\xi)|^2 (1+|\xi|^2)^{s} d\xi \right)^{1/2}\nonumber\\
+		&=& ||u||_{H^{-s}} ||h||_{H^s} \nonumber
+	\end{eqnarray}
+	Da $J$ stetig gilt $||J u||_{(H^s)'}\leq ||u||_{H^{-s}}$. Sei nun $u\in H^{-s}$, $||u||_{H^{-s}}= 1$ gegeben. Wähle $g = \F^{-1}[\hat u(\xi)(1+|\xi|^2)^{-s}]$. Dann gilt
+	\begin{eqnarray}
+		||g||_s &=& \left(\int|\hat u(1+|\xi|^2)^{-s/2}|^s d\xi \right)^{1/2}\nonumber\\
+		&=& ||u||_{H^{-s}} = 1\nonumber\\
+		(Ju)(g) &=& \int |\hat u(\xi)|^2(1+|\xi|^2)^{-s}d\xi\nonumber\\
+		&=& ||u||_{H^{-s}} = 1\nonumber\\
+		\Rightarrow ||Ju||_{(H^s)'} &=& 1\text{ für } ||u||_{H^{-s}} = 1\nonumber
+	\end{eqnarray}
+	Somit ist $J:H^{-s}\rightarrow (H^s)'$ eine isometrische Einbettung. 
+	
+	Zu zeigen bleibt, $J$ ist surjektiv. Zu $v\in(H^s)'$ gibt es ein $g\in H^s$ mit $v(h) = <h,g>_{H^s}$ nach Riesz.
+	\begin{eqnarray}
+		v(h) &=& \int \hat h(\xi)\overline{\g(\xi)} (1+|\xi|^2)^s d\xi\nonumber
+	\end{eqnarray}
+	für alle $h\in H^s$. Wähle $u=\F^{-1}[\overline{\g(\xi)}(1+|\xi|^2)^{s}]$. Dann:
+	\begin{eqnarray}
+		||u||_{H^{-s}} &=& ||\bar g||_{H^s} ~=~ ||g||_{H^s}\nonumber\\
+		J(u)(h) &=& <h,g>_{s}~=~ v(h),~\forall h\in H\nonumber
+	\end{eqnarray}
+	\qed
+	
+	\begin{Prop}
+		Ist $s<t$, so ist $H^t\subset H^s$.
+	\end{Prop}
+	
+	\Bew Da $(1+|\xi|^2)^s\leq (1+|\xi|^2)^t$.
+	\qed
+	
+	\begin{Satz}[Sobolevscher Einbettungssatz]
+		Sei $s>d/2$. Dann gilt
+		\begin{enumerate}
+			\item[a)] $H^s\subset C_b(\R^d)$.
+			\item[b)] $H^{s+K}\subset C_b^K(\R^d)$.
+		\end{enumerate}
+	\end{Satz}
+	
+	\Bew a) Für $u\in S(\R^d)$. 
+	\begin{eqnarray}
+		u(x) &=& \int_{\R^d} e^{2i\pi x\xi}(1+|\xi|^2)^{-s/2} \hat u(1+|\xi|^2)^{s/2} d\xi\nonumber\\
+		&\leq& \left(\int (1+|\xi|^2)^{-s}d\xi \right)^{1/2} \left(\int |\hat u|^2 (1+|\xi|^2)^sd\xi \right)^{1/2}\nonumber 
+	\end{eqnarray}
+	mit $\left(\int (1+|\xi|^2)^{-s}d\xi \right)^{1/2}\leq \infty$ und $\left(\int |\hat u|^2 (1+|\xi|^2)^sd\xi \right)^{1/2} = ||u||_{H^s}$. 
+	
+	b) $|\alpha|\leq K$, $u\in H^{s+K}$ $\Rightarrow$ $D^\alpha\in H^s$, wende nun a) an $\Rightarrow$ Beh.
+	\qed
+	
+	\begin{Korollar}
+		Sei $s>d/2$, dann gilt: Der Raum der endlichen Maße $M(\R^d)\subset H^{-s}(\R^d)$.
+	\end{Korollar}
+	
+	\paragraph{Bemerkung:} $\mu\in M(\R^d)$, $u_\mu\in S'(\R^d)$.
+	\begin{eqnarray}
+		u_\mu(h) &=& \int_{\R^d}h(x)d\mu(x)\nonumber\\
+		\mu\in M(\R^d) &\Rightarrow& u_\mu \in H^{-s}(\R^d)\nonumber
+	\end{eqnarray}
+	
+	\Bew 
+	\begin{eqnarray}
+		|u_\mu(h)| &=& |\int h(x)d\mu(x)|\nonumber\\
+		&\leq& ||h||_{C_b(\R^d)}||\mu||_{M(\R^d)}\nonumber\\
+		&\leq& ||h||_{H^s}\m ||\mu||_{M(\R^d)}\nonumber
+	\end{eqnarray}
+	Also: $u_\mu\in (H^s)'$, $||u_\mu||_{(H^s)'}\leq ||\mu||_{M(\R^d)}$, d.h. $u_\mu\in H^{-s}$. 
+	
+	z.B. $\delta_x\in H^{-s}$, $s>d/2$, $x\in \R^d$, denn $h\in H^s$, $h\in C_b(\R^d)$, $\delta_x(f) = f(x)$.
+	
+	\begin{Satz}
+		Sei $s<t$ (d.h. $H^t\subseteq H^s$), $(u_n)_{n\in\N}\subset H^t$ und $||u_n||_{H^t}\leq 1$ und $\supp(u_n)\subset U$, $U\subset \R^d$ beschränkt. Dann hat $(u_n)$ eine in $H^s$ konvergente Teilfolge.
+	\end{Satz}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
