@@ -39,6 +39,7 @@
 \newtheorem{PropDef}[Satz]{Proposition + Definition}
 \newtheorem{Erinnerung}[Satz]{Erinnerung}
 \newtheorem{Korollar}[Satz]{Korollar}
+\newtheorem{Motivation}[Satz]{Motivation}
 \newtheorem{Example}{Example}
 \DeclareMathOperator{\trdeg}{trdeg}
 \DeclareMathOperator{\Spec}{Spec}
@@ -102,6 +103,7 @@
 \newcommand{\Ocal}{\mathcal{O}}
 \newcommand{\Hc}{\check{H}}
 \newcommand{\Ccal}{\mathcal{C}}
+\newcommand{\laplace}{\Delta}
 
 \newcommand{\Set}{\underline{\SetOp}}
 \newcommand{\KVect}{\underline{\KVecOp}}
@@ -149,8 +151,6 @@
 	\newpage	
 	\tableofcontents
 	\newpage
-	
-	
 	\section{Wiederholung aus der Funktionalanalysis}
 	
 	\subsection{Abgeschlossene Operatoren}
@@ -1107,6 +1107,298 @@
 		Sei $s<t$ (d.h. $H^t\subseteq H^s$), $(u_n)_{n\in\N}\subset H^t$ und $||u_n||_{H^t}\leq 1$ und $\supp(u_n)\subset U$, $U\subset \R^d$ beschränkt. Dann hat $(u_n)$ eine in $H^s$ konvergente Teilfolge.
 	\end{Satz}
 	
+	\paragraph{Ergänzung zur Einbettung.} $H^t\subset H^s(\R^d)$ für $t>s$.
+	
+	\begin{Satz}[Kompakte Einbettung auf beschränkten Mengen]
+		Sei $u_n\subset H^t$, $||u_n||_{H^t}\leq C$,  und für ein $M<\infty$ $\supp u_n\subset B(0,M)$ für alle $n\in \N$. Dann hat $u_n$ eine Teilfolge, die in $H^s(\R^d)$ konvergiert für $s<t$.
+	\end{Satz}
+	
+	\Bew 1. Schritt: $\hat u_n|_K, n\in \N$ ist relativ kompakt in $C(K)$ für alle kompakten Teilmengen $K\subset \R^d$. Denn: wähle $\psi\in C_c^\infty(\R^d)$ und $\psi\equiv 1$ auf $B(0, m)$.
+	\begin{eqnarray}
+		D^\alpha \hat u_n &=& D^\alpha \F(\psi u_n) \nonumber\\
+		&=& D^\alpha[\hat{\psi}*\hat u_n]\nonumber\\
+		&=& (D^\alpha\hat{\psi})*\hat u_n,\nonumber~~~\text{ also}\\
+		|D^\alpha \hat u_n(\xi) |&\leq& \int D^\alpha \hat{\psi}(\xi-\eta)\hat u_n(\eta) d\eta\nonumber\\
+		&\leq&\left(\int (1+|\eta|^2)^{-t}|D^\alpha\hat{\psi}(\xi-\eta)|^2d\eta\right)^{1/2}\left(\int |\hat u_n(\eta)|^2(1+|\eta|^2)^ d\eta \right)^{1/2}\nonumber\\
+		&=:& f_\alpha(\xi)\m||u_n||_{H^t}\nonumber\\
+		&\leq& Cf_\alpha(\xi)\in L^\infty(\R^d),\nonumber
+	\end{eqnarray}
+	denn $(1+|\eta|^2)^{-1}\in L^\infty$, $\xi\rightarrow |D^\alpha\hat{\psi}(\xi)|^2\in L^1(\R^d)$ (Youngsche Ungleichung).
+	
+	Da $\hat u_n|_K$ beschränkt und gleichgradig stetig (denn $D^\alpha f_n$ gleichmäßig beschränkt), folgt aus Azela-Ascoli, dass $(u_n)_{n\in \N}$ gleichmäßig konvergente Teilfolgen hat.
+	
+	2. Schritt: $u_n$ hat eine konvergente Teilfolge in $H^s$. Denn: Zu $\epsilon>0$ wähle ein $0<R<\infty$, sodass 
+	\begin{eqnarray}
+		(1+R^2)^{s-t}\leq\frac{\epsilon}{4c^2}\nonumber
+	\end{eqnarray}
+	Für $K=\{x\in \R^d: |x|\leq R \}$ wähle nach Schritt 1 eine Teilfolge von $(u_n)$ (wieder $u_n$ genannt), sodass $\hat u_n|_K$ gleichmäßig in $C(K)$ konvergiert. Dann
+	\begin{eqnarray}
+		||u_n-u_m||^2 &=& \int_{\R^d} |\hat u_n(\xi)-\hat u_m(\xi)|^2(1+|\xi|^2)^s d\xi \nonumber\\
+		&=& \int_{|\xi|\leq R}...+\int_{|\xi|> R}...\nonumber
+	\end{eqnarray}
+	mit
+	\begin{eqnarray}
+		\int_{|\xi|>R}|\hat u_n(\xi)-\hat u_m(\xi)|^2(1+|\xi|^2)^sd\xi &\leq& \sup_{|\xi|>R} (1+|\xi|^2)^{s-t}||u_n-u_m||^2_{H^t}\nonumber\\
+		&\leq& (1+R^2)^{s-t}(||u_n||_{H^t}+||u_m||_{H^t})\nonumber
+		\leq \epsilon\nonumber
+	\end{eqnarray}
+	nach Wahl von $R$ und
+	\begin{eqnarray}
+		\int_{|\xi|\leq R} |\hat u_n(\xi)-\hat u_m(\xi)^2(1+|\xi|)^sd\xi&\leq& \int_{|\xi|\leq R}(1+|\xi|^2)^s d\xi \sup_{\xi\in K}|\hat{u_n}(\xi)-\hat u_m(\xi)|^2\nonumber\\
+		&=& C_1\m\text{ Konst }\m ||\hat u_n-\hat u_m||_{C(K)}\overset{n,m\rightarrow\infty}{\longrightarrow} 0\nonumber
+	\end{eqnarray}
+	
+	
+	\begin{Prop}[Bernsteinsche Ungleichung]
+		Für $f\in L^2(\R^d)$ mit $\supp\f\subseteq\{\xi: |\xi|>R \}$ gilt:
+		\begin{enumerate}
+			\item[a)] $f$ hat eine analytische Fortsetzung auf $\C^d$.
+			\item[b)] Für alle $s<r$ gilt $f\in H^r$ und 
+			$$||f||_{H^r}\leq (1+R)^{r-s}||f||_{H^s}.$$
+		\end{enumerate}
+	\end{Prop}
+	
+	\Bew a) Für $(z_1,..., z_d)\in \C^d$ setze 
+	$$F(z_1,...,z_d) = \int_{|\xi|\leq R} \exp\left[2i\pi\left(\sum_{j = 1}^{d}z_j \xi_j\right)\right]\f(\xi_1,...,\xi_d)d\xi_1...\xi_d.$$
+	Nach der Umkehrformel: $F(x_1,...,x_d) = f(x_1,...,x_d)$ für $x_1,...,x_d\in \R$. Also ist $F$ eine Fortsetzung von $f$ von $\R^d$ auf $\C^d$. Zu zeigen: $F$ ist partiell komplex differenzierbar nach $z_1,...,z_d$. Sei $w=w_1,...,w_d\in\C^d$ fest. Auf der Kugel $K=\{z\in \C^d: |z-w|\leq 1 \}$ ist 
+	$\exp\left[2i\pi \left(\sum_{j = 1}^{d}z_j \xi_j\right) \right]$, $|\xi|\leq R$, $z\in K$ gleichmäßig beschränkt. Also ist Differentiation nach $w_1,...,w_d$ unter dem Integral erlaubt und die Behauptung folgt.
+	
+	b) 
+	\begin{eqnarray}
+		||f||_{H^r}^2 &=& \int |\f(\xi)|^2(1+|\xi|^2)^rd\xi\nonumber\\
+		&\leq& \sup_{|\xi|\leq R}(1+|\xi|^2)^{r-s}\int_{|\xi|\leq R}|\f(\xi)|^2(1+|\xi|^2)d\xi\nonumber\\
+		&\leq& (1+R^2)^{r-s}||f||_{H^s}^2\nonumber\\
+		&\leq& (1+R)^{2(r-s)}||f||_{H^s}^2\nonumber
+	\end{eqnarray}
+	\qed
+	
+	
+	\section{Der Funktionalkalkül des Laplace Operators}
+	
+	\begin{Definition}[des Laplace Operators]
+		Für $f\in S(\R^d)$: $\Delta f(\m)=\sum_{j = 1}^{d}\frac{\partial^2}{\partial x_j^2} f(\m)$. 
+		$$\xymatrix{
+			S(\R^d)\ar[r]^{\Delta}\ar[d]_{\F} & S(\R^d)\ar[d]^{\F}\\
+			S(\R^d)\ar[r]_M & S(\R^d)
+			}$$
+		\begin{eqnarray}
+			\F(\Delta f)(\xi) &=& \sum_{j = 1}^{d}\F(\frac{\partial^2}{\partial x_j^2}f)(\xi) \nonumber\\
+			&=& \sum_{j = 1}^d (2i\pi)^2\xi_j^2 (\xi)\nonumber\\
+			&=& -(2\pi)^2 |\xi|^2 \f(\xi)\nonumber
+		\end{eqnarray}
+		$$Mg(\xi) = -(2\pi)^2|\xi|^2 g(\xi)$$
+		$$\boxed{\Delta= \F^{-1}\circ M\circ \F.}$$
+		$$D(A) = H^2(\R^d),~ f\in D(A):~ \F(\Delta f)(\xi) = -(2\pi)^2|\xi|^2\f(\xi).$$
+	\end{Definition}
+	
+	\begin{Bemerkung}
+		~
+		\begin{enumerate}
+			\item[a)] Der ungewohnte Faktor $(2\pi)^2$ kommt von der Definition der Fouriertransformation durch $e^{\underline{2\pi}i\xi x}$.
+			\item[b)] $H^2 = \{f\in S': \frac{\partial^i}{\partial x_j^i}\in L^2(\R^d), i=1,2 \}$
+			\begin{eqnarray}
+				\Delta f = \sum_{j = 1}^d \frac{\partial^2}{\partial x_j^2} f\nonumber
+			\end{eqnarray}
+			ist in Ordnung, falls man $\frac{\partial^i}{\partial x_j^i}$ als distributionelle oder \textbf{schwache} Ableitungen versteht. 
+			$$\int \varphi(x)\left[\frac{\partial^2}{\partial x_j^2} f(x)\right]dx = (-1)^{2}\int\left(\frac{\partial^2}{\partial x_j^2} \varphi(x) \right)dx$$
+			für alle $\varphi\in C_c^\infty(\R^d)$.
+			\item[c)] $\Delta: H^2\rightarrow L^2$ ist stetig und mit der Graphennorm
+			$$||f||_{H^2}\cong ||f||_{L^2} + ||\Delta f||_{L^2}$$
+			ist $\Delta$ insbesondere auf $L^2$ ein abgeschlossener Operator, d.h. $f_n\in D(A)$, $f_n\rightarrow f$ in $L^2$, $\Delta f_n\rightarrow g$ in $L^2$ $\Rightarrow$ $f\in D(A)$, $\Delta f = g$.
+		\end{enumerate}
+	\end{Bemerkung}
+	
+	\Bew 
+	\begin{eqnarray}
+		||f||_{H^2}^2 &=& \int |\f(\xi)|^2(1+|\xi|^2)^2 d\xi\nonumber\\
+		&\approx& \int |\f(\xi)|^2d\xi + \int\left[|\f(\xi)||\xi|^2 \right]^2d\xi\nonumber\\
+		&\approx& ||f||_{L^2}^2 + ||\Delta f||_{L^2}^2\nonumber
+	\end{eqnarray}
+	Also: $||\Delta u||_{L^2} \leq ||u||_\Delta\approx ||u||_{H^2}$ - Stetigkeit.
+	\qed
+	
+	\begin{Bemerkung}[Ziele des Funktionalkalküls]
+		Definition neuer Operatoren, z.B.
+		\begin{itemize}
+			\item $e^{-t\Delta}$ $\Rightarrow$ Lösung der Wärmeleitungsgleichung: $y'(t)=\Delta y(t)$, $y(0) = y_0$.
+			\item $e^{-i t\Delta}$ $\Rightarrow$ Lösung der Schrödingergleichung $y'(t) = (i\Delta) y(t)$.
+			\item $\sin(t\Delta^{1/2})$, $\cos(t\Delta^{1/2})$ $\Rightarrow$ Lösung der Wellengleichung $y''(t) = \Delta y(t)$.
+		\end{itemize}
+		Berechnen der Operatorennormen, z.B.
+		$$||\Delta^n e^{-z\Delta}|| = ?$$
+		Übertragung von Funktionalgleichungen in Operatorengleichungen, z.B. 
+		$$e^{-t\lambda}e^{-s\lambda} = e^{-(s+t)\lambda} \Rightarrow e^{-t\Delta}e^{-s\Delta} = e^{-(s+t)\Delta} ?$$
+	\end{Bemerkung}
+	
+	\begin{Definition}
+		Der Funktionalkalkül des Laplaceoperators ist eine Abbildung
+		$$\Phi: B_b(\R_+)\rightarrow B(L^2(\R^d))$$
+		mit
+		\begin{enumerate}
+			\item[(i)] $\Phi(\varphi +\phi) = \Phi(\varphi)+ \Phi(\phi)$. $\Phi(\varphi\m \phi) = \Phi(\varphi)\circ\Phi(\phi)$. \textbf{Algebrahomomorphismus} von $B_b(\R_+)$ - punktweise Operationen - nach $B(L^2)$ - Operatorverknüpfungen.
+			\item[(ii)] $||\Phi(\varphi)|| = ||\varphi||_{L^{\infty}(\R^d)}$. \textbf{Beschränktheit} des Kalküls.
+			\item[(iii)] Sei $\varphi_n(t)|\leq 1$, $\varphi_n(t)\rightarrow \varphi(t)$, $n\rightarrow\infty$ für alle $t>0$. Dann gelte
+			$$\Phi(\varphi_n)f\overset{n\rightarrow\infty}{\longrightarrow} \Phi(\varphi)f, ~\forall f\in L^2(\R^d)$$
+			\textbf{Konvergenzeigenschaft}.
+			\item[(iv)] Für $r_\mu(t) =\frac{1}{\mu-t}$ folgt $\Phi r_\mu = R(\mu, \Delta)$.
+		\end{enumerate}
+	\end{Definition}
+	
+	\paragraph{Notation:} Schreibe $\Phi(\varphi):= \varphi(\Delta)$.
+	
+	Idee zur Konstruktion von $I$:
+	$$-\laplace = \F^{-1}M\F$$
+	mit $Mg(\xi) = (4\pi^2 \m |\xi|^2)g(\xi)$, $m(\xi) = 4\pi^2|\xi|^2$, $$D(M) = \{g\in L^2(\R^d): ~ m\m g\in L^2, \text{ d.h. } |\xi|^2g(\xi) \in L^2 \}.$$ Konstruiere zuerst
+	
+	\begin{Definition}[Funktionalkalkül für $M$]
+		$$M^2 g = M(Mg) = M(m\m g) = m^2 g, M^g = (m^n)g.$$
+		\begin{eqnarray}
+			p(\lambda)&=& \sum a_n\lambda^n,\nonumber\\
+			p(M)g &=& \left(\sum a_nM^n \right)g = \left(\sum a_n m^n \right)g = \left[p(m) \right]g\nonumber
+		\end{eqnarray}
+		wobei $p(m)(u) = p(m(u))$ (Komposition von Funktionen).
+		
+		Sei $\varphi \in B_b(\R_+)$: 
+		\begin{eqnarray}
+			\Phi_M(\varphi)g &=& \varphi(M)g~=~\boxed{\varphi(m)}g,~ \varphi(m) =\varphi\circ m\nonumber
+		\end{eqnarray}
+	\end{Definition}
+	
+	\emph{Nachweis der Eigenschaften (i)-(iv) für $M$:} (i)
+	\begin{eqnarray}
+		\varphi(M)g +\psi(M)g &=& (\varphi\circ m)g+(\psi\circ m)g\nonumber\\
+		&=& \left[(\varphi+\psi)\circ m \right]g \nonumber\\
+		&=& (\varphi+\psi)(M)g\nonumber\\ \nonumber\\
+		\left[\varphi(M)\m \psi(M) \right](g) &=& \varphi(M)\left[\psi(M)g \right]\nonumber\\
+		&=& \varphi(M)\left[(\psi\circ m)g \right]\nonumber\\
+		&=& (\varphi\circ m)(\psi\circ m)g\nonumber\\
+		&=& \left[(\varphi\m \psi)\circ m\right] g\nonumber\\
+		&=& (\varphi\m \psi)(M)g\nonumber
+	\end{eqnarray}
+	(ii)
+	\begin{eqnarray}
+		||\varphi(M)||_{B(L^2)} &=& \int |\varphi(M)g(x)|^2 dx\nonumber\\
+		&=& \int|\varphi(m(x))g(x)|^2dx\nonumber\\
+		&=& ||m\circ\varphi||_{L^\infty(\R^d)}\nonumber\\
+		&=& \text{ess}\sup_{x\in \R^d}|\varphi(m(x))|\nonumber\\
+		&=& \text{ess}\sup_{\lambda>0}|\varphi(\lambda)|\nonumber
+	\end{eqnarray}
+	(iii) Zu zeigen:
+	\begin{eqnarray}
+		\varphi_n(M)f &\rightarrow& \varphi(M)f\text{ in } L^2(\R^d).\nonumber\\
+		\nonumber\\
+		|\varphi(M)f-\varphi_n(M)f||_{L^2}^2 &=&\int |\varphi(m(x)) - \varphi_n(m(x))|^2 |f(x)|^2 dx\overset{n\rightarrow \infty}{\longrightarrow} 0\nonumber
+	\end{eqnarray}
+	nach Satz von Lebesgue, da $|\varphi(m(x)) - \varphi_n(m(x))|^2\rightarrow 0$ für $n\rightarrow\infty$ für alle $x\in \R^d$.\\
+	(iv) Zu zeigen:
+	\begin{eqnarray}
+		r_\mu(M) &=& R(\mu, M)\nonumber\\
+		\nonumber\\
+		R(\mu,M)&=& (\mu-M)^{-1},\nonumber\\
+		(\mu-M)g&=& (\mu-m(x))g(\m)\nonumber\\
+		\Rightarrow (\mu-M)^{-1}g &=& (M-m(\m))^{-1}g(\m) = r_\mu(M)\nonumber
+	\end{eqnarray}
+	\qed
+	
+	\begin{Definition}[Konstruktion des Funktionalkalküls für $\laplace$]
+		$$\varphi(-\laplace) = \F^{-1}\varphi(M)\F.$$
+	\end{Definition}
+	
+	Nachprüfen der Eigenschaften von $\Phi$: (i)
+	\begin{eqnarray}
+		\varphi(-\laplace)\psi(-\laplace) &=& \left(\F^{-1}\varphi(M)\F \right)\left(\F^{-1}\varphi(M)\F \right)\nonumber\\
+		&=&\F^{-1}[\varphi(M)\psi(M)]\F \nonumber\\
+		&=& (\varphi\m \psi)(-\laplace)\nonumber
+	\end{eqnarray}
+	(ii)
+	\begin{eqnarray}
+		||\varphi(-\laplace)|| \overset{\text{Isometrien}}{=}||\varphi(M)|| =||\varphi||_{L^{\infty}(\R^d)}.\nonumber
+	\end{eqnarray}
+	(iii) 
+	\begin{eqnarray}
+		\varphi_n(M)f&\overset{n\rightarrow\infty}{\longrightarrow}&\varphi(M)f,~f\in L^2\nonumber\\
+		\Rightarrow \varphi_n(-\laplace)g = \F^{-1}[\varphi_n(M)(\F g)]&\rightarrow &\F^{-1}[\varphi(M)(\F g)] \text{ da }\F\text{ stetig.}\nonumber
+	\end{eqnarray}
+	(iv)
+	\begin{eqnarray}
+		(\lambda-M)r_\mu(M)&=& \id\nonumber\\
+		\Rightarrow \F^{-1}[(\lambda-M)r_\mu(M)]\F &=&\id\nonumber\\
+		\Rightarrow R(\lambda,-\laplace) &=& r_\mu(-\laplace)\nonumber
+	\end{eqnarray}
+	\qed
+	
+	\paragraph{Beispiel.} Definition von $-(-\laplace)^{1/2}$.
+	\begin{eqnarray}
+		\F(-(-\laplace)^{1/2} f)(\xi) &=& 2\pi|\xi|\f(\xi):\nonumber\\
+		(-(-\laplace))^2 &=& -\laplace\nonumber
+	\end{eqnarray}
+	
+	\newpage
+	
+	\section{Das Cauchyproblem für die Schrödinger- und die Wellengleichung}
+	
+	\begin{Motivation}
+		$$y'(t) = a(y(t))+ f(t), ~y(0) = y_0,$$
+		wobei $a\in \R$, $f\in L^1(\R_+)$.
+		$$y(t) = e^{at}y_0+\int_{0}^{t}e^{a(t-s)}f(s)ds.$$
+	\end{Motivation}
+	
+	\begin{Bemerkung}[Cauchyproblem für die Schrödingergleichung]
+		$$(+)~u'(t) = i\laplace u(t) +f(t),~ u(0) = y_0,$$
+		wobei $y_0\in L^2(\R^d)$, $f(t)\in L^2(\R^d)$, $\int_{0}^{\infty}||f(t)||_{L^2}dt<\infty$, $A = i\laplace$.
+	\end{Bemerkung}
+	
+	\paragraph{Notation:} $\hat{u}(t,\xi)  =\F(u(t,\m))(\xi)$ für festes $t\in \R$ heißt partielle Fouriertransformation bezüglich $x$.
+	
+	Anwendung der partiellen Fouriertransformation auf $(+)$.
+	\begin{eqnarray}
+		\partial_t \hat u(t,\xi) &=& i(-4\pi^2|\xi|^2)\hat u(t,\xi) +\f(t,\xi) 
+	\end{eqnarray}
+	Für festes $\xi\in \R^d$ ist das eine gewöhnliche Differentialgleichung wie in 8.1. Die Lösung von (1) für festes $\xi$ ist
+	\begin{eqnarray}
+		\hat u(t,\xi) &=& e^{-4\pi^2i|\xi|^2}\hat{y}_0(\xi)+\int_{0}^{\infty} e^{-4i\pi^2(t-s)|\xi|^2}\f(s,\xi)ds
+	\end{eqnarray}
+	Mit der inversen partiellen Fouriertransformation bezüglich $\xi$ ($t$ fest) erhält man
+	\begin{eqnarray}
+		u(t,\xi) &=& \F^{-1}\left[e^{-4i\pi^2|\xi|^2}\hat{y}_0(\xi) \right](x) +\int_{0}^{t}\F^{-1}\left[e^{-4i\pi^2|\xi^2(t-s)}\f(x,\xi)\right]ds
+	\end{eqnarray}
+	wobei im letzten Ausdruck mit Hilfe von Fubini die Integration und $\F^{-1}$ vertauscht wurden. Mit Hilfe des Funktionalkalküls kann man (3) interpretieren als
+	\begin{eqnarray}
+		\boxed{u(t) = e^{it\laplace}y_0 +\int_0^t e^{i(t-s)\laplace}f(s) ds,}
+	\end{eqnarray}
+	denn
+	\begin{eqnarray}
+		\F(e^{it\laplace}y_0)(\xi) &=& e^{itm(\xi)}\hat{y}_0(\xi),~~ m(\xi) = 4\pi|\xi|^2\nonumber\\
+		&=& e^{-4\pi^2 it|\xi|^2}\hat{y}_0(\xi)\nonumber
+	\end{eqnarray}
+	
+	\begin{Prop}
+		Die Operatoren $T(t) = e^{it\laplace}$ erfüllen:
+		\begin{enumerate}
+			\item[(i)] $T(t+s) = T(s)T(t)$, $t,s\in \R$.
+			\item[(ii)] $T^{-1}(t) = T(-t) = T(t)^*$, d.h. die $T(t)$ sind eine unitäre Gruppe in $B(L^{2})$. $||T(t) ||= 1$.
+			\item[(iii)] $T_t f\overset{t\rightarrow 0}{\longrightarrow}f$ in $L^2$, $f\in L^2$.
+			\item[(iv)] Für $f\in D(\laplace)$ gilt:
+			$$\lim\limits_{t\rightarrow 0}\frac{T(t)-I}{t}f = i\laplace f, ~~ \frac{d}{dt}e^{it\laplace}|_{t=0}f = i\laplace f.$$
+		\end{enumerate}
+	\end{Prop}
+	
+	\Bew (i) 
+	\begin{eqnarray}
+		T(t)&=&\varphi_t(-\laplace),~ \varphi_t(x) = e^{-i\lambda t}\nonumber\\
+		\varphi_t(\lambda)\varphi_s(\lambda) = \varphi_{s+t}(\lambda)&\Rightarrow& T(t) T(s) = T(t+s)\nonumber\\
+		\varpi_t(\lambda)\m\varphi_{-t}(\lambda)= 1&\Rightarrow& T(t)\m T(-t) = \id\nonumber
+	\end{eqnarray}
+	(ii) 
+	$$||T(t)|| = \sup_{\lambda>0}|e^{i\lambda t}| =1.$$
+	(iii)
+	$$|\rho_t(\lambda)|\leq 1, \varphi_t(\lambda)\rightarrow 1\Rightarrow T(t)f\rightarrow T(0) =\id.$$
+	(iv) Da $f\in D(\laplace)$, ist $(i\laplace)f=g\in L^2$.
+	\begin{eqnarray}
+		\frac{1}{-i\lambda t}(e^{-i\lambda t}-1)&\rightarrow& 1\nonumber\\
+		\Rightarrow \frac{1}{t}(e^{i\lambda\laplace}- I)(i\laplace)^{-1}g&\rightarrow& g\nonumber\\
+		\Rightarrow \lim\limits_{t\rightarrow 0}\frac{(T(t)-I)}{t}f &=& i\laplace f.\nonumber
+	\end{eqnarray}
 	
 	
 	

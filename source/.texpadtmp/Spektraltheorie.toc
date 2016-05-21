@@ -25,3 +25,9 @@
 \contentsline {section}{\numberline {5}Faltung und Distributionen}{17}
 \contentsline {section}{\numberline {6}Sobolevr\IeC {\"a}ume}{22}
 \contentsline {paragraph}{\nonumberline Bemerkung:}{24}
+\contentsline {paragraph}{\nonumberline Erg\IeC {\"a}nzung zur Einbettung.}{25}
+\contentsline {section}{\numberline {7}Der Funktionalkalk\IeC {\"u}l des Laplace Operators}{26}
+\contentsline {paragraph}{\nonumberline Notation:}{28}
+\contentsline {paragraph}{\nonumberline Beispiel.}{29}
+\contentsline {section}{\numberline {8}Das Cauchyproblem f\IeC {\"u}r die Schr\IeC {\"o}dinger- und die Wellengleichung}{30}
+\contentsline {paragraph}{\nonumberline Notation:}{30}
