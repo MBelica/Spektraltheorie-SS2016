@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.7)  21 MAY 2016 19:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.7)  2 JUN 2016 22:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -34,15 +34,15 @@ Package tocbasic Info: omitting babel extension for `lof'
 Package tocbasic Info: omitting babel extension for `lot'
 (tocbasic)             because of feature `nobabel' available
 (tocbasic)             for `lot' on input line 124.
-Package scrartcl Info: You've used standard option `11pt'.
+Package scrartcl Info: You've used standard option `12pt'.
 (scrartcl)             This is correct!
-(scrartcl)             Internally I'm using `fontsize=11pt'.
+(scrartcl)             Internally I'm using `fontsize=12pt'.
 (scrartcl)             If you'd like to set the option with \KOMAoptions,
-(scrartcl)             you'd have to use `fontsize=11pt' there
-(scrartcl)             instead of `11pt', too.
-Class scrartcl Info: File `scrsize11pt.clo' used to setup font sizes on input line 1942.
- (/usr/local/texlive/2015/texmf-dist/tex/latex/koma-script/scrsize11pt.clo
-File: scrsize11pt.clo 2015/05/06 v3.17a KOMA-Script font size class option (11pt)
+(scrartcl)             you'd have to use `fontsize=12pt' there
+(scrartcl)             instead of `12pt', too.
+Class scrartcl Info: File `scrsize12pt.clo' used to setup font sizes on input line 1942.
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/koma-script/scrsize12pt.clo
+File: scrsize12pt.clo 2015/05/06 v3.17a KOMA-Script font size class option (12pt)
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/koma-script/typearea.sty
 Package: typearea 2015/05/06 v3.17a KOMA-Script package (type area)
 
@@ -63,21 +63,21 @@ Package typearea Info: You've used standard option `a4paper'.
 \ta@temp=\skip44
 \footheight=\skip45
 Package typearea Info: These are the values describing the layout:
-(typearea)             DIV  = 10
+(typearea)             DIV  = 12
 (typearea)             BCOR = 0.0pt
 (typearea)             \paperwidth      = 597.50793pt
-(typearea)              \textwidth      = 418.25555pt
+(typearea)              \textwidth      = 448.13095pt
 (typearea)              DIV departure   = -6%
-(typearea)              \evensidemargin = 17.3562pt
-(typearea)              \oddsidemargin  = 17.3562pt
+(typearea)              \evensidemargin = 2.4185pt
+(typearea)              \oddsidemargin  = 2.4185pt
 (typearea)             \paperheight     = 845.04694pt
-(typearea)              \textheight     = 595.80026pt
-(typearea)              \topmargin      = -25.16531pt
-(typearea)              \headheight     = 17.0pt
-(typearea)              \headsep        = 20.40001pt
-(typearea)              \topskip        = 11.0pt
-(typearea)              \footskip       = 47.6pt
-(typearea)              \baselineskip   = 13.6pt
+(typearea)              \textheight     = 635.5pt
+(typearea)              \topmargin      = -41.72441pt
+(typearea)              \headheight     = 18.125pt
+(typearea)              \headsep        = 21.75pt
+(typearea)              \topskip        = 12.0pt
+(typearea)              \footskip       = 50.75pt
+(typearea)              \baselineskip   = 14.5pt
 (typearea)              on input line 1485.
 )
 \c@part=\count80
@@ -445,33 +445,66 @@ Package caption3 Info: TeX engine: e-TeX on input line 57.
 )
 Package caption Info: KOMA-Script document class.
 \c@ContinuedFloat=\count105
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2015/05/11 v1.16 mathematical typesetting tools
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count106
+\calc@Bcount=\count107
+\calc@Adimen=\dimen130
+\calc@Bdimen=\dimen131
+\calc@Askip=\skip51
+\calc@Bskip=\skip52
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count108
+\calc@Cskip=\skip53
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count109
+\l_MT_multwidth_dim=\dimen132
+\origjot=\skip54
+\l_MT_shortvdotswithinadjustabove_dim=\dimen133
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen134
+\l_MT_above_intertext_sep=\dimen135
+\l_MT_below_intertext_sep=\dimen136
+\l_MT_above_shortintertext_sep=\dimen137
+\l_MT_below_shortintertext_sep=\dimen138
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
 Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
 \symrsfs=\mathgroup6
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/subfigure/subfigure.sty
 Package: subfigure 2002/03/15 v2.1.5 subfigure package
-\subfigtopskip=\skip51
-\subfigcapskip=\skip52
-\subfigcaptopadj=\dimen130
-\subfigbottomskip=\skip53
-\subfigcapmargin=\dimen131
-\subfiglabelskip=\skip54
-\c@subfigure=\count106
-\c@lofdepth=\count107
-\c@subtable=\count108
-\c@lotdepth=\count109
+\subfigtopskip=\skip55
+\subfigcapskip=\skip56
+\subfigcaptopadj=\dimen139
+\subfigbottomskip=\skip57
+\subfigcapmargin=\dimen140
+\subfiglabelskip=\skip58
+\c@subfigure=\count110
+\c@lofdepth=\count111
+\c@subtable=\count112
+\c@lotdepth=\count113
 
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
 (/usr/local/texlive/2015/texmf-dist/tex/latex/subfigure/subfigure.cfg)
-\subfig@top=\skip55
-\subfig@bottom=\skip56
+\subfig@top=\skip59
+\subfig@bottom=\skip60
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/stmaryrd/stmaryrd.sty
 Package: stmaryrd 1994/03/03 St Mary's Road symbol package
 \symstmry=\mathgroup7
 LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
 (Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/tools/enumerate.sty
+Package: enumerate 2014/10/28 v3.00 enumerate extensions (DPC)
+\@enLab=\toks23
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/xypic/xy.sty (/usr/local/texlive/2015/texmf-dist/tex/generic/xypic/xy.tex Bootstrap'ing: catcodes, docmode, (/usr/local/texlive/2015/texmf-dist/tex/generic/xypic/xyrecat.tex) (/usr/local/texlive/2015/texmf-dist/tex/generic/xypic/xyidioms.tex)
 
  Xy-pic version 3.8.9 <2013/10/06>
@@ -479,101 +512,101 @@ LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
  Xy-pic is free software: see the User's Guide for details.
 
 Loading kernel: messages; fonts; allocations: state,
-\X@c=\dimen132
-\Y@c=\dimen133
-\U@c=\dimen134
-\D@c=\dimen135
-\L@c=\dimen136
-\R@c=\dimen137
-\Edge@c=\toks23
-\X@p=\dimen138
-\Y@p=\dimen139
-\U@p=\dimen140
-\D@p=\dimen141
-\L@p=\dimen142
-\R@p=\dimen143
-\Edge@p=\toks24
-\X@origin=\dimen144
-\Y@origin=\dimen145
-\X@xbase=\dimen146
-\Y@xbase=\dimen147
-\X@ybase=\dimen148
-\Y@ybase=\dimen149
-\X@min=\dimen150
-\Y@min=\dimen151
-\X@max=\dimen152
-\Y@max=\dimen153
+\X@c=\dimen141
+\Y@c=\dimen142
+\U@c=\dimen143
+\D@c=\dimen144
+\L@c=\dimen145
+\R@c=\dimen146
+\Edge@c=\toks24
+\X@p=\dimen147
+\Y@p=\dimen148
+\U@p=\dimen149
+\D@p=\dimen150
+\L@p=\dimen151
+\R@p=\dimen152
+\Edge@p=\toks25
+\X@origin=\dimen153
+\Y@origin=\dimen154
+\X@xbase=\dimen155
+\Y@xbase=\dimen156
+\X@ybase=\dimen157
+\Y@ybase=\dimen158
+\X@min=\dimen159
+\Y@min=\dimen160
+\X@max=\dimen161
+\Y@max=\dimen162
 \lastobjectbox@=\box29
 \zerodotbox@=\box30
-\almostz@=\dimen154
+\almostz@=\dimen163
  direction,
-\d@X=\dimen155
-\d@Y=\dimen156
-\K@=\count110
-\KK@=\count111
-\Direction=\count112
-\K@dXdY=\dimen157
-\K@dYdX=\dimen158
+\d@X=\dimen164
+\d@Y=\dimen165
+\K@=\count114
+\KK@=\count115
+\Direction=\count116
+\K@dXdY=\dimen166
+\K@dYdX=\dimen167
 \xyread@=\read1
 \xywrite@=\write3
-\csp@=\count113
-\quotPTK@=\dimen159
+\csp@=\count117
+\quotPTK@=\dimen168
  utility macros; pictures: \xy, positions,
-\swaptoks@@=\toks25
+\swaptoks@@=\toks26
 \connectobjectbox@@=\box31
  objects,
-\styletoks@=\toks26
+\styletoks@=\toks27
  decorations; kernel objects: directionals, circles, text; options; algorithms: directions, edges, connections;  Xy-pic loaded)
 Package: xy 2013/10/06 Xy-pic version 3.8.9
  (/usr/local/texlive/2015/texmf-dist/tex/generic/xypic/xyarrow.tex  Xy-pic option: Arrow and Path feature v.3.9 path, \ar, loaded) (/usr/local/texlive/2015/texmf-dist/tex/generic/xypic/xymatrix.tex  Xy-pic option: Matrix feature v.3.14
-\Row=\count114
-\Col=\count115
-\queue@=\toks27
-\queue@@=\toks28
-\qcount@=\count116
-\qcount@@=\count117
-\matrixsize@=\count118
+\Row=\count118
+\Col=\count119
+\queue@=\toks28
+\queue@@=\toks29
+\qcount@=\count120
+\qcount@@=\count121
+\matrixsize@=\count122
  loaded) (/usr/local/texlive/2015/texmf-dist/tex/generic/xypic/xycurve.tex  Xy-pic option: Curve and Spline extension v.3.12 curve,
-\crv@cnt@=\count119
-\crvpts@=\toks29
+\crv@cnt@=\count123
+\crvpts@=\toks30
 \splinebox@=\box32
-\splineval@=\dimen160
-\splinedepth@=\dimen161
-\splinetol@=\dimen162
-\splinelength@=\dimen163
+\splineval@=\dimen169
+\splinedepth@=\dimen170
+\splinetol@=\dimen171
+\splinelength@=\dimen172
  circles,
-\L@=\dimen164
+\L@=\dimen173
  loaded) (/usr/local/texlive/2015/texmf-dist/tex/generic/xypic/xypdf.tex  Xy-pic option: PDF driver v.1.7 Xy-pic pdf driver: `curve' extension support (/usr/local/texlive/2015/texmf-dist/tex/generic/xypic/xypdf-cu.tex loaded) loaded))
-\c@Satz=\count120
-\c@Example=\count121
+\c@Satz=\count124
+\c@Example=\count125
  (/Users/martin/Dropbox/Skripte/Spektraltheorie-SS2016/source/.texpadtmp/Spektraltheorie.aux)
 \openout1 = `Spektraltheorie.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 124.
-LaTeX Font Info:    ... okay on input line 124.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 124.
-LaTeX Font Info:    ... okay on input line 124.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 124.
-LaTeX Font Info:    ... okay on input line 124.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 124.
-LaTeX Font Info:    ... okay on input line 124.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 124.
-LaTeX Font Info:    ... okay on input line 124.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 124.
-LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 128.
+LaTeX Font Info:    ... okay on input line 128.
  (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count122
-\scratchdimen=\dimen165
+\scratchcounter=\count126
+\scratchdimen=\dimen174
 \scratchbox=\box33
-\nofMPsegments=\count123
-\nofMParguments=\count124
-\everyMPshowfont=\toks30
-\MPscratchCnt=\count125
-\MPscratchDim=\dimen166
-\MPnumerator=\count126
-\makeMPintoPDFobject=\count127
-\everyMPtoPDFconversion=\toks31
+\nofMPsegments=\count127
+\nofMParguments=\count128
+\everyMPshowfont=\toks31
+\MPscratchCnt=\count129
+\MPscratchDim=\dimen175
+\MPnumerator=\count130
+\makeMPintoPDFobject=\count131
+\everyMPtoPDFconversion=\toks32
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
  (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifluatex.sty
@@ -623,15 +656,15 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \textheight=717.00946pt
 * \oddsidemargin=-15.36449pt
 * \evensidemargin=-15.36449pt
-* \topmargin=-38.53812pt
-* \headheight=17.0pt
-* \headsep=20.40001pt
-* \topskip=11.0pt
-* \footskip=47.6pt
-* \marginparwidth=59.7508pt
+* \topmargin=-41.0131pt
+* \headheight=18.125pt
+* \headsep=21.75pt
+* \topskip=12.0pt
+* \footskip=50.75pt
+* \marginparwidth=49.79233pt
 * \marginparsep=12.8401pt
 * \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -644,78 +677,128 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfigure package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for U+msa on input line 124.
+LaTeX Font Info:    Try loading font information for U+msa on input line 128.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 124.
+LaTeX Font Info:    Try loading font information for U+msb on input line 128.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 124.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 128.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+stmry on input line 124.
+LaTeX Font Info:    Try loading font information for U+stmry on input line 128.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
-Package xypdf Info: Line width: 0.43799pt on input line 124.
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 126.
+Package xypdf Info: Line width: 0.47998pt on input line 128.
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 130.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 ) [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 135--136
+Underfull \hbox (badness 10000) in paragraph at lines 139--140
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 140.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 144.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 140.
- [2] (/Users/martin/Dropbox/Skripte/Spektraltheorie-SS2016/source/.texpadtmp/Spektraltheorie.toc)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 144.
+
+Overfull \hbox (13.45523pt too wide) in paragraph at lines 154--155
+\T1/cmr/m/n/12 in den Vor-le-sun-gen "Dif-fe-ren-ti-al-glei-chun-gen und Hil-ber-träu-me-öder "Funk-tio-nal-ana-ly-sis"vermittelt
+ []
+
+[2] (/Users/martin/Dropbox/Skripte/Spektraltheorie-SS2016/source/.texpadtmp/Spektraltheorie.toc)
 \tf@toc=\write4
 \openout4 = `Spektraltheorie.toc'.
 
- [3]
-Overfull \hbox (0.76344pt too wide) in paragraph at lines 162--163
-[]$\OML/cmm/m/it/10.95 A$ \T1/cmr/m/it/10.95 heiÿt ab-ge-schlos-sen, falls für al-le $\OML/cmm/m/it/10.95 x[] \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 D\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A\OT1/cmr/m/n/10.95 )$\T1/cmr/m/it/10.95 , $\OML/cmm/m/it/10.95 x[] \OMS/cmsy/m/n/10.95 !
+ [3] [4]
+Overfull \hbox (9.19148pt too wide) in paragraph at lines 257--258
+[]$\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 h[]\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^Z \OML/cmm/m/it/12 X$ \T1/cmr/m/it/12 heiÿt Or-tho-nor-mal-ba-sis von $\OML/cmm/m/it/12 X$\T1/cmr/m/it/12 , falls $\OML/cmm/m/it/12 < h[]; h[] >\OT1/cmr/m/n/12 = \OML/cmm/m/it/12 ^^N[]$\T1/cmr/m/it/12 , $[] \OT1/cmr/m/n/12 =
  []
 
-[4] [5] <xymatrix 2x2 182> [6] [7] [8]
+[5] <xymatrix 2x2 182> [6] [7] [8] [9]
 
-LaTeX Warning: Command \i invalid in math mode on input line 434.
+LaTeX Warning: Command \i invalid in math mode on input line 442.
 
-[9] <xymatrix 2x2 182> <xymatrix 2x2 182> [10] [11] [12] [13] [14] [15] [16] [17]
-Overfull \hbox (48.0396pt too wide) detected at line 832
-\OMS/cmsy/m/n/10.95 jj\OML/cmm/m/it/10.95 R[] \OMS/cmsy/m/n/10.95 ^^@ [][] \OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 y \OMS/cmsy/m/n/10.95 ^^@ ^^A\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 g\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 y\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 dy\OMS/cmsy/m/n/10.95 jj[] \OT1/cmr/m/n/10.95 = [] \OMS/cmsy/m/n/10.95 j [] \OML/cmm/m/it/10.95 x[]D[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 y[] \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 ))\OML/cmm/m/it/10.95 g\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 y[]\OT1/cmr/m/n/10.95 )\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 Q[]\OMS/cmsy/m/n/10.95 j ^^@ [][] \OML/cmm/m/it/10.95 x[]D[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 y \OMS/cmsy/m/n/10.95 ^^@ \OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 ))\OML/cmm/m/it/10.95 g\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 y\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 dy\OMS/cmsy/m/n/10.95 j [] \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :
+<xymatrix 2x2 182> [10] <xymatrix 2x2 182>
+Overfull \hbox (0.96927pt too wide) in paragraph at lines 473--476
+[]  
  []
 
 
-Overfull \hbox (25.71663pt too wide) in alignment at lines 834--838
+Overfull \hbox (6.31624pt too wide) in paragraph at lines 513--514
+[]\T1/cmr/m/it/12 Da $\OML/cmm/m/it/12 S\OT1/cmr/m/n/12 (\U/msb/m/n/12 R[]\OT1/cmr/m/n/12 )$ \T1/cmr/m/it/12 dicht in $\OML/cmm/m/it/12 L[]\OT1/cmr/m/n/12 (\U/msb/m/n/12 R[]\OT1/cmr/m/n/12 )$ \T1/cmr/m/it/12 liegt,
+ []
+
+[11] [12] [13] [14] [15] [16] [17] [18]
+Overfull \hbox (77.40161pt too wide) detected at line 840
+\OMS/cmsy/m/n/12 jj\OML/cmm/m/it/12 R[] \OMS/cmsy/m/n/12 ^^@ [][] \OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y \OMS/cmsy/m/n/12 ^^@ ^^A\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 g\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 dy\OMS/cmsy/m/n/12 jj[] \OT1/cmr/m/n/12 = [] \OMS/cmsy/m/n/12 j [] \OML/cmm/m/it/12 x[]D[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y[] \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 x\OT1/cmr/m/n/12 ))\OML/cmm/m/it/12 g\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y[]\OT1/cmr/m/n/12 )\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Q[]\OMS/cmsy/m/n/12 j ^^@ [][] \OML/cmm/m/it/12 x[]D[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 x\OT1/cmr/m/n/12 ))\OML/cmm/m/it/12 g\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 dy\OMS/cmsy/m/n/12 j [] \OT1/cmr/m/n/12 0\OML/cmm/m/it/12 :
+ []
+
+
+Overfull \hbox (55.98651pt too wide) in alignment at lines 842--846
  [][][] []
  []
 
-[18] [19] [20] [21] [22] [23] [24] [25] <xymatrix 2x2 182> [26]
-LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1224.
- [27] [28] [29] [30] [31] (/Users/martin/Dropbox/Skripte/Spektraltheorie-SS2016/source/.texpadtmp/Spektraltheorie.aux) ) 
+[19] [20] [21] [22] [23] [24]
+Overfull \hbox (6.9481pt too wide) in paragraph at lines 1122--1123
+[]\T1/cmr/m/it/12 Sei $\OML/cmm/m/it/12 u[] \OMS/cmsy/m/n/12 ^^Z \OML/cmm/m/it/12 H[]$\T1/cmr/m/it/12 , $\OMS/cmsy/m/n/12 jj\OML/cmm/m/it/12 u[]\OMS/cmsy/m/n/12 jj[] ^^T
+ []
+
+[25] [26] <xymatrix 2x2 182> [27]
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1232.
+ [28] [29] [30] [31]
+Underfull \hbox (badness 10000) in paragraph at lines 1429--1434
+
+ []
+
+[32]
+Underfull \hbox (badness 10000) in paragraph at lines 1464--1466
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1472--1474
+
+ []
+
+[33]
+Overfull \hbox (2.80444pt too wide) in paragraph at lines 1484--1488
+\T1/cmr/m/it/12 Interpretiere $\OT1/cmr/m/n/12 (5)$ \T1/cmr/m/it/12 mit Hil-fe des Funk-tio-nal-kal-küls. Mit $\OML/cmm/m/it/12 '\OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 ^^A)\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 )[] = 4\OML/cmm/m/it/12 ^^Y[]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^X\OMS/cmsy/m/n/12 j[][]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^X\OT1/cmr/m/n/12 )$\T1/cmr/m/it/12 , $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 '\OT1/cmr/m/n/12 ((\OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 ^^A)[])\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 )[] =
+ []
+
+
+Overfull \hbox (17.40442pt too wide) in alignment at lines 1495--1497
+ [][][] []
+ []
+
+[34] [35] <xymatrix 2x2 182> [36] [37]
+Overfull \hbox (40.94864pt too wide) detected at line 1689
+\OMS/cmsy/m/n/12 jj\OML/cmm/m/it/12 y[] \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 y[]\OMS/cmsy/m/n/12 jj[] ^^T \OML/cmm/m/it/12 ^^N[]b\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y[] \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 y[]; y[] \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 y[]\OT1/cmr/m/n/12 ) = \OML/cmm/m/it/12 ^^N[] < y[] \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 y[]; T\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y[] \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 y[]\OT1/cmr/m/n/12 ) \OML/cmm/m/it/12 >\OMS/cmsy/m/n/12 ^^T \OML/cmm/m/it/12 ^^N[]\OT1/cmr/m/n/12 2 [] \OMS/cmsy/m/n/12 jj\OML/cmm/m/it/12 y[]\OMS/cmsy/m/n/12 jj ^^A jj\OML/cmm/m/it/12 T\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y[]\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 T\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y[]\OT1/cmr/m/n/12 )\OMS/cmsy/m/n/12 jj
+ []
+
+[38] [39] [40] [41] (/Users/martin/Dropbox/Skripte/Spektraltheorie-SS2016/source/.texpadtmp/Spektraltheorie.aux) ) 
 Here is how much of TeX's memory you used:
- 8922 strings out of 493089
- 127097 string characters out of 6134843
- 302592 words of memory out of 5000000
- 12236 multiletter control sequences out of 15000+600000
- 26366 words of font info for 82 fonts, out of 8000000 for 9000
+ 9492 strings out of 493089
+ 137102 string characters out of 6134843
+ 313682 words of memory out of 5000000
+ 12791 multiletter control sequences out of 15000+600000
+ 24325 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 47i,13n,50p,1466b,478s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbi1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx2074.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sf
-ti1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/xypic/xyatip10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/xypic/xybtip10.pfb>
-Output written on /Users/martin/Dropbox/Skripte/Spektraltheorie-SS2016/source/.texpadtmp/Spektraltheorie.pdf (31 pages, 489626 bytes).
+ 47i,14n,50p,1466b,480s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbi1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx1728.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfsx2488.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/xypic/xyatip10.pf
+b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/xypic/xybtip10.pfb>
+Output written on /Users/martin/Dropbox/Skripte/Spektraltheorie-SS2016/source/.texpadtmp/Spektraltheorie.pdf (41 pages, 512902 bytes).
 PDF statistics:
- 210 PDF objects out of 1000 (max. 8388607)
- 149 compressed objects within 2 object streams
+ 239 PDF objects out of 1000 (max. 8388607)
+ 169 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
