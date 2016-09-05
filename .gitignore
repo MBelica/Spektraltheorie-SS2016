@@ -131,3 +131,4 @@ sympy-plots-for-*.tex/
 *.upa
 *.upb
 
+.DS_Store
