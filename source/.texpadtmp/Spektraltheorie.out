@@ -1,8 +1,22 @@
-\BOOKMARK [0][-]{chapter*.5}{\334berblick \374ber die Vorlesung Spektraltheorie}{}% 1
-\BOOKMARK [0][-]{chapter*.24}{Fourieranalysis}{}% 2
-\BOOKMARK [1][-]{section.25}{3 Die Fouriertransformation auf L1, S und L2}{chapter*.24}% 3
-\BOOKMARK [1][-]{section.52}{4 Don't know}{chapter*.24}% 4
-\BOOKMARK [1][-]{section.92}{5 Faltung von Distributionen}{chapter*.24}% 5
-\BOOKMARK [0][-]{chapter*.96}{\334bungen}{}% 6
-\BOOKMARK [0][-]{appendix*.100}{Abk\374rzungsverzeichnis}{}% 7
-\BOOKMARK [0][-]{section*.101}{Stichwortverzeichnis}{}% 8
+\BOOKMARK [0][-]{chapter.1}{Einf\374hrung}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Wiederholung aus der Funktionalanalysis}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Verpasst}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Fourieranalysis}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.4}{Temperierte Distributionen und die Fouriertransformation}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.5}{Faltung und Distributionen}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.6}{Sobolevr\344ume}{chapter.1}% 7
+\BOOKMARK [1][-]{section.1.7}{Der Funktionalkalk\374l des Laplace Operators}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.8}{Das Cauchyproblem f\374r die Schr\366dinger- und die Wellengleichung}{chapter.1}% 9
+\BOOKMARK [0][-]{chapter.2}{Spekraltheorie selbstadjungierter Operatoren}{}% 10
+\BOOKMARK [1][-]{section.2.1}{Beschr\344nkte normale Operatoren}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.2}{Funktionalkalk\374l f\374r beschr\344nkte selbstadjungierte Operatoren}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.3}{Spektraldarstellung selbstadjungierter beschr\344nkter Operatoren}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.4}{Spektralprojektion}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.5}{Beispiele f\374r Spektraldarstellungen}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.6}{Unbeschr\344nkte selbstadjungierte Operatoren}{chapter.2}% 16
+\BOOKMARK [1][-]{section.2.7}{Spektralsatz f\374r ubeschr\344nkte selbstadjungierte Operatoren}{chapter.2}% 17
+\BOOKMARK [1][-]{section.2.8}{St\366rungssatz}{chapter.2}% 18
+\BOOKMARK [0][-]{chapter.3}{Der holomorphe Funktionalkalk\374l}{}% 19
+\BOOKMARK [1][-]{section.3.1}{Dunfordkalk\374l f\374r beschr\344nkte Operatoren}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.2}{Halbgruppen mit beschr\344nkten Erzeugern}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.3}{Funktionalkalk\374l f\374r sektorielle Operatoren}{chapter.3}% 22

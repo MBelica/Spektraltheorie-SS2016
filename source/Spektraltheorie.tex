@@ -1,34 +1,42 @@
-\documentclass[12pt,a4paper,titlepage]{scrartcl}
+\documentclass[12pt]{extreport} % Schriftgröße: 8pt, 9pt, 10pt, 11pt, 12pt, 14pt, 17pt oder 20pt
 
+% Language Setup (Deutsch)
 \usepackage[utf8]{inputenc} 
-\usepackage[T1]{fontenc} 
-\usepackage[ngerman]{babel} 
+\usepackage[ngerman]{babel}
 
-\title{Spektraltheorie}
-\author{Prof. Dr. Lutz Weis}
-\date{Sommersemester 2016}
-\publishers{Karlsruher Institut für Technologie}
-
-
-\usepackage{amsmath}
-\usepackage{amsfonts}
+%% Packages
+\usepackage{scrextend}
 \usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{changes}
+\usepackage{cmap}
+\usepackage{amsfonts}
+\usepackage{apptools}
+\usepackage{booktabs}
+\usepackage{dsfont}
+\usepackage{lmodern}
+\usepackage{makeidx}
+\usepackage{xcolor}
+\usepackage{mathtools} 
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{caption}
+\usepackage{xpatch}
 \usepackage{amssymb}
 \usepackage{amsmath}
-\usepackage{mathtools}
 \usepackage{mathrsfs}
 \usepackage{subfigure}
 \usepackage{stmaryrd}
 \usepackage{enumerate}
-\usepackage[ngerman]{babel}
+\usepackage{hyperref}
+\usepackage{footnote}
 \usepackage{mathrsfs}
 %\usepackage{subcaption}
 \usepackage[arrow, matrix, curve]{xy}
 \geometry{a4paper,left=20mm,right=20mm,top=25mm,bottom=20mm}
 
+% 1.1, 1.2 etc durchnummeriert, ebenso die Gleichungen mit (1.1), (1.2) ..
 \newtheorem{Satz}{Satz}[subsection]
 \newtheorem{Definition}[Satz]{Definition} 
 \newtheorem{Klass}[Satz]{Klassifizierung} 
@@ -42,6 +50,7 @@
 \newtheorem{Erinnerung}[Satz]{Erinnerung}
 \newtheorem{Korollar}[Satz]{Korollar}
 \newtheorem{Motivation}[Satz]{Motivation}
+\newtheorem{Wiederholung}[Satz]{Wiederholung}
 \newtheorem{Example}{Example}
 
 \DeclareMathOperator{\trdeg}{trdeg}
@@ -77,6 +86,7 @@
 \DeclareMathOperator{\Graph}{Graph}
 \DeclareMathOperator{\spann}{span}
 \DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\cov}{cov}
 
 \numberwithin{equation}{section} 
 
@@ -116,50 +126,61 @@
 \newcommand{\Top}{\underline{\TopOp}}
 \newcommand{\HoTop}{\underline{\HoTopOp}}
 
+
+% Options
+\makeatletter%
+  % Linkfarbe, {0,0.35,0.35} für Türkis, {0,0,0} für Schwarz 
+  \definecolor{linkcolor}{rgb}{0,0.35,0.35}
+  % Zeilenabstand für bessere Leserlichkeit
+  \def\mystretch{1.75} 
+  % Publisher definieren
+  \newcommand\publishers[1]{\newcommand\@publishers{#1}} 
+  % Enumerate im 1. Level: \alph für a), b), \dotsc
+  \renewcommand{\labelenumi}{\alph{enumi})} 
+  % Enumerate im 2. Level: \roman für (i), (ii), \dotsc
+  \renewcommand{\labelenumii}{(\roman{enumii})}
+  % Zeileneinrückung am Anfang des Absatzes
+  \setlength{\parindent}{0pt} 
+  % Für das Proof-Environment: 'Beweis:' anstatt 'Beweis.'
+  \xpatchcmd{\proof}{\@addpunct{.}}{\@addpunct{:}}{}{} 
+  % Nummerierung der Bilder, z.B.: Abbildung 4.1
+  \@ifundefined{thechapter}{}{\def\thefigure{\thechapter.\arabic{figure}}} 
+\makeatother%
 
-%\newcommand{\L}{\mathcal{L}}
-\newcommand{\qed}{\begin{flushright}
-		$\square$
-	\end{flushright}}
+% Meta Setup (Für Titelblatt und Metadaten im PDF)
+\title{Spektraltheorie}
+\author{Prof. Dr. Lutz Weiss}
+\date{Vorlesungsmitschrieb ~\vspace{0.2cm} \\ Sommersemester 2015/16}
+\publishers{Karlsruher Institut für Technologie}
 
 
+%% Template
+\makeatletter%
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor, pdftitle=\@title, pdfauthor=\@author, pdfsubject=\@title, pdfcreator=\@publishers}\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}} \ProcessOptions \def\baselinestretch{\mystretch} \setlength{\oddsidemargin}{0.125in} \setlength{\evensidemargin}{0.125in} \setlength{\topmargin}{0.5in} \setlength{\textwidth}{6.25in} \setlength{\textheight}{8in} \addtolength{\topmargin}{-\headheight} \addtolength{\topmargin}{-\headsep} \def\pulldownheader{ \addtolength{\topmargin}{\headheight} \addtolength{\topmargin}{\headsep} \addtolength{\textheight}{-\headheight} \addtolength{\textheight}{-\headsep} } \def\pullupfooter{ \addtolength{\textheight}{-\footskip} } \def\ps@headings{\let\@mkboth\markboth \def\@oddfoot{} \def\@evenfoot{} \def\@oddhead{\hbox {}\sl \rightmark \hfil \rm\thepage} \def\chaptermark##1{\markright {\uppercase{\ifnum \c@secnumdepth >\m@ne \@chapapp\ \thechapter. \ \fi ##1}}} \pulldownheader } \def\ps@myheadings{\let\@mkboth\@gobbletwo \def\@oddfoot{} \def\@evenfoot{} \def\sectionmark##1{} \def\subsectionmark##1{}  \def\@evenhead{\rm \thepage\hfil\sl\leftmark\hbox {}} \def\@oddhead{\hbox{}\sl\rightmark \hfil \rm\thepage} \pulldownheader }	\def\chapter{\cleardoublepage  \thispagestyle{plain} \global\@topnum\z@ \@afterindentfalse \secdef\@chapter\@schapter} \def\@makeschapterhead#1{ {\parindent \z@ \raggedright \normalfont \interlinepenalty\@M \Huge \bfseries  #1\par\nobreak \vskip 40\p@ }} \newcommand{\indexsection}{chapter} \patchcmd{\@makechapterhead}{\vspace*{50\p@}}{}{}{}
+	% Titlepage
+	\def\maketitle{ \begin{titlepage} 
+			~\vspace{3cm} 
+		\begin{center} {\Huge \@title} \end{center} 
+	 		\vspace*{1cm} 
+	 	\begin{center} {\large \@author} \end{center} 
+	 	\begin{center} \@date \end{center} 
+	 		\vspace*{7cm} 
+	 	\begin{center} \@publishers \end{center} 
+	 		\vfill 
+	\end{titlepage} }
+\makeatother%
+
+% Indexdatei erstellen
+\makeindex 
 
 \begin{document}
 	\maketitle
 	
-
-	\section*{Vorwort}
-	Dieses Skript wurde im Sommersemester 2016 von David Bückel geschrieben und von Martin Belica korrekturgelesen und ärgenzt. Es ist ein inoffizielles Skript und beinhaltet die Mitschriften aus der Vorlesung von Prof.~Dr.~Weis am Karlsruhe Institut für Technologie sowie die Mitschriften einiger Übungen.
-
-	\thispagestyle{empty}
-
-	\subsection*{Einleitung}
-
-	Die Spektraltheorie verallgemeinert die Theorie von Eigenwerten und Normalformen von Matrizen für unendlichdimensionale Operatoren auf Funktionenräumen, wie Differential- und Integraloperatoren. Sie vermittelt eine wesentliche Methodik für viele Anwendungsgebiete, wie partielle Differentialgleichungen, mathematische Physik und numerische Analysis. \\
-
-	Zu den Themen gehören:
-
-  	\begin{itemize}
-    	\item Spektrum und Resolvente linearer (unbeschränkter) Operatoren
-    	\item Fouriertransformation und der Funktionalkalkül des Laplace-Operators
-    	\item Der Funktionalkalkül selbstadjungierter Operatoren
-    	\item Der holomorphe Funktionalkalkül sektorieller Operatoren
-    	\item Cauchy-Problem für sektorielle Operatoren
- 	\end{itemize}
-  
-	Diese Vorlesung bereitet auf zukünftige Vorlesungen und Seminare im Bereich der deterministischen und stochastischen Evolutionsgleichungen vor.
-
-	\subsection*{Erforderliche Vorkenntnisse}
-	Wir setzen ein grundlegendes Verständnis funktionalanalytischer Methoden voraus, wie sie z.B. in den Vorlesungen "Differentialgleichungen und Hilberträume" oder "Funktionalanalysis" vermittelt werden.
-	
-	\newpage	
 	\tableofcontents
-	\newpage	
-	
 	\newpage
-	\section{Einführung}
+	\chapter{Einführung}
 	
-	\subsection{Wiederholung aus der Funktionalanalysis}
+	\section{Wiederholung aus der Funktionalanalysis}
 	
 	\subsubsection{Abgeschlossene Operatoren}
 	
@@ -285,10 +306,10 @@
 		\end{enumerate}
 	\end{Bemerkung}
 	
-	\subsection{Verpasst}
+	\section{Verpasst}
 	
 	\newpage
-	\subsection{Fourieranalysis}
+	\section{Fourieranalysis}
 	
 	\subsubsection{Die Fouriertransformation auf $L^1$, $S$ und $L^2$}
 	
@@ -538,7 +559,7 @@
 	
 	\paragraph{Bemerkung:} $||T_g||_{L^2\rightarrow L^2}\leq||g||_{L^1}$ (Youngsche Ungleichung), denn $\sup|\g(x)| \leq ||g||_{L^1}$.
 	
-	\subsection{Temperierte Distributionen und die Fouriertransformation}
+	\section{Temperierte Distributionen und die Fouriertransformation}
 	
 	Idee $S'(\R^d)$ soll der Dualraum von $S(\R^d)$ sein. 
 	\paragraph{Wiederholung:} Für $N\in \N$ setze $||f||_N = \sup\{|x^\alpha D^\beta f(x)|: x\in \R^d, \alpha,\beta\in \N_0^d, |\alpha|,|\beta|\leq N \}$.
@@ -777,7 +798,7 @@
 	\end{enumerate}
 	\qed
 	
-	\subsection{Faltung und Distributionen}
+	\section{Faltung und Distributionen}
 	
 	Wir begnügen uns damit Distributionen $u$ mit Schwarzfunktionen $f$ zu falten. Die Definition wird motiviert durch
 	$$(f*g)(x)=\int_{\R^d}f(x-y)g(y) dy = u_g(f(x-\m)).$$
@@ -967,7 +988,7 @@
 
 	\newpage
 	
-	\subsection{Sobolevräume}
+	\section{Sobolevräume}
 	
 	Sei $f\in L^2(\R^d)\rightarrow u_f\in S'$, $u_f(h) =\int f(x)g(x) dx$. Wann gilt $D^\alpha u_f\in S'$ $\Rightarrow$ $D^\alpha u_f \in L^2$?.
 	
@@ -1181,7 +1202,7 @@
 	\qed
 	
 	
-	\subsection{Der Funktionalkalkül des Laplace Operators}
+	\section{Der Funktionalkalkül des Laplace Operators}
 	
 	\begin{Definition}[des Laplace Operators]
 		Für $f\in S(\R^d)$: $\Delta f(\m)=\sum_{j = 1}^{d}\frac{\partial^2}{\partial x_j^2} f(\m)$. 
@@ -1341,7 +1362,9 @@
 		(-(-\laplace))^2 &=& -\laplace\nonumber
 	\end{eqnarray}
 	
-	\subsection{Das Cauchyproblem für die Schrödinger- und die Wellengleichung}
+	\newpage
+	
+	\section{Das Cauchyproblem für die Schrödinger- und die Wellengleichung}
 	
 	\begin{Motivation}
 		$$y'(t) = a(y(t))+ f(t), ~y(0) = y_0,$$
@@ -1406,146 +1429,10 @@
 		\Rightarrow \lim\limits_{t\rightarrow 0}\frac{(T(t)-I)}{t}f &=& i\laplace f.\nonumber
 	\end{eqnarray}
 	
-%% Bitte lese das Folgende hier Korrektur, denn es began mit einer "Motivation", keine Ahnung, ob du die mit drin haben willst, und danach kam wieder Prop 8.3 und ich bin mir nicht sicher, wo die Nummerierung schief ging.
-	Funktionalkalkül des Laplace: $ \phi ( - \laplace )f = F^{-1}[\phi ( 4 \pi^{2} |\xi|^{2} \hat{f}(\xi)], \phi: \R_{+} \rightarrow \C$ beschr. Borel. \\
-	Cauchyproblem für die Schrödingergleichung:
-		\[ \begin{cases}
-			u_{t}(t, x) & = i \laplace_{x} u(t, x ) + f(t, x) \\
-			u(0, x) = u_{0}(x)
-		\end{cases} \]
-	mit $u_{0} \in S(\R^{d}), f \colon \R_{+} \rightarrow S(\R^{d}), \int_{0}^{\infty} \| f(t) \|_{L^{1}} dt < \infty$  \\
-	Lsg.: $u(t) = T(t) u_{0} + \int_{0}^{t} T(t - s) f(s) ds$
-		\[ T(t) = e^{it\laplace}, \text{ d.h. } \widehat{T(t)f}(\xi) = e^{it \cdot ( 4 \pi^{2} |\xi|^{2} )} \hat{f}(\xi) \]
-	$T(t)$ unitäre Gruppe auf $L^{2}(\R^{d})$.
-
-
-	\setcounter{Satz}{2} % todo keine Ahnung warum noch einmal 8.3 kam, ich texe es einfach ab
-	\begin{Prop}
-		$T(t) f(x) = \int_{\R^{d}} k_{t}(x-y) f(y) dy$, $t > 0$ für $f \in S(\R^{d})$, \\
-		wobei: $k_{t}(x) = (t \pi^{2} i t)^{-\frac{d}{2}} e^{- \frac{|x|^{2}}{4 i t}}$ 
-	\end{Prop}
-	
-	\Bew 
-		$f \in S(\R^{d}), k_{t} \in S'(\R^{d})$ $(|k_{t}(x)| = |(4 \pi^{2} t)^{-\frac{d}{2}}|)$ \\
-		d.h. $k_{t} \ast f \in S'(\R^{d})$ und $(k_{t} \ast f)^{\wedge} = \hat{k_{t}} \cdot \hat{f}$, siehe $\S$ über Faltung von Distributionen. \\ \\
-		Andererseits: $\widehat{T(t)f}(\xi) = e^{-it4\pi^{2}|\xi|^{2}} \hat{f}(\xi)$. Z.z.: $\hat{k_{t}}(\xi) ) e^{-it4\pi^{2}|\xi|^{2}}$ \\
-		Bekannt: $\left( e^{-\pi |x|^{2}} \right)^{\wedge}(\xi) = e^{-\pi |\xi|^{2}}$. Mit Dilatation: $x \mapsto \frac{x}{\sqrt{u}}$ folgt:
-		\[ \left( u^{-\frac{d}{2}} e^{-\pi\frac{|x|^{2}}{u}} \right)^{\wedge} (\xi) = e^{- \pi u |\xi|^{2}} \]
-		Mit $u = 4 \pi s$: $\left( (4 \pi s)^{-\frac{d}{2}} e^{-\pi \frac{|x|^{2}}{4 \pi s}} \right)^{\wedge} = e^{-4 \pi^{2} s |\xi|^{2}}$ $(*)$
-		\begin{eqnarray*}
-			F_{1}(z) &=& \int_{\R^{d}} (4 \pi z)^{- \frac{d}{2}} e^{- \frac{|x|^{2}}{4z}} \hat{f}(x) dx, \quad l_{s}(x) = (4 \pi s)^{- \frac{d}{2}} e^{- \frac{|x|^{2}}{4s}} \\
-			F_{2}(z) &=& \int_{\R^{d}} e^{- 4 \pi^{2} z |\xi|^{2}} f(\xi) d\xi \\
-		\end{eqnarray*}
-		wobei $z = s + i t$ mit $s > 0$, $t \in \R$. \\
-		$F_{1}$ und $F_{2}$ sind analytisch auf $\C_{+} = \{ s + i t | s, t \in \R, s > 0 \}$ und $F_{1}(s) = F_{2}(s)$ für $s > 0$, $t = 0$, denn:
-		\begin{eqnarray*}
-			F_{1}(s) & = & \int_{\R^{d}} l_{s}(x) \hat{f}(x) fx \int_{\R^{d}} \hat{l_{s}}(\xi) f(\xi) d\xi \\
-			& \overset{(*)}{=} F_{2}(s)
-		\end{eqnarray*}
-		Also $F_{1}(s + it) = F_{2}(s + it)$, $t \in \R$ fest. $F_{1}(it) = \lim_{s \rightarrow \infty} F_{1}(s + it) = \lim_{s \rightarrow 0} F_{2}(s + it) = F_{2}(it)$.
-		Damit 
-		 	\[ \hat{k_{t}}(f) = k_{t}(\hat{f}) = \int e^{- 4\pi^{2}it|\xi|^{2}} \hat{f}(\xi) d\xi, \quad F_{1} = F_{2} \text{ auf } i\R. \]
-			 \[ \Rightarrow \hat{k_{t}}(\xi) \overset{\wedge}{=} e^{-4\pi^{2}it|\xi|^{2}} \]
-	\qed
-
-
-	\begin{Korollar} $T_{t} \colon L^{1}(\R^{d}) \rightarrow L^{\infty}(\R) \quad \text{und} \quad \| T_{t} \|_{L^{1}\rightarrow L^{\infty}} \leq \left( 4 \pi^{2} |t|^{2} \right)^{-\frac{d}{2}}$
-	\end{Korollar}
-	
-	\Bew
-		\[ |T_{t}f(x)| \leq \int \underbrace{|k_{t}(x - s)|}_{= (4 \pi^{2} |t|)^{-\frac{d}{2}}} |f(s)| ds = (4 \pi^{2} |t|)^{-\frac{d}{2}} \| f \|_{L^{1}} \quad \forall x \]
-	\qed
-	
-	
-	\subsection{Wellengleichung}
-	\begin{Motivation}
-		$u''(t) = - a u(t) + f(t)$ mit $u(0) = u_{0}, u_{t}(0) = u_{1}$, $a > 0$ $(1)$ hat die Lösung: 
-		\[ u(t) = u_{0} cos(\sqrt{a} t) + \frac{u_{1}}{\sqrt{a}} sin(\sqrt{a} t) + \frac{1}{\sqrt{a}} \int_{0}^{t} sin(\sqrt{a} (t-s)) f(s) ds \]
-		Wellengleichung: \\
-		\[ \begin{rcases}
-			\frac{\partial^{2}}{\partial t^{2}} u(t, x) = \laplace_{x} u(t, x) + f(t, x) \\
-			\text{mit } u(0, x) = u_{0}(x), u_{t}(0, x) = u_{1}(x)
-		\end{rcases} (2), \]
-		mit $u_{0}, u_{1} \in S(\R^{d}), f(t) \in S(\R^{d}), \int_{0}^{\infty} \|f(t)\|_{L^{1}} dt < \infty$
-		Für $t$ fest, partielle Fouriertransformation in $x$:
-		\[ \xi \mapsto \hat{u}(t, \xi) = \int_{\R^{d}} e^{-2\pi i \xi \cdot x} u(t, x) dx \]
-		Wende part. Fouriertransformation auf $(2)$ an: $t$ fest, $\xi \in \R^{d}$ \\
-		\[ \begin{rcases}
-			\frac{\partial^{2}}{\partial t^{2}} \hat{u}(t, \xi) = 4 \pi^{2} |\xi|^{2} \hat{u}(t, \xi) + \hat{f}(t, \xi) \\
-			\hat{u}(0, \xi) = \hat{u}_{0}(\xi), \frac{\partial}{\partial t} \hat{u}(0, \xi) = \hat{u}_{1}(\xi)
-		\end{rcases} (3), \]
-		Sei $\xi \in \R^{d}$ fest und betrachte $(3)$für jedes $\xi$ als eine gewöhnliche Differentialgleicung für die Funktion $t \mapsto \hat{u}(t, \xi)$. Nach $(1)$ gilt dann:
-		\[ \hat{u}(t, \xi) = \hat{u}_{0}(\xi) \cos(2 \pi |\xi| (t - s)) \hat{f}(s, \xi) ds \qquad (4) \]
-		Das ist die Lösung von $(3)$ für festes $\xi$. Nun wenden wir für festes $t$ die inverse partielle Fouriertransformation bezüglich $\xi$ an. Dann folgt aus $(4)$:
-		\begin{eqnarray*}
-			u(t, x) = F^{-1} \left[ \cos( 2 \pi |\xi| t ) \hat{u}_{0}(\xi) \right](x) &+& F^{-1} \left[ \sin( 2 \pi |\xi| t ) \frac{1}{2 \pi |\xi| } \hat{u}_{1}(\xi) \right](x) \\
-			&+& \int_{0}^{t} F^{-1} \left[ \sin( 2 \pi |\xi| (t-s) ) \frac{1}{2 \pi |\xi|} \hat{f}(s, \xi) \right](x) ds \qquad (5)
-		\end{eqnarray*}
-		Interpretiere $(5)$ mit Hilfe des Funktionalkalküls. Mit
-		% Die folgende Zeile muss man Korrekturlesen, irgendetwas stimmt da nicht und ich wusste auch nicht, wie ich den rechten Teil darstellen soll
-		$\varphi(-\laplace) f)^{\wedge} = 4 \pi^{2} |\xi|^{2} \hat{f}(\xi)$, $(\varphi((-\laplace)^{\frac{1}{2}})f)^{\wedge} = 2 \pi |\xi| \hat{f}(\xi)$, $\varphi(\lambda) = \cos(\lambda t), \varphi(\lambda) = \frac{sin(\lambda t)}{\lambda}$ folgt:
-		\begin{eqnarray*}
-			F^{-1}[\cos(2 \pi |\xi t) \hat{u}_{0}(\xi)] &=& F^{-1}[\cos(\sqrt{4 \pi^{2} |\xi|^{2}} t) F F^{-1} \hat{u}_{0}(\xi)] \\
-			 &=& \cos((-\laplace)^{-\frac{1}{2}} t) u_{0}(\xi)
-		\end{eqnarray*}
-		\[ F^{-1} \left[ \frac{\sin(2 \pi |\xi| t)}{2 \pi |\xi]} \hat{u}_{1}(\xi) \right] = (-\laplace)^{-\frac{1}{2}} \sin((-\laplace)^{-\frac{1}{2}} t) u_{1}(x) \]
-		\[ \int_{0}^{t} F^{-1} \left[ \frac{\sin(2 \pi |\xi| (t - s))}{2 \pi |\xi|} \hat{f}(s, \xi) \right] ds = \int_{0}^{t} (-\laplace)^{-\frac{1}{2}} \sin ((-\laplace)^{-\frac{1}{2}}t-s)) f(s, x) ds \]
-		Damit erhält $(5)$ die Form:
-		\begin{eqnarray*}
-			u(t) = \cos( (-\laplace)^{\frac{1}{2}} t ) \hat{u}_{0} + (-\laplace)^{-\frac{1}{2}} \sin( (-\laplace)^{\frac{1}{2}} t ) \hat{u}_{1} + \int_{0}^{t} (-\laplace)^{-\frac{1}{2}} \sin( (-\laplace)^{\frac{1}{2}} (t-s) ) f(s) ds \qquad (6) 
-		\end{eqnarray*}
-		Für $d = 1$ gilt:
-		\begin{eqnarray*}
-			\frac{\partial^{2}}{\partial t^{2}} u(t, x) = \laplace_{x} u(t, x), \quad u(0, x) = u_{0}(x), \quad \frac{\partial u}{\partial t}(0, x) = u_{1}(x) \qquad (7)
-		\end{eqnarray*}
-	\end{Motivation}
-	
-	
-	\begin{Satz}[d'Alembert]
-		Die Gleichung $(7)$ mit $d = 1$ hat die Lösung:
-		\[ u(t, x) = \frac{1}{2} ( u_{0}(x + t) + u_{0}(x - t) ) + \frac{1}{2} \int_{x - t}^{x + t} u_{1}(y) dy \qquad (8) \]
-	\end{Satz}
-	
-	\Bew
-		\[ \int_{x - t}^{x + t} u_{1}(y) dy = (\chi_{[-t, t]} \ast u_{1})(x) \]
-		\[ (\chi_{[-t, t]})^{\wedge}(\xi) = \int_{-t}^{t} = e^{-2 \pi i \xi x} dx = \frac{1}{2 \pi i \xi} \left( e^{2 \pi i \xi t} - e^{- 2 \pi i \xi t} \right) \]
-		Partielle Fouriertransformation von $(8)$:
-		\begin{eqnarray*} 
-			\hat{u}(t, \xi) &=& \frac{1}{2} \left( e^{-2 \pi i \xi t} + e^{2 \pi i \xi t} \right) \hat{u}_{0}(\xi) + \frac{1}{4 \pi i \xi} \left( e^{-2 \pi i \xi t} - e^{- 2 \pi i \xi t} \right) \\
-				&=& \cos( 2 \pi t |\xi| ) \hat{u}_{0}(\xi) + \frac{1}{2 \pi |\xi|} \sin(2 \pi t |\xi|) \hat{u}_{1}(\xi) 
-		\end{eqnarray*}
-		Das stimmt mit $(5)$ überein, d.h. $u(t, x)$ ist die Lösung.
-	\qed
-	
-	
-	\begin{Folgerung}
-		\[ u(t, x) = \underbrace{\frac{1}{2}u_{0}(x + t) + \frac{1}{2} \int_{0}^{x+t} u_{1}(y)dy}_{= F(x+t)} + \underbrace{\frac{1}{2} u_{0}(x-t) + \frac{1}{2}\int_{x-t}^{0} u_{1}(y)dy}_{= G(x-t)} \]
-	\end{Folgerung}
-	
-	
-	\begin{Definition}
-		Seien $d = 3$, $f \in S(\R^{d})$
-		\begin{eqnarray*}
-			M_{t}(f)(x) &=& \frac{1}{4 \pi} \int_{S^{2}} f(x - t\gamma) d\sigma(\gamma) \\
-			&=& \int_{|x-y|=t} f(y) d\tilde{\sigma}_{t}(y)
-		\end{eqnarray*}
-		$\tilde{\sigma}_{t}(y)$ normierte Oberflächenmaß oder Sphäre um $x$ mit Radius $t$.
-	\end{Definition}
-	
-	
-	\begin{Satz}
-		$u_{0}, u_{1} \in S(\R^{3}), f \equiv 0$. Dann hat $(2)$ die Lösung
-		\[ u(t, x) = \frac{\partial}{\partial t} \left( t u_{t}(u_{0})(x) \right) + t u_{t}(u_{1})(x) \]	
-	\end{Satz}
-	
-	\Bew
-		Stein, Shakarchi: Fourieranalysis, Chap. 6.
-	\qed	
-	
 	\newpage
-	\section{Spekraltheorie selbstadjungierter Operatoren}
+	\chapter{Spekraltheorie selbstadjungierter Operatoren}
 	
-	\subsection{Beschränkte normale Operatoren}
+	\section{Beschränkte normale Operatoren}
 	
 	\begin{Definition}
 		Seien $H_j$ Hilberträume mit $<.,.>_j$, $j = 1,2$. Zu jedem $T\in B(H_1,H_2)$ gibt es einen Hilbertraum adjungierten Operator $T^*\in B(H_2,H_1)$ mit 
@@ -1697,7 +1584,7 @@
 	\end{eqnarray}
 	Also $||T^{-1}x||\leq \delta^{-1}||x||$.
 	
-	\subsection{Funktionalkalkül für beschränkte selbstadjungierte Operatoren}
+	\section{Funktionalkalkül für beschränkte selbstadjungierte Operatoren}
 	
 	\paragraph{Notation} $\mathcal{P}$: Menge der Polynome auf $\R$ mit komplexen Koeffizienten. 
 	
@@ -1821,20 +1708,1700 @@
 	
 	Nach Riesz gilt $C(\sigma(A))' = M(\sigma(A))$. Zu $|l\in C(\sigma(A))$ gibt es ein Maß $\mu$:
 	$$l(f)\int_{\sigma(A)}f(\lambda d\mu(\lambda)).$$
+	
+	\begin{Satz}
+		$f\in C(\sigma(A))\rightarrow f(A)\in B(X)$ ist ein isometrischer Algebrahomomorphismus.
+	\end{Satz}
+	
+	\begin{Satz}
+		Sei $A\in B(X)$, $A$ selbstadjungiert. Zu jedem $x\in X$, $\|x\| = 1$ gibt es ein Maß $\mu_x$ auf $(\sigma(A),\text{ Borelmengen})$ mit $\mu_x(\sigma(A)) = 1$, sodass
+		$$\boxed{<f(A) x,x> = \int_{\sigma(A)}f(x) d\mu_x(x) }$$
+		für alle $f\in C(\sigma(A))$.
+	\end{Satz}
+	
+	\begin{Definition}
+		$\mu_x$ heißt \textbf{Spektralmaß} von $A$ bezüglich $x\in X$.
+	\end{Definition}
+	
+	\Bew Sei $x\in X$, $\|x\| = 1$ fest. Definiere $l_x:C(\sigma(X))\rightarrow\C$. Für $f\in C(\sigma(A))$ setze $l_x(f) = <f(A) x,x>$. Dann gilt 
+	\begin{itemize}
+		\item $l_x$ ist linear, denn 
+		$$l_x(f+g) = <(f+g)(A)x,x> = <f(A)x,x> + <g(A)x,x> = l_x(f)+l_x(g).$$
+		\item $|l_x(f)|\leq |<f(A)x,x>|\leq \|f(A)\|\m\|x\|^2 = \sup_{\lambda\in \sigma(A)}f(x)$. \\
+		$l(1_{\sigma(A)}) = <1(A)x,x> = \|x\|^2 = 1$ $\Rightarrow$ $\|l\|_{C(\sigma(A))} = 1$.
+		\item $f$ ist positiv, d.h. $f\geq 0$, $\overset{2.6}{\Rightarrow}$ $f(A)\geq 0$ $\Rightarrow$ $l_x(f) = <f(A)x,x> \geq 0$.
+	\end{itemize}
+	Nach Riesz: $\exists \mu_x$ Maß mit $\mu_x(\sigma(A)) = 1$, $\int f(\lambda)d\mu_x(\lambda) = l_x(f) = <f(A)x,x>$.
+	\qed
+	
+	\section{Spektraldarstellung selbstadjungierter beschränkter Operatoren}
+	
+	\begin{Definition}
+		Sei $A\in B(X)$. Dann heißt $x\in X$ ein zyklischer Vektor von $A$, falls
+		$$X=\overline{\spann\{A^nx: n\in \N_0 \}} =\overline{\{p(A)x:p\in \mathcal{P} \}}$$
+	\end{Definition}
+	
+	\begin{Satz}
+		Sei $A$ selbstadjungiert, $A\in B(X)$ und habe einen zyklischen Vektor $x\in X$. Dann gibt es eine unitäre Abbildung 
+		$$U: L^2(\sigma(A),\mu_x)\rightarrow  X ~~(\mu\text{ Spektralmaß}),$$
+		sodass $A = UMU^{-1}$, wobei $Mg(\lambda) = \lambda g(\lambda)$.
+	\end{Satz}
+	
+	\Bew Sei $x$ ein fester, zyklischer Vektor mit $\|x\| = 1$ und $\mu_x$ das zugehörige Spektralmaß.
+	\begin{align*}
+		U : C(\sigma(A))\rightarrow X
+	\end{align*}
+	Für $f\in C(\sigma(A))$ setze $U f:= f(A)x\in X$
+	\begin{itemize}
+		\item $U$ ist linear, denn der Funktionalkalkül ist linear.
+		\item $\|Uf\|_x^2 = <Uf, Uf>_X = <f(A)x,f(A)x> = <f(A)^*f(A)x,x> = <\bar f(A)f(A)x,x> $ \\$=<(\bar f\m f)(A)x,x> = \int_{\sigma(A)} |f(\lambda)|^2d\mu_x(\lambda) = \|f\|_{L^2(\sigma(A),\mu_x)}^2$. Also: $\|Uf\|_x = \|f\|_{L^2(\sigma(A),\mu_x)}$.
+	\end{itemize}
+	Da $C(\sigma(A))$ dicht in $L^2(\sigma(A),\mu_x)$, kann man $U$ stetig fortsetzen.
+	\begin{align*}
+		L^2(\sigma(A),\mu_x) \rightarrow X \text{ linear, isometrisch.}
+	\end{align*}
+	Zu zeigen: $U:L^2\rightarrow X$ ist surjektiv.
+	
+	$\Bild U$ ist abgeschlossen in $X$, da $U$ isometrisch. Ferner gilt $\{Up: p\in \mathcal{P}\} = \{p(A)x: p\in \mathcal{P} \}$ ist dicht in $X$, da $x$ ein zyklischer Vektor ist. $\Rightarrow$ $\Bild U = X$. 
+	
+	Bleibt zu zeigen: $A = UMU^{-1}$. $(AU)(p) = A(p(A)x) = (A\m p(A))x = q(A)x = M(p)(A)x$ mit $q(\lambda) = \lambda p(\lambda) = M p(\lambda) = UM(p)$. Damit gilt $AU = UM$ $\Rightarrow$ Behauptung.
+	\qed
+	
+	\begin{Lemma}
+		Sei $X$ separabel, $A\in B(X)$ selbstadjungiert. Dann gibt es eine (möglicherweise endliche) Folge $H_j$, $j\in J$, von Teilräumen von $X$ mit 
+		\begin{enumerate}[(i)]
+			\item $A(H_j)\subset H_j$, $j\in J$.
+			\item $A_j = A|_{H_j}$ hat $A_j$ einen zyklischen Vektor in $H_j$, d.h.
+			$$\overline{\{p(A_j)x_j: p\in \mathcal{P} \}} = H_j,~ j\in J.$$
+			\item $H_j\perp H_k$ für $j\neq k$.
+			\item Für $x\in X$ gilt mit $x_j = P_{H_j}x$ ($P_{H_j}: X\rightarrow H_j$ orthogonale Projektion).
+			$$x = \sum_{j\in J} x_j, ~ \|x\|^2 =\sum_{j\in J} \|x_j\|^2.$$
+		\end{enumerate}
+	\end{Lemma}
+	
+	\Bew (i) Wähle $x_1\in H_1$, $x_1\neq 0$ und setze
+	$$H_1 = \overline{\spann}\{A_jx_1, j = 0,1,2,... \} = \overline{\{p(A)x_1:p\in \mathcal{P} \}}$$
+	Dann $A(H_1) \subset H_1$, denn 
+	\begin{align*}
+		x = p(A)x_1\Rightarrow Ax = Ap(A)x_1 = q(A)x_1 \in H_1
+	\end{align*}
+	mit  $q(\lambda) = \lambda p(\lambda)$. $x_1$ ist ein zylischer Vektor von $A_1 = A|_{H_1}$ in $H_1$.
+	
+	(ii) Falls $X\neq H_1$, wähle $x_2\in H_1^{\perp}$, $x_2\neq 0$. Setze
+	$$H_2=\overline{\{p(A)x_2: p\in \mathcal{P} \}}.$$
+	Genauso folgt: $A(H_2)\subset H_2$, $x_2$ ist ein zyklischer Vektor für $A_2 = A|_{H_2}$ in $H_2$. 
+	
+	Zeige nun $H_1\perp H_2$. $p(A)x_1\in H_1$, $q(A)x_2 \in H_2$, $p,q\in \mathcal{P}$. 
+	\begin{align*}
+		<p(A)x_1, q(A)x_2> = <q(A)^* p(A)x_1,x_2> = <(\bar q\m p)(A)x_1,x_2> = 0
+	\end{align*}
+	denn $(\bar{q}\m p)(A)x_1 \in H_1$ und $x_2\perp H_1$.
+	
+	(iii) Falls $x\neq \overline{H_1+H_2}$, wähle $x_3\perp H_1,H_2$ und setze 
+	$$H_3 = \overline{\{p(A)x_3:p\in \mathcal{P} \}}.$$
+	Frage 
+	$$\overline{\bigcup_{j\in J}H_j} = X.$$
+	(iv) In dieser Konstruktion kann man $x_1,x_2,...$ so wählen, dass
+	$$\overline{\bigcup_{j\in J}H_j} = X.$$
+	Wähle eine Folge $(y_k)$ mit $\overline{\spann} (y_k) = X$. Wähle $x_1 = y_1$. Falls $H_1\neq X$, wähle zuerst den ersten Index $j_1$, sodass $y_{j_1}\notin H_1$ und setze $x_2 = y_{j_1} - P_{H_1}y_{j_1}\perp H_1$. Iteriere nun. Dann
+	\begin{align*}
+		\{y_j:j\in \N \}\subset \overline{\sum_{j\in J}H_j } = \overline{\{x_1+\cdots+x_{j_m}, x_k\in H_k \}}.
+	\end{align*}
+	(v) $x_j\perp x_k$ für $k\neq j$. Wie bei ONB:
+	\begin{align*}
+		\|\sum_{j = 1}^{m}x_j\|^2 = <\sum_{j = 1}^{m}x_j,\sum_{j = 1}^{m}x_k> = 	\|\sum_{j = 1}^{m}x_k\|^2 \Rightarrow \text{ Behauptung.}
+	\end{align*}
+	\qed
+	
+	\begin{Satz}
+		Sei $A\in B(X)$ selbstadjungiert und $X$ seperabel. Dann existieren
+		\begin{itemize}
+			\item eine abgeschlossene Menge $S\subset \R^2$,
+			\item ein Borelmaß $\mu$ auf $S$
+			\item und ein unitärer Operator $U:L^2(S,\mu)\rightarrow X$.
+			\item sowie $m:S\rightarrow \C$ stetig und beschränkt,
+		\end{itemize}
+		sodass $A = UMU^{-1}$, wobei $Mg(\lambda) = m(\lambda)g(\lambda)$.
+	\end{Satz}
+	
+	\Bew Nach Lemma 3.3 gibt es eine Folge $H_j$, $j\in J$ von Teilrämen von $X$ mit 
+	\begin{itemize}
+		\item $A(H_j) \subset H_j$, $A_j = A|_{H_j}$ hat einen zyklischen Vektor $x_j$.
+		\item $x = \sum x_j$, $x_j= P_{H_j}x$, $\|x\|^2 = \sum_{j\in J}\|x_j\|^2$ (orthogonale Zerlegung von $X$).
+	\end{itemize}
+	Auf $A_j\in H(H_j)$ wende Satz 3.2 an: Zum zyklischen Vektor $x_j$ und seinem Spektralmaß $\mu_j$ gibt es eine unitäre Abbildung: $L^2(\sigma(A_j), \mu_j)\rightarrow H_j$, sodass $A_j = U_jM_j U_j^{-1}$, wobei $M_jg(\lambda) = \lambda g(\lambda)$. Sei $S$ die "disjunkte Vereinigung" der $\sigma(A_j)\subset \R$
+	$$S = \bigcup_{j\in J} S_j,~ S_j = \{j\}\times \sigma(A_j)\subset \R^2.$$
+	$\tilde{\mu}_j(\{j\}\times B_j) = \mu_j(B_j)$ für $B_j\subset \R$ Borel, $j\in J$.
+	
+	Definiere Maß $\mu$ auf $S$:
+	\begin{align*}
+		\mu(B) = \sum_{j \in J} \mu_j(B_j)\text{ für } B = \bigcup_{j\in J} \{j\}\times B_j.
+	\end{align*}
+	$f\in L^{2}(S,\mu)$ hat die Form
+	$$f(j,\lambda) = f_j(\lambda),~ \lambda\in \R, j\in J.$$
+	\begin{align*}
+		\|f\|_{L^2(S,\mu)}^2 = \int_{\bigcup S_j} |f(\lambda)|^2d\mu(\lambda) = \sum_{j\in J} \int_{S_j}|f_j (t)|^2 d\tilde{\mu}_j(t) = \sum \int_{\sigma(A)}|f_j(t)|^2 d\mu(t) = \sum_{j\in J} \|f_j\|_{L^2(\sigma(A_j),\mu_j)}
+	\end{align*}
+	$U:L^2(S,\mu)\rightarrow X$ $Uf=\sum_{j} U_j f_j$.
+	$$\|U(f)\|_X^2 = \sum \|U_j(f_j)\|_{H_j}^2 = \sum \|f_j\|_{L^2(\sigma(A_j), \mu_j)} = \|f\|_{L^2(S,\mu)}$$
+	Also ist $U$ unitär.
+	
+	Setze $m(j,\lambda) = m_j(\lambda)$ für $(j,\lambda)\in S$. Damit folgt 
+	$$[UAU^{-1}] (j,d) = U_jA_jU_j^{-1}f_j(\lambda) = m_j(\lambda)f_j(\lambda) = (m\m f)(j,\lambda), (j,\lambda)\in s.$$
+	\qed
+	
+	Erweiterung des Funktionskalküls auf $B_b(\sigma(A))$, z.B. $f = \chi_{[a,b]}$, $f = \chi_B$. Problem: $\|f(A)\| = \sup_{\lambda \in \sigma A}|f(\lambda)|$.
+	
+	\begin{Beispiel}
+		Sei $M_m:L^2(S,\mu)\rightarrow L^2(S,\mu)$, $M(f) = m(\lambda)f(\lambda).$
+		Wiederhole: 
+		$\|M_m\|_{B(L^2)} = \|m\|_{L^\infty(S,\mu)}$.
+		\begin{align*}
+			\sigma(M_m) &= \overline{\{m(s): s\in S \}} = \{\mu\text{-wesentlicher Wertebereich von }m\text{ auf } S\} \\ 
+			&= \{t\in \R:\mu(\{s\in S: |m(s)-t|<\epsilon \})>0\forall\epsilon > 0 \}.
+		\end{align*}
+		ist abgeschlossen, $t_n\in R_\mu(m)$, $t_n\rightarrow t$, $\mu(\{s\in S:|m(s)-t_n|<\epsilon/2 \})>0$.
+		\begin{align*}
+			|m(s)-t|\leq |m(s)-t_n|+|t_n-t|\\
+			\{|m(s)-t|<\epsilon \} \supset \{s\in S:|t_n-t|<\epsilon/2 \}
+		\end{align*}
+		Damit folgt $\mu(\{s\in S:|m(s)-t_n|<\epsilon/2 \})> 0$, d.h. $t\in R_\mu(m)$.
+		
+		Zu Zeigen: $t\in R_\mu(m)$ $\Rightarrow$ $t\in \sigma(M_m)$. $(t\id - M_m)f$.
+		\begin{align*}
+			B_\epsilon &= \{s\in S: |m(s)-t|<\epsilon \}, \mu(B_\epsilon)>0\\
+			f &= \chi_{B_\epsilon}\m \mu(B_\epsilon)^{-1/2}, \|f\|_{L^2(\mu)} = 1\\
+			\|(t\id - M)f\|_{L^2}^2 &= \int_{B_\epsilon}|(t-m(s))f(s)|^2ds\\
+			&\leq \epsilon^2 \|f\|^2
+		\end{align*}
+		Wähle eine Folge $\epsilon_n\rightarrow 0$. Dann gilt für die Konstruktion $f_{\epsilon_n}$:
+		\begin{align*}
+			\|(t\id - M) f_{\epsilon_n}\| \rightarrow 0, \|f_{\epsilon_n}\| = 1
+		\end{align*}
+		d.h. $t\in \sigma(M_m)$.
+		Bleibt zu zeigen: $t\in \sigma(M_m)$ $\Rightarrow$ $t\in R_\mu(m)$, d.h. $t\notin R_\mu(m)$ $\Rightarrow$ $t\in \rho(M_m)$
+		
+		$t\notin R_\mu(m)$ heißt: $\exists \epsilon_0>0:\mu(s\in S_|t-m(s)|<\epsilon_0) = 0$, d.h. $|t-m(s)|^{-1}\leq \epsilon_0 >0$ für $\mu$-fas alle $t\in S$. $R(f(t)) = (t-m(s))^{-1}f(s)$ gilt
+		\begin{align*}
+			\|R\|_{B(L^2)} &= \|(t-m(s))^{-1}\|_{L^\infty(S,\mu)}\leq \infty\\
+			R(t\id-M_m)f &= (t-m(s))^{-1}(t-m(s))f(s) = f(s)\\
+			R &= (t\id - M_m)^{-1},
+		\end{align*}
+		d.h. $t\in \rho(M)$.
+		%TODO Tafel wurde einfach gewischt, nachdem es gerade erst dort stand.
+	\end{Beispiel}
+	
+	\subsection*{Funktionalkalkül von $\mathbf{M_m}$} $f\in B_b(\sigma(M_m)) \rightarrow f(M_m)$. $M_m^2 = M_{m^2}$, $M_m^n = M_{m^n}$. Somit gilt für ein Polynom
+	$$p(M) = \sum_{n = 1}^{m} a_n M_m^n = M_{p(m)}$$
+	Definiere nun für $f\in B_b(\sigma(M_m))$: $$f(M_m):= M_{f\circ m}.$$
+	Die Abbildung $f\in B_b(\sigma(M_m)) \rightarrow f(M_m)\in B(H)$ ist linear und multiplikativ.
+	
+	\Bew Folgt direkt aus der Multiplikativität von Funktionen.
+	
+	Frage: Was ist $\|f(M)\|_{B(L^2)}$?
+	\begin{align*}
+		\|f(M)\|_{B(L^2)} &= \|M_{f\circ m}\|_{B(L^2)} = \text{ess}\sup |(f\circ m)(s)| = \|f\circ m\|_{L^\infty}
+	\end{align*}
+	$(S,\mu)\overset{m}{\rightarrow} (\sigma(M_m),\rho)\overset{f}{\rightarrow}\R$. Ziel:
+	$$\|f\circ m\|_{L^{\infty}(S,\mu)} = \|f\|_{L^\infty(\sigma(M_m),\rho)}$$
+	z.B. $m(\lambda) = \lambda$, $\sigma(M_m) = S$, $\mu= \mu_X$ $\|f\circ m\|_{L^\infty(\mu) = \|f\|_{L^\infty}}$.
+	
+	\begin{Definition}[eines Maßes $\nu$ auf $\sigma(M_m)$]
+		Für $B\subset \sigma(M_m)$ setze $\nu(B) = \mu(m^{-1}(B))$ (da $m^{-1}(B)$ Borelmenge in S).
+	\end{Definition}
+	
+	 $\nu$ ist die Verteilung von $m$ auf $\sigma(M)$, denn für $B_j$, $B_j\cap B_k = \emptyset$ für $k\neq j$ gilt $m^{-1}(B_j)\cap m^{-1}(B_k) =\emptyset$ und 
+	 $$\sum \nu(B_j) = \sum \mu(m^{-1}(B_j)) = \mu(m^{-1}(B)) = \nu(B), \bigcup B_j = B.$$
+	 Es gilt nun: 
+	 \begin{align*}
+	 	\|f(M_m)\|_{B(L^2)} = \|f\circ m\|_{L^\infty(S,\mu)} = \|f\|_{L^\infty(\sigma(M), \nu)}
+	 \end{align*}
+	Also für $f\in B_b(\sigma(M_m))\rightarrow f(M_m)\in B(L^2(S,\mu))$ ist $\Phi_M(f) = f(M_m)$ ein Algebrahomomorphismus uns 
+	$$\|f(M_m)\| = \|f\|_{L^\infty(\sigma(M_m),\nu)}.$$
+	
+	\subsection*{Funktionalkalkül für selbstadjungierte Operatoren}
+	
+	Sei $A = UM_m U^{-1}$ Spektraldarstellung mit $U,\mu,n,\nu$ wie oben.
+	$$\xymatrix{
+		H\ar[r]^A & H \\
+		L^2(\mu)\ar[u]^U \ar[r]_{M_m}& L^2(U)\ar[u]_U
+		}$$
+	
+	\begin{Definition}
+		$f(A) = Uf(M_m)U^{-1}$ für $f\in B_b(\sigma(A))$.
+	\end{Definition}
+	
+	Beachte $\sigma(A) = \sigma(M) = R_\mu(m)$. Für den Funktionalkalkül
+	$$f\in B_b(\sigma(A))\rightarrow f(A) \in B(H)$$
+	gilt
+	\begin{enumerate}[(i)]
+		\item $f\rightarrow f(A)$ ist ein Algebrahomomorphismus.
+		\item $\|f(A)\| = \|f\|_{L^\infty(\sigma(A),\nu)}$.
+		\item $|f_n(t)|\leq C$, $f_n(t)\rightarrow f(t)$ $\mu$-fast überall $\Rightarrow$ $f_n(A)x\rightarrow f(A)x$ für alle $x\in H$.
+		\item $f(A)$ ist stets normal.\\
+		$f(A)$ ist selbstadjungiert $\Leftrightarrow$ $f$ ist reell.\\
+		$f(A)$ ist unitär $\Leftrightarrow$ $|f(t)| = 1$ $\mu$-fast überall.
+		\item Für $B\in B(H)$ gelte, dass $BA = AB$. Dann gilt auch $f(A)B = Bf(A)$ für alle $f\in B_b(\sigma(A))$.
+	\end{enumerate}
+	 
+	 \Bew (i) $f(A)g(A) = Uf(M_m)U^{-1} U g(M_m)U^{-1}$ liefert Behauptung.\\
+	 (ii) $\|f(A)\| = \|f(M_M)\|$, da $U$ Isometrie liefert Behauptung.\\
+	 (iii) Zu zeigen: $f_n(M_m) h\rightarrow f(M_m)h$ in $L^2(S,\mu)$. Folgt aus dem Satz von Lebesgue.\\
+	 (v) Übung
+	 \qed
+
+	\section{Spektralprojektion}
+	
+	\begin{Beispiel}[Multiplikationsoperator]
+		Sei $(S,\mu)$ ein Maßraum, $m:S\rightarrow \R$ messbar. Dann gibt es zu $\epsilon>0$ messbare Mengen $B_1,...,B_k\subset S$ und $m_1,...,m_k\in \R$, sodass 
+		\begin{align*}
+			\left|m(s)-\sum_{i = 1}^{k} m_i\chi_{B_i}(s)\right|\leq \epsilon \text{ für }s\in S
+		\end{align*}
+		Zur Konstruktion: Wähle $V_j = (\epsilon\m j, e\m ({j+1}))$, $j\in J$, sodass $R_\mu(m)\subset \bigcup_{j\in J}V_j$. Setze $B_j = m^{-1}(V_j)$ messbar, $m_j = \epsilon\m j$ Dann gilt 
+		\begin{align*}
+			\left|m(s)-\sum m_j\chi_{B_j}(s) \right|<\epsilon.
+		\end{align*}
+		Setze $Mh(s) = m(s) h(s)$ und $\tilde{M}h(s) = \tilde m(s) h(s)$, wobei $\tilde{m} = \sum_{j\in J} m_j \chi_{B_j}(s)$. Dann gilt
+		\begin{align*}
+			\| M-\tilde{M}\|_{B(L^2)} = \|m-\tilde{m}\|_{L^\infty}\leq \epsilon.
+		\end{align*}
+		und $\tilde{M}h(s) = m_j h(s)$ für $s\in B_j$, $j\in J$. $B_j = m^{-1}(V_j)$, d.h. $\chi_{V_j}\circ m = \chi_{B_j}$. Setze 
+		$$M_j(h) = \chi_{B_j}h = (\chi_{V_j}\circ m)h = \chi_{V_j}(M) = \Phi_m(\chi_{V_j}).$$
+		Damit folgt 
+		$$\tilde{M} = \sum_{j\in J} m_j \chi_{V_j}(M),$$
+		Approximation von $M$ mit Hilfe des Funktionalkalküls.
+	\end{Beispiel}
+	
+	Im folgenden wird stets angenommen: $A\in B(H)$ auf einem Hilbertraum $H$, $A$ selbstadjungiert, 
+	\begin{align*}
+		(S,\mu),\ U:L^2(S,\mu)\rightarrow H,\ m:S\rightarrow\sigma(A)
+	\end{align*}
+	seien eine Spektraldarstellung für $A$, d.h. 
+	$$A = UM_mU^{-1},$$
+	$\Phi_A(f) = f(A)$ der Funktionalkalkül von $A$.
+	
+	\begin{Definition}
+		Für $V$ setze $\Phi_A(\chi_V) = \chi_V(A) =: P_V$. $P_V$ ist eine \textbf{Spektralprojektion} von $A$ zur messbaren Teilmenge $V\subset S$.
+	\end{Definition}
+	
+	
+	\begin{Prop}
+		Eigenschaften der Spektralprojektion $P_A$.
+		\begin{enumerate}[(i)]
+			\item $P_V$ ist immer eine Orthogonalprojektion auf $H$, d.h. $\|P_V\| = 1$, $P_V^2 = P_V$.
+			\item $P_{\emptyset} = 0$, $P_\R = \id_H$.
+			\item $P_{V_1}\m P_{V_2} = P_{V_1\cap V_2}$.
+			\item Falls $V = \bigcup V_i$ mit $V_i\cap V_j = \emptyset$ für $i\neq j$, dann gilt $P_Vx = \lim\limits_{n\rightarrow\infty} \sum_{i = 1}^{n} P_{V_i}x$ in $H$.
+			\item Sei $V_j$ wie in (iv). $P_{V_i}(H)\perp P_{V_j}(H)$ für $i\neq j$ und  $\|P_{V}x\|^2 = \sum_{i=1}^\infty\|P_{V_i}x\|^2$ (falls $V = S$, $x=\sum_{i = 1}^{\infty}P_{V_j}x$, $\|x\|^2 = \sum \|P_{V_i}x\|^2$), Spektralzerlegung von $H$ bezüglich $A$.
+			\item $AP_V = P_VA$, d.h. $A(P_V(H))\subset P_V(H)$ und $A_V = A|_{P_V(H)}$ hat $\sigma(Av) = \sigma(A)\cap \bar V$.
+		\end{enumerate}
+	\end{Prop}
+	
+	\Bew (i) $P_V^2 = [\chi_B(A)]^2 = \chi_B^2(A) = \chi_B(A) = P_V$. $\|P_V\| = \|\chi_V\|_{L^\infty (,\mu)} = \left\{\begin{array}{l}
+	0,~ \mu(B) = 0,\\
+	1,\text{ sonst}
+	\end{array} \right.$.\\
+	(ii) $P_{V_1} \cap P_{V_2} = \chi_{V_1}(A) \m \chi_{V_2}(A) = \chi_{V_1\cap V_2}(A) = P_{V_1\cap V_2}(A)$.\\
+	(iii) $\chi_V(s) = \lim\limits_{n\rightarrow \infty} \sum_{i = 1}^{n}\chi_{V_i}(s)$ $\overset{\text{Konvergenzeigenschaft}}{\Longrightarrow}$ $\chi_V(A) x = \lim\limits_{n\rightarrow\infty} \sum_{i = 1}^{m} \chi_{V_i}(A)x$ in $H$ für alle $x\in H$.\\
+	(iv) $i\neq j$: 
+	\begin{align*}
+		\langle P_{V_i}(x),P_{V_j}(y)\rangle &= \langle x,P_{V_i}\m P_{V_j}y\rangle \\
+		&= \langle x, P_{V_i\cap V_j}y\rangle = 0,
+	\end{align*}
+	wenn $V_i\cap V_j = \emptyset$.
+	\begin{align*}
+		\|P_V x\|^2 &= \left\langle\sum P_{V_i}x,\sum P_{V_i}x\right\rangle \\
+		&= \sum\langle P_{V_i}x,P_{V_i}x\rangle = \sum \| P_{V_i}x\|^2
+	\end{align*}
+	(v) und (vi) Übung.
+	\qed
+	
+	\begin{Korollar}
+		Zu $\epsilon>0$ gibt es eine messbare Partition $V_1,...,V_k$ von $\sigma(A)$ und $m_1,...,m_k$, sodass
+		\begin{align*}
+			\left\| A-\sum_{j = 1}^{n}m_j P_{V_j}\right\|_{B(L^2)}\leq \epsilon,
+		\end{align*}
+		d.h. $x = \sum_{j = 1}^{\infty} P_{V_j}x$ $\Rightarrow$ $\tilde{A}x = \sum_{j = 1}^{\infty}m_j P_{V_j}x$ erfüllt
+		$$\|A-\tilde{A}\|\leq \epsilon.$$
+	\end{Korollar}
+	
+	
+	\Bew Für $M_m$, $\tilde{M}$ siehe Beispiel 4.1. Dann gilt
+	\begin{align*}
+		\tilde{A} &= U^{-1}\tilde M U \\
+		&= U^{-1}\left(\sum m_i\chi_{V_i}(M)\right) U \\
+		&= \sum m_i U[\chi_{V_i}(M)] U^{-1}\\
+		&= \sum m_i \chi_{V_i}(A)\\
+		\|A-\tilde A\| &= \|M-\tilde{M}\| \leq \epsilon,
+	\end{align*}
+	da $U$ Isometrie.
+	\qed
+	
+	\begin{Definition}
+		$V\in B(\R)\rightarrow P_V\in \{\text{Orthogonalprojektionen auf }H\}$ heißt das Spektralmaß von $A$ und $P_t = P_{(-\infty, t]}$, $t\in\R$, heißt \textbf{Spektralschar} von $A$.
+	\end{Definition}
+	
+	\begin{Bemerkung}
+		Idee einer Darstellung selbstadjungierter Operatoren durch projektionswertige Spektralmaße.
+		\begin{enumerate}[a)]
+			\item $f(t) = \sum_{i} \alpha_i\chi_{V_i}$, $V_i\cap V_j =\emptyset$, $V_j$ messbar. Dann gilt $f(A) = \sum_i \alpha_i P_{V_i}$.
+			\item $(f_n)$ seien Elementarfunktionen, $|f_n|\leq C$, $f_n\rightarrow f$ für $n\rightarrow \infty$. Dann gilt
+			$$f_n(A)x\rightarrow f(A)x.$$
+			\item Insbesondere: Für $f:\R\rightarrow \R$ stetig, beschränkt gilt
+			\begin{align*}
+				f_n(t) &=\sum f\left(\frac{j}{n}\right) \chi_{(j/n,(j+1)/n]}(t)\\
+				f(t) &= \lim f_n(t),~ \lim|f_n(t)| \leq |f(t)|\leq C,\\
+				f(A)x &= \lim f_n(A)x = \lim\left[f\left(\frac{j}{n} \right)P_{(j/n,(j+1)/n]} \right]\\
+				\Rightarrow f(A)x &= \lim \sum f\left(\frac{j}{n} \right)\left(P_{(j+1)/n}-P_{j/n} \right).
+			\end{align*}
+			Vergleich mit Riemann-Integral, Stieltjes-Integral, legt die \glqq Schreibweise\grqq\ nahe		
+			\begin{align*}
+				\boxed{f(A) = \int_{\R} f(t) dP_t.}
+			\end{align*}
+			$P_t$ ist $\sigma$-additiv, $V=\bigcup V_j$, $V_i\cap V_j\neq \emptyset$ $P_V x=\lim \sum_{i = 1}^n P_{V_i}x$. Siehe Werner - Funktionalanalysis, Weidmann - Lineare Operatoren auf Hilberträumen, Schmüdgen - Unbeschränkte selbstadjungierte Operatoren.
+			\item Für $x\in H$, $\|x\| = 1$, wurde Spektralmaß $\mu_x$ zu $x\in X$, definiert in Kapitel 2.2. Betrachte zu $(a,b]$ Funktionen $g_n\in C_b(\R)$ mit $g_n(t) \rightarrow \chi_{(a,b]}(t)$ für alle $t\in \R$, z.B. 
+			\begin{align*}
+				\mu_x((a,b]) &= \int \chi_{(a,b]}(t) d\mu_x(t) \\
+				&= \lim\limits_{n\rightarrow\infty}\int_{R} g_n(t)d\mu_x(t)\\
+				&=\lim\limits_{n\rightarrow\infty} \langle g_n(A)x,x\rangle \\
+				&= \langle \chi_{(a,b]}(A)x, x\rangle \\
+				&= \langle (P_b-P_a)x,x\rangle\\
+				\Rightarrow \mu_x(a,b] &= \langle (P_a-P_b)x, x\rangle.
+			\end{align*}
+		\end{enumerate}
+	\end{Bemerkung}
+	
+	
+	
+	\begin{Satz}[Spektralprojektion und Spektrum]
+		~
+		\begin{enumerate}[a)]
+			\item $\lambda \in \rho(A)$ $\Leftrightarrow$ Es gibt eine offene Umgebung $V$ von $X$ mit $P_V = 0$.
+			\item $\lambda\in \R$ ist Eigenwert von $A$ $\Leftrightarrow$ $P_{\{\lambda\}} \neq 0$. In diesem Fall projiziert $P_{\{\lambda\}}$ auf den Eigenraum von $A$ bezüglich dem Eigenwert $\lambda$.
+			\item Jeder isolierte Punkt $\lambda\in \sigma(A)$ ist ein Eigenwert.
+		\end{enumerate}
+	\end{Satz}
+	 
+	 \Bew a) \glqq$\Rightarrow$\grqq\ Sei $\lambda\in \rho(A)$. $P_{\rho(A)} = P_{\sigma(A)\cap \rho(A)} = 0$, da $\rho(A)\cap \sigma(A) =\emptyset$.\\
+	 \grqq$\Leftarrow$\grqq\ $P_U = 0$ für $\lambda\in U$ offen. Setze 
+	 $$f(t) = \left\{\begin{array}{l}
+	 \frac{1}{t-\lambda},\text{ für }t\notin U,\\
+	 0,\text{ sonst}
+	 \end{array} \right. .$$
+	 Dann ist $f\in B_b(\R)$. Setze weiter $g(t) = t-\lambda$.
+	 \begin{align*}
+	 	f(A)(\lambda-A) &= f(A)g(A)\\
+	 	&= (f\m g)(A) = \chi_{U^C}(A) + \chi_U(A)\\
+	 	&= \chi_\R(A) = \id_H.
+	 \end{align*}
+	 Also $(\lambda-A)^{-1} = f(A)$, somit ist $\lambda\in \rho(A)$.\\
+	 b) Zeige: $\Bild P_{\{\lambda\}} = \ker(\lambda \id-A)$. \glqq$\subseteq$\grqq\ $0\neq x\in \Bild P_{\{\lambda\}}$ $\Rightarrow$ $P_{\{\lambda\}} x= x$
+	 \begin{align*}
+	 	\langle (\lambda-A)x,y\rangle &= \langle (\lambda-A) P_{\{\lambda\}}x,y \\
+	 	&= \int (\lambda-t)\chi_{\{\lambda\}}(t) d\langle P_t x,y\rangle = 0
+	 \end{align*}
+	 für alle $y\in Y$. Also $(\lambda-A)x = 0$.\\
+	 \glqq$\supseteq$\grqq Sei $x\in \ker(\lambda\id-A)$. $Ax = \lambda x$ $\Rightarrow$ $\forall f\in B_b(\R)$ $f(A)x = f(\lambda)x$.
+	 $$\chi_{\{\lambda\}}(t) = \lim\limits_{h\rightarrow 0} g_n(t)$$
+	 $$P_{\{\lambda\}} x = \lim g_n(A)x = \lim g_n(\lambda)x = \lambda x.$$
+	c) $\lambda$ sei isolierter Punkt von $\sigma(A)$, d.h. es gibt ein $x\in U$ offen, $\sigma(A)\cap U = \{x\}$. Da $U\backslash\{\lambda\} \subset \rho(A)$ $\Rightarrow$ $P_{U\backslash\{\lambda\}} = 0$. Wäre $P_{\{\lambda\}} = 0$, dann $P_U = P_{U\backslash\{\lambda\}} + P_{\{\lambda\}} = 0$ dann nach a) $\lambda\in \rho(A)$ Widerspruch. Also $P_{\{\lambda\}} \neq 0$ und $\lambda$ ist ein Eigenwert nach b). 
+	
+	\begin{Satz}[Stone's Formel]
+		Sei $A\in B(H)$ selbstadjungiert. Für alle $a<b$ gilt 
+		$$\left(\frac{1}{2}P_{[a,b]} - \frac{1}{2}P_{(a,b)}\right)x = \lim\limits_{\epsilon\rightarrow 0} \frac{1}{2\pi i}\int_{a}^{b}[(A-\lambda-i\epsilon)^{-1}x- (A-\lambda+i\epsilon)x]d\lambda = \lim\limits_{\epsilon\rightarrow 0 }\int_{\Gamma_\epsilon\cup \Gamma_{-\epsilon}} R(\mu,A)d\mu$$
+		$\sigma(A) \subset\R$
+	\end{Satz}
+	
+	\Bew Sei $f_\epsilon(t) = \frac{1}{2\pi i}\int_{a}^{b}\left[\frac{1}{t-\lambda-i\epsilon} -\frac{1}{t-\lambda+i\epsilon}\right] dt$. Behauptung:
+	$$\lim\limits_{\epsilon\rightarrow 0}f_\epsilon(t) = \left\{\begin{array}{l}
+	0,~ t\notin [a,b]\\
+	1/2,~ t=a \text{ oder } t= b\\
+	1,~ t\in (a,b)
+	\end{array}
+	\right.$$
+	Aus der Behauptung folgt mit der Konvergenzeigenschaft:
+	\begin{align*}
+		\frac{1}{2\pi i} \int_{a}^{n}[(A-\lambda-i\epsilon)^{-1}-(a-\lambda+i\epsilon)^{-1}]x d\lambda &= f_\epsilon(A)x \\
+		&\rightarrow \frac{1}{2}[\chi_{[a,b]}(A) + \chi_{(a,b)} (A)]x\\
+		&= \frac{1}{2}\left(P_{[a,b]}+P_{(a,b)}\right)
+	\end{align*}
+	\begin{align*}
+		f_\epsilon(t) &= \frac{1}{2\pi i}\int_a^b \frac{2i\epsilon}{(t-\lambda-i\epsilon)(t-\lambda+i\epsilon)}dt\\
+		&= \frac{1}{\pi}\int_a^b \frac{\epsilon}{(t-\lambda)^2+\epsilon^2}d\lambda\\
+		&= \frac{1}{\pi}\int_a^b \frac{1}{(t/\epsilon-\lambda/\epsilon)^2 + 1}\frac{d\lambda}{\epsilon}\\
+		&= \frac{1}{\pi}\int_{a/\epsilon}^{b/\epsilon}\frac{1}{\lambda^2 + 1}d\lambda
+		&\rightarrow \frac{1}{\pi}\int_{-\infty}^{\infty}\frac{1}{1+\lambda^2}d\lambda = 1
+	\end{align*}
+	Also $t\in (a,b)$: $\lim\limits_{\epsilon\rightarrow 0}f_\epsilon(t) = 1$, $t\notin [a,b]$: $\lim\limits_{\epsilon\rightarrow 0}f_\epsilon(t) = 0$, $t = 1$ oder $t = b$ $\lim\limits_{\epsilon\rightarrow 0}f_\epsilon(t) = 1/2$. $|f_\epsilon(t)| \leq 1$.
+	\qed
+	
+	\section{Beispiele für Spektraldarstellungen} 
+	
+	\begin{Beispiel}
+		Sei $k\in L^1(\R^n)$. Setze $Tf(t) = \int_{\R^n}k(t-s) f(s)ds$. Dann gilt: $T\in B(L^2(\R^d)$ nach dem Satz von Young.
+		\begin{itemize}
+			\item $T^*f(t) = \int_{\R} k^*(t-s) f(s) ds$, $k^*(t) = \overline{k(-t)}$.
+			\item $T^*T = TT^*$, d.h. $T$ ist normal (Faltungsoperator vertauschen).
+			\item $T$ selbstadjungiert $\Leftrightarrow$ $k(t) = k^*(t) = \overline{k(-t)}$.
+		\end{itemize}
+		Sei $T$ selbstadjungiert.
+		\begin{align*}
+			\F[Tf](t)&= \hat k(t) \hat f(t)\\
+			Tf &=\F^{-1}[\hat k (t)\f]
+		\end{align*}
+		Ablesen der Spektraldarstellung. $U=\F^{-1}$, $L^2(S,\mu) = L^2(\R^n, \text{ Lebesguemaß})$. $(Mg)(t)= \hat k(t) g(t)$, $U$ Isometrie. $A = UMU^{-1}$. $\overline{k(-t)} = k(t)$ $\Rightarrow$ $\hat k$ reelwertig, stetig auf $\R^n$ nach Lemma von Riemann-Lebesgue. Spektralprojektion zu $I = [a,b]$. 
+		$$P_I = \chi_{[a,b]}(A) = \F^{-1}[\chi_{[a,b]}(\hat k(\m))\f(\m)].$$
+		Sei $J = k^{-1}([a,b])$ endlich, $\chi_{[a,b]}(\hat k(\m)) = \chi_J(\m)$.
+		\begin{align*}
+			P_I &= \F^{-1}[\chi_J\m \f] = \F^{-1}(\chi_J)* f\\
+			\F^{-1}(\chi_J)(t) &= \int_c^d e^{2\pi i t s}\chi_J(s) ds \\
+			&=  \frac{e^{2\pi i t d} - e^{2\pi i t c}}{2\pi i t},
+		\end{align*}
+		falls $J = (c,d)$.
+	\end{Beispiel}
+	
+	\begin{Beispiel}[diskreter Laplace Operator]
+		~
+		\begin{enumerate}[a)]
+			\item Motivation:
+			\begin{itemize}
+				\item $i u_n'(t) + u_{n+1}(t) + u_{n-1}(t) - 2 u_n(t) = 0.$
+				System von abzählbar vielen gekoppelten Oszillatoren, wobei aber der $n$-te Oszillator nur seine beiden Nachbarn beeinflusst.
+				\item $i\partial_t u(x,t) +\partial_{xx}u(x,t) = 0$, $t\in \R$, $x\in \R$. Approcimation durch Differenzenquotienten. 
+				$$\partial_{xx}u(x_0) = \lim\limits_{h\rightarrow 0} \frac{u(x_0+h)+u(x_0-h)-2u(x_0)}{h^2}.$$
+				Für $h>0$ betrachte das Gitter $h\Z$ auf $\R$.
+				$$\laplace u(nh) = \frac{u(nh+h)+u(nh-h)-2u(nh)}{h^2}.$$
+				$h = 1$ $iu_n(t) + \laplace_{\text{diskret}}u_n(t) = 0$.
+			\end{itemize}
+				\item $H = l^2(\Z^d)$, $j\in \{1,...,d\}$.
+				\begin{align*}
+					\partial_j f(n)&= f(n+e_j)-f(n), ~n\in \Z^d, ~e_j\text{ Einheitsvektor}.\\
+					\partial_j^*f(n) &= f(n - e_j)-f(n) ,~ n\in \Z^d\\
+				\end{align*}
+				Definiere $\laplace_{\text{diskret}}f = -\sum_{j = 1}^{n}\partial_j^* \partial_j$. $\laplace_{\text{diskret}}u(n) = \sum_{|n-m| = 1} u(m) - 2 du(n)$ auf $\Z^d$. $A = \laplace_{\text{diskret}}$ ist ein selbstadjungierter, beschränkter Operator auf $H = l^2(\Z)$. Behauptung: 
+				\begin{itemize}
+					\item $\laplace_d\in B(H)$ selbstadjungiert.
+					\item $\rho(\laplace_{\text{diskret}})\supset (-\infty, 0]$.
+				\end{itemize}
+				\Bew 
+				\begin{align*}
+					\|(\lambda +\laplace) u\|^2 &= \sum_n (\lambda-2d)u_n^2 +\sum_n\sum_{|m-n|= 1}|u(m)|^2 = \lambda\|(u_n)\|^2
+				\end{align*}
+			\item Spektraldarstellung $u: L^2([0,1]^d,\text{ Lebesgue})\rightarrow H$.
+			$$U^{-1} = \F: l^2(\Z^d)\rightarrow L^2([0,1]^d), (u_n)\rightarrow\sum_{n\in \Z^d}u_n e^{2\pi i (n\m k)}.$$
+			$U,\F$ unitär, $E_n(k) = e^{2\pi i(n\m k)}$ bilden ONB von $L^2([0,1]^d)$.
+			
+			Definiere $m(k) = -4\sum_{j = 1}^{d}\sin(\pi k_j)$, $k = (k_1,...,k_d)\in[0,1]^d$. $Mg(\m) = m(\m)g(\m)$ Multiplikationsoperator auf $L^2[0,1]^d$. Behauptung
+			$$\laplace_{\text{diskret}} = UMU^{-1}, ~ L^2(S,\mu) = L^2([0,1]^d).$$
+			\Bew $u = (u_n)\in l^2(\Z^d)$, $f(k) = \sum_{n\in \Z^d} u_n E_n(k)$. Dann $$u_n = \langle f,E_n\rangle_{L^2}.$$
+			Dann
+			\begin{align*}
+				\laplace u(n) &= \sum_{j = 1}^{d}[u(n+e_j)+u(n-e_j)-2u(n)]\\
+				&=\sum_{j = 1}^{d} \langle f, E_{n+e_j}\rangle +\langle f, E_{n-e_j}\rangle - 2 \langle f, E_n\rangle \\
+				&= \int_{[0,1]^d} \int_{j = 1}^{d}(e^{2\pi i k_j} + e^{-2\pi i k_j} - 2)(e^{-2\pi i n\m k}) f(k)\\
+				&= \int_{[0,1]^d} m(k) f(k) e^{-2\pi in k}dk = \F^{-1}[m\F f].
+			\end{align*}
+		\end{enumerate}
+	\end{Beispiel}
+	
+	\begin{Beispiel}[Spektraldarstellung stationärer Prozesse\footnote{nicht Prüfungsrelevant}]
+		\begin{enumerate}[a)]
+		\item $(\Omega,\Sigma, P)$ sei Wahrscheinlichkeitsraum, $X_n\in L^2(\Omega,\Sigma, P)$ Zufallsveränderliche. Annahme: 
+		$$E(X_n) - E(X_0) = \int_{\Omega} X_0(\om)dP(\om).$$
+		Definition: $X_n$ stationär $\Leftrightarrow$ $$E(X_{n+l}\overline{X_{m+l}}) = E(X_n\m \overline X_m) = \int_{\Omega} X_n(\om) \overline{X_m(\om)}dP(\om) = \cov(X_n,X_m)$$
+		mit $\cov(X_{n+l},X_{m+l}) = \cov(X_n,X_m)$ für alle $n,m,l$.\\
+		Setze $M = \spann(X_n)\subset L^2(\Omega, P)$, $M$ Hilbertraum. Behauptung: Es gibt eine unitäre Transformation $U:M\rightarrow M$ mit $U(X_n) = X_{n+1}$.
+		$$X = \sum_{j = 1}^{m}a_jX_j\in M$$
+		Setze $U(X) = \sum_{j = 1}^{m}a_j X_{j+1}$, $U$ linear.
+		\begin{align*}
+			\|U(X)\|_{L^2(P)}^2 &= \left\langle \sum_{i=1}^{m}a_j X_{j+1}, \sum_{k = 1}^{m} a_kX_{k+1}\right\rangle \\
+			&= \sum_{j,k = 1}^{m} a_j\overline{a}_k\langle X_{j+1},X_{k+1}\rangle \\
+			&= \sum_{j,k = 1}^{m} a_j \overline{a}_k E(X_{j+1}\m \overline{X}_{k+1})\\
+			&= \sum_{j,k = 1}^{m}a_j\overline{a}_k E(X_j\overline{X}_k) = \|X\|_{L(P)}^2
+		\end{align*}
+		Also ist $U$ Isometrie auf $X$.
+		\item Zu einer Unitären Transformation $U:M\rightarrow M$ gibt es eine selbstadjungierte Abbildung $T\in B(M)$ mit $\sigma(A)\subset[0,2\pi]$, sodass
+		$$U = e^{iA} = \cos(A)+i\sin(A).$$
+		Sei $t\in[0,2\pi]\rightarrow P_t\in\{\text{Orthogonalprojektion auf }M\}$ die Spektralschar von $A$, d.h. 
+		\begin{align*}
+			f(U)X = f(e^{iA})X = \int_{0}^{2\pi} f(e^{is})dP_s(X)
+		\end{align*}
+		für $f\in C(S^1)$ (Einheitskreis). Sei $X = X_0$, $f(\lambda) = \lambda^n$. Dann
+		$$X_n = U^n(X_0) = \int (e^{is})^n dP_sX_0.$$
+		Setze $Y(t) = P_s X_0 \in L^2(\Omega,P)$ folgt
+		$$X_n = \int_{0}^{2\pi} e^{ins} dY(s),$$
+		d.h. der Prozess $(X_n)$ ist die Fouriertransformation des Prozesses $Y(s)$, also die Fouriertransformation des Spektralmaßes von $U$.
+		\item Kovarianzfunktion von $(X_n)$. 
+		$$\cov(X_n,X_0) = E(X_n\overline{X}_0)\overset{\text{b)}}{=} \int_{0}^{2\pi} e^{ins}d\langle P_s X_0,X_0\rangle = \int_{0}^{2\pi}e^{ins}d\mu_{X_0},$$
+		wobei $\mu_{X_0}$ das Spektralmaß zu $A$ ist, d.h. $X_0\in M$ \glqq Kovarianzfunktion des stationären Prozesses $(X_n)$\grqq\ ist die Fouriertransformation des Spektralmaßes $\mu_{X_0}$.
+		\item Stochastische Integrale und das Spektralmaß. Für $g= \sum \alpha_n e^{ins}\in L^2[0,2\pi]$ setze $Jg = \sum \alpha_n  X_n \in M\subset L^2(P)$.
+		\begin{align*}
+			\|Jg\|_{L^2(\Omega,P)}^2 &= \left\langle\sum \alpha_n X_n, \sum\alpha_k X_k\right\rangle\\
+			&= \sum \alpha_n\overline\alpha_k E[X_n\overline{X}_k]\\
+			&= \sum \alpha_n\overline{\alpha}_k\int e^{i(n-k)s}d\mu_{X_0}\\
+			&= \int \left(\sum \alpha_n e^{ins} \right)\overline{\left(\sum \alpha_k e^{iks} \right)}d\mu_{X_0}(s) \\
+			&= \left\| \sum \alpha_n e^{ins}\right\|_{L((0,2\pi), \mu_{X_0})}^2,
+		\end{align*}
+		d.h. $J: L^2[0,2\pi]\rightarrow M$ ist eine Isometrie mit $J(e^{ins}) = X_n$, $n\in \Z$.
+		\begin{align*}
+			Jg &= \int_{0}^{2\pi}g(s) dY(s)
+			= \lim\limits_{n\rightarrow\infty} \sum_{k = 1}^{n}g(s_k^n)[J(s_k^n) - J(s_{k-1}^n)]
+		\end{align*}
+		mit $s_k^n = \frac{2\pi}{n}k$, $k = 0,...,n$.
+		\end{enumerate}
+	\end{Beispiel}
+	
+	\begin{Beispiel}
+		Sei $T\in B(H)$ selbstadjungiert und kompakt.
+		\begin{enumerate}[a)]
+			\item 1. Fall: Alle Eigenwerte sind einfach, $\Kern A = \{0\}$, d.h. $\sigma(A) = \{0,\lambda_n \}$, $\lambda_1>\lambda_2,...,\lambda_n>...>0$, $\lambda_\rightarrow0$. Seien $(h_n)$ die zu $\lambda_n$ gehörigen Eigenvektoren. Aus Funktionalanalysis:
+			$$Tf = \sum \lambda_n \langle f,h_n\rangle h_n,$$
+			d.h. $U:l^2\rightarrow H$, $U(\alpha_n) = \sum \alpha_n h_n$ ist Isometrie auf $H$, $M:l^2\rightarrow l^2$, $M(\alpha_n) =(\lambda_n\alpha_n)$. Dann ist $A = UMU^{-1}$. Wie hängt dieses frühere Ergebnis mit der allgemeinen Konstruktion der Spektraldarstellung zusammen?
+			
+			Angabe eines zyklischen Vektors: Fixiere $\gamma_n>0$ mit $\sum_{n = 1}^{\infty}\gamma_n^2 = 1$. Setze $x_0 = \sum_{n = 1}^{\infty}\gamma_n h_n$. Behauptung: $x_0$ ist zyklischer Vektor, d.h. $\overline{\spann\{x_0, A^nx_0\}} = H$. 
+			
+			\Bew Sei $y= \sum_{j = 1}^{m}\beta_j h_j\in H$. Zu zeigen: Es gibt $\alpha_0,...,\alpha_{m-1}$ mit $y = \sum_{j = 0}^{m-1}\alpha_j A^j x_0$. 
+			\begin{align*}
+				\sum_{j = 0}^{m}\beta_j h_j = y &= \sum_{j = 0}^{m-1}\alpha_j A^j x_0\\
+				&=\sum_{j = 1}^{m-1}\alpha_j \left(\sum_{n=1}^{\infty} \gamma_n A^jh_n \right)\\
+				&= \sum_{n = 1}^{\infty}\left(\sum_{j = 0}^{m-1} \gamma_n \lambda_n^j \alpha_j \right)h_n
+			\end{align*}
+			$\Rightarrow$ $\beta_n = \sum_{j = 0}^{m-1}(\gamma_n \lambda_n^j)\alpha_j$, $n = 1,...,m$. Zu zeigen: Zu $\beta_1,...,\beta_m$ gibt es $\alpha_0,...,\alpha_{m-1}$ mit $0\neq \det(\gamma_n\lambda_n^j)_{n,j} = \left(\prod_{n = 1}^{m} \gamma_n^m \right)\det(\lambda_n^j) = \gamma \neq 0$.
+			Spektralmaß von $A$:
+			\begin{align*}
+				\int f(t)d\mu_{x_0}(t) &= \langle f(A)x_0,x_0\rangle,~ x_0 = \sum\gamma_n h_n\\
+				&= \left(\sum \gamma_n^2 \delta_{\lambda_n} \right)f
+			\end{align*}
+			Also 
+			$$\boxed{\mu_{x_0} = \sum_{n = 1}^{\infty}\gamma_n^2 \delta_{\lambda_n}}, \|\mu_{x_0}\|^2 = \sum \gamma_n^2 = 1.$$
+			d.h. formal sieht die Spektraldarstellung so aus:
+			$$L^2(\R,\mu_x) = L^2(\R,\sum \gamma_n \delta_{\lambda_n} = l^2(\N,\gamma_n^2),$$
+			d.h. $\|(\alpha_n)\|_{l^2(\N,\gamma_n^2)} = \left(\sum_{n = 1}^{\infty}|\alpha_n|^2\gamma_n^2 \right)^{1/2}$. $U:L^2(\R,\mu_x)\rightarrow H$. Polynom $p\rightarrow p(A)x_0$, $M g(t) = tg(t)$, $t\in\{\lambda_n:\nLeftarrow\in \N \}$, $Mg(\lambda_n) = \lambda_n g(\lambda_n)$.
+			\item $A$ hat mehrfache Eigenwerte, $0<\lambda_j$ sei ein $m_j$-facher Eigenwert. Sei $\Kern A = \{0\}$. Abzählung der Eigenwerte:
+			\begin{align*}
+				\lambda_{1,1} = \cdots = \lambda_{1,m_1}>\lambda_{2,1} = \cdots = \lambda_{2,m_2}>\cdots
+			\end{align*}
+			Die Zerlegung von $H$ in Unterräume mit zyklischen Vektoren von $A$: Notation $h_{n,j}$ sei ein Eigenvektor zu $\lambda_{n,j}$, sodass alle $h_{n,j}$ für $j = 1,...,m_n$, $n \in \N$ eine ONB von $H$ ist. Setze ferner $h_{n,j} = 0$ für $j>m_n$
+			
+			Setze $H_1=\overline{\spann}\{h_{n,1}:n\in \N \}$. $H_2 = \overline{\spann}\{h_{n,2}: n\in \N \}$ und analog $H_3$... Dann $H = \sum_{k = 1}^{\infty} \bigoplus H_k$ und $H_j$ hat den zyklischen Vektor 
+			$$x_j = \sum_{j\in \N} \gamma_n h_{n,j}$$
+			und $A|_{H_j}$ hat das Spektralmaß $\mu_j = \sum \gamma_n\delta_{\lambda_n, j}$.
+		\end{enumerate}
+	\end{Beispiel}
+
+
+\section{Unbeschränkte selbstadjungierte Operatoren}
+
+\begin{Wiederholung}
+	~
+	\begin{enumerate}[a)]
+		\item $X$ Banachraum, $X\supset D(A) \overset{A}{\rightarrow} X$ linear, $D(A)$ linearer Teilraum von $X$. $A$ heißt abgeschlossen, genau dann wenn eine der äquivalenten Eigenschaften erfüllt ist.
+		\begin{enumerate}[(i)]
+			\item $(D(A),\|\m\|_A)$, $\|x\|_A = \|x\|_X + \|Ax\|_X$ für $x\in D(A)$ ist vollständig.
+			\item $\Graph(A) = \{(x,Ax): x\in D(A) \}$ abgeschlossen in $X\times X$.
+			\item Falls $x_n\in D(A)$, $x_n\rightarrow x$ in $X$ und $Ax_n\rightarrow y$ in $X$, dann $x\in D(A)$ und $Ax = y$.
+		\end{enumerate}
+		\item $X\supset D(A)\overset{A}{\rightarrow} X$ linear heißt \textbf{abschließbar}, falls es eine abgeschlossene Erweiterung $A_1$ von $A$ gibt, d.h. $X\supset D(A_1)\overset{A_1}{\rightarrow}X$ ist abgeschlossen und für $x\in D(A)\subset D(A_1)$ gilt $Ax = A_1x$.
+		\item $D\subset D(A)$ heißt \textbf{wesentlicher Definitionsbereich} (core), falls $D$ in $D(A)$ dicht bezüglich der Graphennurm $\|\m\|_A$ ist.
+	\end{enumerate}
+\end{Wiederholung}
+
+\paragraph{Bemerkung.} $A$ ist abschließbar, falls aus $D(A)\ni x_n\rightarrow 0$ in $X$ und $Ax_n\rightarrow y$ in $X$, dass $y = 0$ (Übung).\\
+
+Im folgenden sei $X$ stets ein komplexer Hilbertraum mit $\langle \m,\m\rangle$.
+
+\begin{Definition}
+	Sei $A\colon X\supset D(A)\rightarrow X$ ein linearer Operator mit dichtem Definitionsbereich $D(A)$ in $(X,\|\m\|)$.
+	\begin{align*}
+		D(A^*) = \{x\in X\colon \exists y_x\in X \text{ mit } \langle Ay, x\rangle = \langle y,y_x\rangle\text{ für } y\in D(A) \}
+	\end{align*}
+	Für $x\in D(A^*)$ setze $A^*x = y_x$.
+\end{Definition}
+
+\begin{Bemerkung}
+	~
+	\begin{enumerate}[a)]
+		\item $A^*x$ ist eindeutig bestimmt, denn $\langle y_x,y\rangle = \langle y_x', y\rangle$ für alle $y\in D(A)$ folgt $y_x = y_x'$, da $D(A)$ dicht in $X$. 
+		\item $x\in D(A^*)$ bedeutet, dass sich die lineare Abbildung $y\in D(A) \rightarrow \langle Ay,x\rangle$ zu einem beschränkten linearen Funktional auf $X$ fortsetzen lässt, d.h. $\exists C_x$ mit $|\langle Ay, x\rangle|\leq C_x\|y\|$, $y\in D(A)$ $(*)$.
+		\item (vergleiche mit Funktionalanalysis)
+		$$\xymatrix{
+			& X\supset D(A) \ar[r]^A & X \\
+			X \ar[r]^J & X'\\
+			\supset D(A^*)\ar[r]_J \ar[d]& D(A')\subset\ar[d]\\
+			X\ar[r]_J & X'
+			}$$
+			mit 
+	\end{enumerate}
+\end{Bemerkung}
+
+\Bew a) Unter $(*)$ gibt es nach dem Rieszschen Darstellungssatz ein $y_x\in X$ mit $\langle Ay, x\rangle = \langle x, y_x\rangle$.  
 
 	
+\begin{Prop}[Eigenschaften der Adjungierten]
+	Seien $D(A)$, $D(A_1)$ und $D(A_2)$ dicht.
+	\begin{enumerate}[a)]
+		\item Sei $A_1$ eine Erweiterung von $A_2$, d.h. $D(A_2)\subset D(A_1)$, $A_1 x = A_2x$ für $x\in D(A_2)$ $\Rightarrow$ $A_2^*$ ist eine Erweiterung von $A_1^*$, d.h. $D(A_1^*)\subset D(A_2^*)$, $A_1^*x = A_2^*x$ für $x\in D(A_1^*)$.
+		\item $\Graph A^* = [J(\Graph A)]^\perp$, wobei $J\colon X\times X\rightarrow X\times X$, $J(x,y) = (-y,x)$.
+		\item $A^*$ ist abgeschlossen.
+		\item $A$ ist abschließbar, genau dann, wenn $D(A^*)$ dicht ist in $X$ und dann gilt $\overline{A} = A^{**}$.
+		\item $\Bild(A)^\perp = \Kern(A^*)$.
+		\item $\sigma(A^*) = \{\bar{\lambda}\colon \lambda\in A \}$ und für $\lambda \in \rho(A)$
+		$$(\bar{\lambda} \id - A^*)^{-1} = [(\lambda\id - A)^{-1}]^*.$$
+	\end{enumerate}
+\end{Prop}
+	
+\Bew a) $x\in D(A_1^*)$ $\Leftrightarrow$ $\exists C$, sodass
+\begin{align*}
+	|\langle A_1y,x\rangle| \leq C\|y\| \text{ für } y\in D(A_1)
+\end{align*}
+gilt dann auch für $y\in D(A_2)$, d.h. $x\in D(A_2^*)$.\\
+b) $x\in D(A^*)$, $z\in D(A)$
+$$\langle(x, A^* x), J(z,Az)\rangle = \langle (x,A^x), (-Az, z)\rangle = \langle x,-Az\rangle + \langle A^*x, z\langle = - \langle x,Az\rangle + \langle x,Az\rangle = 0.$$
+Also $\Graph A^*\subset [J(\Graph A)]^\perp$ in $X\times X$. Umgekehrt sei $(x,y)\in [J(\Graph A)]^\perp$ $\Rightarrow$ für $z\in D(A)$ gilt:
+\begin{align*}
+	0 = \langle (x,y), J(z, Az)\rangle = \langle (x,y), (-Az, z)\rangle = -\langle x, Az\rangle + \langle y,z\rangle
+\end{align*}
+$\Rightarrow$ $\forall z\in D(A)$: $\langle x, Az\rangle = \langle y,z\rangle$ $\Rightarrow$ $x\in D(A^*)$, $A^*x = y$.\\
+c) $A^*$ ist immer abgeschlossen, da $\Graph A^* = [...]^\perp$ abgeschlossen ist.\\
+d) Sei $D(A^*)$ dicht in $X$. $A^{**} = (A^*)^*$  existiert als abgeschlossener Operator nach c). $Ax = A^{**}x$ für $x\in D(A)$. $D(A)\subset D(A^{**})$ nach Definition.\\
+e) $y\in D(A^*)$. $y\in \Bild(A)^\perp$ $\Leftrightarrow$ $\forall x\in D(A)$: $\langle y,Ax\rangle = 0$ $\Leftrightarrow$ $\forall x\in P(A)$: $\langle A^*y, x\rangle = 0$ $\Leftrightarrow$ $A^* y = 0$ $\Leftrightarrow$ $y\in \Kern A^*$.\\
+f) $\lambda\in \rho(A)$ bedeutet: $\lambda \id - A\colon D(A)\rightarrow X$ ist bijektiv $\Leftrightarrow$ $(\lambda\id - A)^{-1}\colon X\rightarrow (D(A),\|\m\|_A)$ $\Leftrightarrow$ $(\lambda\id - A)^{-1}\colon X\rightarrow X$ ist beschränkt.
+\begin{align*}
+	S\m (\lambda\id - A) = \id &\Rightarrow [(\bar \lambda\id - A^*)] S^* = \id^* = \id.
+\end{align*}
+\qed
+	
+\begin{Definition}
+	Sei $A\colon X\supset D(A)\rightarrow X$ mit $D(A)$ dicht in $X$.
+	\begin{enumerate}[a)]
+		\item $A$ heißt \textbf{symmetrisch}, falls für alle $x,y\in D(A)$ gilt 
+		$$\langle Ax,y\rangle = \langle x, Ay\rangle.$$
+		\item $A$ heißt \textbf{selbstadjungiert}, falls $A$ symmetrisch ist, und $D(A) = D(A^*)$.
+	\end{enumerate}
+\end{Definition}
+
+\begin{Bemerkung}
+	Falls $A$ symmetrische ist, dann ist $D(A)\subseteq D(A^*)$ und $Ax = A^*x$ für $x\in D(A)$, aber im allgemeinen gilt $D(A)\subsetneq D(A^*)$.
+\end{Bemerkung}
+
+\begin{Satz}
+	Sei $A$ abgeschlossen mit dichtem Definitionsbereich in $X$. Dann sind Äquivalent.
+	\begin{enumerate}[a)]
+		\item $A$ ist selbstadjungiert. 
+		\item $A$ ist symmetrisch und es gibt $\lambda\in \C$ mit $\lambda,\bar\lambda\in \rho(A)$.
+		\item $A$ ist symmetrisch und $\sigma(A)\subset \R$.
+	\end{enumerate}
+\end{Satz}
 	
 	
+\Bew a) $\Rightarrow$ c): Sei $\lambda \in \C\backslash \R$. Zu zeigen: $\lambda\in\rho(A)$.
+\begin{align*}
+	\|(\lambda - A)x\|^2 &= \langle (\lambda - A)x, (\lambda - A)x\rangle \\
+	&= \lambda\bar{\lambda} \langle x, x, \rangle + \langle Ax, Ax\rangle - \langle Ax,\lambda x\rangle - \langle \lambda x, Ax\rangle \\
+	&= |\lambda|^2\|x\|^2 - 2 Re\lambda\langle Ax, x\rangle + \|Ax\|^2\\
+	&\geq ((Re\lambda)^2 + (Im\lambda)^2)\|x\|^2 - 2|Re\lambda|\|Ax\|\m\|x\| + \|Ax\|^2\\
+	&= (Im\lambda)^2\|x\|^2 + (Re\lambda \|x\| - \|Ax\|)^2\\
+	&\geq |Im\lambda |^2 \|x\|^2
+\end{align*}
+$\|(\lambda - A)x\|\geq |Im\lambda|\|x\|$, $|Im \lambda|\neq 0$ $\Rightarrow$ $(\lambda - A)$ ist injektiv, d.h. $\Bild(\lambda - A)$ ist abgeschlossen. Bleibt zu zeigen, dass $(\lambda - A)$ surjektiv. 
+$$\Bild(\lambda - A)^\perp = \Kern(\lambda - A)^* = \Kern(\bar{\lambda}- A) = \{0\},$$
+da $A = A^*$, $(\bar{\lambda}- A)$ injektiv (wie oben, mit $\bar{\lambda}$ anstelle von $\lambda$) $\Rightarrow$ $\Bild(\lambda - A)$ dicht, $\Bild(\lambda - A)$ abgeschlossen $\Rightarrow$ $\Bild(\lambda - A) = X$, somit ist $\lambda - A$ bijektiv.
+
+b) $\Rightarrow$ a): Zeige $x\in D(A^*)$ $\Rightarrow$ $x\in D(A)$. Da $\Bild(\lambda-A) = X$, gibt es $y\in D(A)$ sodass
+$$(\lambda - A)y = (\lambda - A^*)x.$$
+Da $A^*\supseteq A$ gilt $(\lambda - A^*)y = (\lambda - A^*)x$. $(\lambda - A^*) = (\bar\lambda - A)^*$ ist injektiv, das, $\bar{\lambda}\in \rho(A)$ $\Rightarrow$ $x= y\in D(A)$.
+\qed
+
+\begin{Beispiel}
+	Sei $\Omega\subseteq \C$ Borelmenge, $\mu$ Maß auf $\Omega$, $m\colon \Omega\Rightarrow \R$ Borelmaß. 
+	$$D(M) = \{g\in L^2(\Omega, \mu)\colon g\m m\in L^2(\Omega, \mu) \}$$
+	$g\in D(M)$: $Mg = m\m g$. Beachte:
+	$$\sigma(M) = R_\mu(m) \text{ wesentlicher Definitionsbereich bezüglich }\mu.$$
+	$\lambda \notin \sigma(M)$: $\|R(\lambda,\mu)\| = \left\| \frac{1}{\lambda - m(\m)}\right\|_{L^\infty(\Omega,\mu)}$ (wesentliches supremum). $M$ ist symmetrisch, da für $f,g\in D(M)$.
+	$$\langle Mg, f\rangle = \int m(x)g(x) f(x) d\mu(x) = \int g(x)m(x)f(x)d\mu(x) = \langle g, Mf\rangle.$$
+	$f\in D(M^*)$ $\Leftrightarrow$ $\exists C<\infty$ für alle $g\in L^2(\Omega,\mu)$
+	\begin{align*}
+		|\langle g, Mf\rangle| &\leq C\|g\|_{L^2}\\
+		\left|\int g(x)m(x)f(x)d\mu(x)\right|&\leq C\|g\|_{L^2}
+	\end{align*}
+	$\Leftrightarrow f\m m\in L^2(\Omega,\mu)$ $\Leftrightarrow$ $f\in D(M)$. Also $D(M) = D(M^*)$.
+\end{Beispiel}
+
+\section{Spektralsatz für ubeschränkte selbstadjungierte Operatoren}
+
+\begin{Beispiel}[Laplace Operator]
+	Sei $H = L^2(\R^n)$, $D_0(A) = C_c^2(\R^n)$, $f\in D_(A)$: $$Af = \laplace f = \sum_{j = 1}^{n} \frac{\partial^2 f}{\partial x_j^2}.$$
+	$A$ auf $D_0(A)$ ist symmetrisch:
+	$$\langle \laplace f,g\rangle = -\int_{\R}\sum_{j = 1}^{n}\left(\frac{\partial}{\partial x_j}f \right)\left(\frac{\partial}{\partial x_j}g \right)dx = \langle f, \laplace g\rangle.$$
+	$\laplace$ auf $D_0(A)$ selbstadjungiert?
+	
+	Wiederhole: $S=\R^n$, $\mu=$ Lebesgue Maß.
+	$$U\colon L^2(S,\mu)\rightarrow L^2(\R^n, \mu)$$
+	$U = \F^{-1}$, $m(x) = -|x|^2$. Dann 
+	$$\F(\laplace f) (x) = \left(\sum_{j = 1}^{n} - x_j^2 \right)\f(x) = m(x)\f(x).$$
+	Somit ist 
+	$$\laplace = \F^{-1}[m(x)\f(x)] = U[M_m]\m U^{-1}$$ 
+	mit $M_m g(x) = m(x)g(x) = -|x|^2g(x)$. $D(M_m) = D(M_m^*) = \{g\in L^2\colon m\m g \in L^2 \}$.
+	$$D(A) = U(D(M_m)) = \F^{-1}(\{g\colon m\m g\in L^2 \}) = \{f\colon \f(x)\m|x|^2\in L^2 \} = \boxed{\dot H^2 (\R^n)} \text{ (Sobolevraum)}.$$ 
+	Somit ist $\laplace$ auf $D_0(A)$ nicht selbstadjungiert, aber symmetrisch. $D_0(\laplace)$ ist ein wesentlicher Definitionsbereich.
+\end{Beispiel}
+
+\paragraph{Idee zum Spektralsatz:}
+$n(t) = t(1+t^2)^{-1/2}\colon\R\rightarrow (-1,1)$ ist bijektiver, wachsender Homöomorphismus. $n^{-1}\colon (-1,1)\rightarrow \R$ sei die Inverse zu $n$. Sei $A$ unbeschränkter, selbstadjungierter Operator, $t = A$ liefert
+\begin{align*}
+	n(A) = A(1 + A^2)^{-1/2} =: T\in B(H)
+\end{align*}
+Wende Spektralsatz für beschränkte Operatoren auf $T$ an. $T\rightsquigarrow A$ (zurückrechnen mit $n^{-1}$).
+
+\begin{Lemma}
+	Sei $A$ ein selbstadjungierter Operator auf $H$. Dann ist $I+A^2$ mit Definitionsbereich $D(A^2)$ ein invertierbarer Operator und 
+	$$T := (I+A^2)^{-1/2}$$
+	erfüllt
+	\begin{enumerate}[a)]
+		\item $T$ ist beschränkt und selbstadjungiert mit $\|T\| \leq 1$.
+		\item Für $x\in D(A)$ gilt $ATx = TAx$ und $T^2 = A^2(I+A^2) = \id-(I+A^2)^{-1}$.
+	\end{enumerate}
+\end{Lemma}
+
+\Bew Für $x\in D(A^2)$
+\begin{align*}
+	\|(I+A^2)x\|^2 &= \|x\|^2 + 2\langle Ax,Ax\rangle + \|Ax\|^2 ~(\text{da } A \text{ selbstadjungiert})\\
+	&\leq \|x\|^2
+\end{align*}
+Also ist $I+A^2$ injektiv mit abgeschlossenem Bild. $\Bild(I+A)^2$ ist dicht in $H$, denn $(I+A^2)^* = I+A^2$ auf $D(A^2)$. Da $I+A^2$ injektiv, hat $(I+A^2)$ dichtes Bild.Da $I+A^2$ injektiv ist, hat $(I+A^2)$ ein dichtes Bild 
+$$(\Bild B)^\perp = \Kern B^*,~ B = I+A^2.$$
+Also ist $I+A^2\colon D(A^2)\rightarrow H$ bijektiv $\Rightarrow$ $(I+A^2)^{-1}\colon H\rightarrow D(A^2)$ und $(I+A^2)^{-1}\in B(H)$ nach Graphensatz. Da $(I+A^2)^{-1}$ beschränkt ist, ist $f((I+A^2)^{-1})$ beschränkt, wobei $f(\lambda) = \lambda^{1/2}$ beschränkt auf $\sigma((I+A^2)^{-1})$, d.h. nach dem Funktionalkalkül für beschränkte Operatoren ist $(I+A^2)^{-1/2}\in B(H)$, $(I+A^2)^{-1}\geq 0$,
+\begin{align*}
+	 \langle (I+A^2)^{-1}x, x\rangle = \langle x,(I+A^2)x\rangle = \langle x,x\rangle +\langle Ax,Ax\rangle \geq 0, ~x\in D(A^2).
+\end{align*}
+Nun benutze $\overline{D(A^2)} = H$. $(I+A^2)^{-1/2}$ ist selbstadjungierter, beschränkter Operator. Setze $T:= A(I+A^2)^{-1/2}$. Z.z. $T\in B(H)$, $\|T\|\leq 1$. Für $x\in D(A^2)$:
+\begin{align*}
+	\|Tx\|^2 &= \langle A(I+A^2)^{-1/2}x, A(I+A^2)^{-1/2}x\rangle \\
+	&= \langle (I+A^2)^{-1/2}x, A^2(I+A^2)^{-1/2}x\rangle\\
+	&= \langle (I+A^2)^{-1/2} x, (I+A)^{-1/2} A^2 x\rangle \\
+	&= \langle x, (I+A^2)^{-1} A^2 x\rangle \\
+	&= \langle x,x\rangle - \langle x, (I+A^2)^{-1}x\rangle\\
+	&\leq \|x\|^2
+\end{align*}
+$\Rightarrow$ $\|Tx\| \leq \|x\|$, $\|T\|\leq 1$, da $\overline{D(A^2)} = H$.
+
+\begin{Satz}
+	Sei $A$ ein selbstadjungierter Operator auf einem seperablen Hilbertraum. Dann gibt es eine Borelmenge $S\subset \N\times \R$, ein Maß $\mu$ auf $S$, eine unitäre Abbildung $U\colon L^2(S,\mu)\rightarrow H$ und eine stetige Funktion $m\colon B\rightarrow \R$ mit $D(A) = \{Ug\colon g, g\m m\in L^2(S,\mu) \}$. $Ax= U M_m U^{-1}x$, $x\in D(A)$, wobei $M_m g= g\m m$.
+\end{Satz}
+
+\Bew $n(\lambda) =  = \lambda(1+\lambda^2)^{-1/2}\colon \R\rightarrow (-1,1)$ ist bijektiv, $n^{-1}\colon (-1,1)\rightarrow \R$ stetig. Setze $T:= A(I+A^2)^{-1/2}\in B(H)$, selbstadjungiert auf $H$ nach Lemma 7.2. Nach dem Spektralsatz für beschränkte selbstadjungierte Operatoren für $T$ gibt es 
+\begin{align*}
+	U\colon L^2(S,\mu)\rightarrow H,~m_T\colon S\rightarrow [-1,1]\text{ stetig}
+\end{align*}
+mit $T = UM_{m_T}U^{-1}$, $M_{m_T} g = m_T\m g$. Ziel $T\rightsquigarrow A$. Setze $m = n^{-1}\circ m_T$.
+$$D(\tilde A) = \{Ug\colon g, m\m g\in L^2(S) \}.$$
+$x\in D(\tilde A)$: $\tilde{A}x = U M_m U^{-1}.$ Zu zeigen $\tilde A = A$ auf $D(A)$.
+$$(I+\tilde{A}^2)x = (I+(UM_mU^{-1})^2)x = U(I+M_m^2)U^{-1}x,$$
+für $x\in D(I+\tilde{A^2}) = \{Ug\colon g,g(1+m^2)\in L^2 \}$. $m = n^{-1}\circ m_T$, $n\circ m = m_T$, d.h. 
+$$\tilde{A}(I+\tilde{A}^2)^{-1/2} = T= A(I+A^2)^{-1/2}.$$
+\begin{align*}
+	I-(I+\tilde{A}^2)^{-1} &= \tilde{A}^2(I-\tilde{A}^2)^{-1} = T^2\\
+	&= A^2(I+A^2)^{-1} = I- (I+A^2)^{-1}\\
+	(I+\tilde{A}^2)^{-1} &= (I+A^2)^{-1}\\
+	\Rightarrow (I+\tilde{A})^{-1/2} &= (I+A^2)^{-1/2}.
+\end{align*}
+Für $x= (I+A^2)^{-1/2}y$, $y\in H$ ist $\Bild((I+A^2)^{-1/2})\supset D(A^2)$ ein wesentlicher Definitionsbereich, $\tilde{A} = A$, da beide selbstadjungiert.
+\qed
+
+	
+	\begin{Satz}
+		Sei $A$ selbstadjungierter Operator auf einem seperablen Hilbertraum. Dann gibt es ein Maß $\nu$ auf $\sigma(A)$ und einen Algebrahomomorphismus
+		$$\Phi_A\colon L^\infty(\sigma(A), \nu)\rightarrow B(H), ~\Phi_A(f) = f(A)$$
+		mit
+		\begin{enumerate}[(i)]
+			\item $\Phi\left(\frac{1}{\lambda-\m} \right)= R(\lambda, A)$ für $\lambda\notin \sigma(A)$.
+			\item $\|\Phi_A(f)\|_{B(H)} = \|f\|_{L^\infty(\sigma(A), \nu)}$.
+			\item $\Phi_A(f)^* = \Phi_A(\bar f)$, $\Phi_A(f)$ ist selbstadjungiert $\Leftrightarrow$ $f$ ist reelwertig.
+		\end{enumerate}
+	\end{Satz}
+	
+	\Bew Fall 1: Sei $A$ ein Multiplikationsoperator auf $L^2(s,\mu)$: $Mg(\m) = m(\m)g(\m)$, $m\colon S\rightarrow \C$. $D(M) = \{g\colon g, m\m g\in L^2(S,\mu) \}$. $\nu$-Bildmaß von $\mu$ unter $m$, d.h. für $B\subset \sigma(M)$ setze $\nu(B) = \mu(m^{-1}(B))$, $m\colon S\rightarrow \sigma(M)$. $\nu(B) = 0$ $\Leftrightarrow$ $\mu(m^{-1}(B)) = 0$. Also $\|f\|_{L^\infty(\sigma(M),\nu)} = \|f\circ m\|_{L^\infty(S,\mu)}$ für $f\colon \sigma(M)\rightarrow \C$.
+
+	\begin{Definition}
+		Sei $[\Phi_M(f)]g = (f\circ m)g$ für $g\in L^2(S,\mu)$, $f\colon \sigma(M)\rightarrow \C$. 
+	\end{Definition}
+	
+	Nachprüfen der Eigenschaften im Falle der berschränkten, selbstadjungierten Operatoren. Fall 2: Sei $A$ beliebiger selbstadjungierter Operator. Nach 7.3 gibt es eine Spektraldarstellung für $A$, d.h. es gibt $U\colon L^2(S,\mu)\rightarrow H$, $Mg=mg$ für $m\colon S\rightarrow \C$ mit 
+	$$D(A) = \{Ug\colon g\in D(M) \},~ Ax = UMU^{-1}x, ~x\in D(A).$$
+	Definiere den Funktionalkalkül für $A$ wie im beschränkten Fall
+	\begin{align*}
+		\Phi_A(f) = U\Phi_M(f)U^{-1}
+	\end{align*}
+	Eigenschaften von $\Phi_A$ wie früher.
+	\qed
+	
+	\begin{Korollar}[Konvergenzeigenschaft]
+		Sei $A$ ein selbstadjungierter Operator mit $\Phi_A\colon L^2(\sigma(A), \nu) \rightarrow B(H)$. Für $f_n\in L^\infty(\sigma(A),\nu)$ mit $\|f_n\|_{L^\infty(\sigma(A),\nu)}\leq C$ $f_n(\lambda)\rightarrow f(\lambda)$ fast überall auf $\sigma(A)$ gilt
+		$$f_n(A)x\overset{n\rightarrow \infty}{\longrightarrow} f(A)x ~\forall x\in H.$$
+	\end{Korollar}
+	
+	\Bew $U\colon L^2(S,\mu)\rightarrow H$, $m\colon S\rightarrow \sigma(A)$ aus Satz 7.3. Für $g\in L^2(S,\mu)$, $x = Ug\in H$ gilt
+	\begin{align*}
+		\|f_n(A)x-f(A)x\|_H^2 &= \|f_n(M)g - f(M)g\|_{L^2(S,\mu)}^2\\
+		&= \int |[(f_n\circ m)(s) - (f\circ m)(s)]|^2 |g(s)|^2 d\mu(s)\\
+		&\rightarrow 0 \text{ für }n\rightarrow \infty
+	\end{align*}
+	nach Satz von Lebesgue, da $|[(f_n\circ m)(s) - (f\circ m)(s)]|\leq 2C$ und $|g(s)|\in L^\infty$.
+	
+	\paragraph{Bemerkung}
+		Die Darstellung eines selbstadjungierten Operators als Multiplikationsoperator ist \textbf{nicht} eindeutig. Z.B. $L(\R,\mu)$ (Lebesguemaß), $m\colon \R\rightarrow \R$. 
+		\begin{align*}
+			\int |f\circ m(s)g(s)|^2 ds &= \|f(M)g\|_{L^2(\R, \mu)}^2\\
+			&=\int |f\circ m (n(t))g(n(t))|^2 n'(t)dt, ~s = n(t)\\
+			&= \int |(f\circ m_1)(t) h(t)|^2 d\mu_1(t)
+		\end{align*}
+		mit $d\mu_1 = n'(t)d\mu$, $m_1 = m\circ n$, $h = g\circ\nu$. Damit folgt
+		\begin{align*}
+			U\colon L^2(\R,\mu)&\rightarrow H;~ A= UMU^{-1}\\
+			V\colon L^2(\R,\mu)&\rightarrow L^2(\R, \mu_1), \\%~ h\mapsto  Vh = h\circ n^{-1}\\
+			%\int |h(t)|^2d\mu_1(t) &= \int |h(n(t))|^2 n'(t)d\mu(t)\\
+			%&= \int |g(s)|^2 d\mu(s)
+			\|g\|_{L^2(\mu)}^2 &= \int |g(s)|^2d\mu(s)\\
+			&=\int |g(n(t))|^2n'(t)d\mu(s)\\
+			&= \|g\circ n\|_{L^2(\mu_1)}^2 = \|Vg\|_{L^2(\mu_1)}^2,~ (Vg = g\circ n)\\
+			V^{-1}UAU^{-1}V &= M_1 \text{ auf } L^2(S,\mu_1),~ M_1g = (m\circ n)g
+		\end{align*}
+		$M = VM_1V^{-1}$, $M_1 = V^{-1}M V$ auf $L^2(\R,\mu)$, $M$ auf $L^2(\R,\mu)$.
+		
+		
+	\begin{Beispiel}[Halbgruppen für selbstadjungierte Operatoren]
+		Definiere Exponentialfunktion $e^{tA}$  für $A$.
+		$$f_t(\lambda) = e^{-t\lambda},~ \lambda\geq 0.$$
+		Voraussetzung $\langle Ax, x\rangle \geq 0$, $\sigma(A)\subseteq \R_+$. Nach Funktionalkalkül: $T(t) = f_t(A) = \Phi_A(f_t)$ erfüllt
+		\begin{itemize}
+			\item $\|T(t)\|_{B(H)} = 1$, denn 
+			\begin{align*}
+				\|T(t)\| = \|f_t\|_{L^\infty(\R_+,\nu)} = \sup_{\lambda> 0}e^{-t\lambda} = 1.
+			\end{align*}
+			\item $T(t)\m T(s) = T(s+t)$, denn $f_t(\lambda)f_s(\lambda) = f_{t+s}(\lambda)$.
+			\item $T(t)x\rightarrow x$ für $t\rightarrow 0$, $x\in H$, denn $f_t(\lambda)\rightarrow 1$ für $t\rightarrow 0$ aber $|f_t(\lambda)|\leq 1$ auf $\R_+$. Verwende dann 7.5.
+			\item $\frac{d}{dt}T_t x = AT_tx$ für $t>0$, denn 
+			$$\frac{1}{s}(T_{t+s}x - T_t x) = \Phi_A\left(\frac{f_{t+s}(\m) - f(t)}{s}\right)\rightarrow -\lambda e^{-t\lambda},~ s\rightarrow0$$
+			und $q_t(s) \leq 1/t$, $|\lambda e^{-t\lambda} \leq 1/t$. Verwende dann 7.5. Damit gilt für die Lösung des Cauchyproblems $y(t) = T(t)x$:
+			$$y'(t) = -Ty(t),~ y(0) = x.$$
+		\end{itemize}
+	\end{Beispiel}
+	
+	\section{Störungssatz}
+	
+	\paragraph{Problem:} Sei beispielsweise $A = \laplace+ \sum b_j\frac{\partial}{\partial x} + V$. Führe die Behandlung von $A$ auf den bekannten Operator $\laplace$ zurück mit Hilfe von \glqq Störungstheorie\grqq.
+	
+	\paragraph{Formal:} $a$ \glqq gut\grqq, $a+b$, $b$ \glqq Störung\grqq. Sei $\lambda\in \rho(a)$. Frage $\lambda\in a+b$?.
+	\begin{align*}
+		\mu - (a+b) &= (1-b(\mu-a))(\mu-a)\\
+		(\mu-(a+b))^{-1} &= (\mu-a)^{-1}(1-b(\mu-a)^{-1})^{-1} = (\mu- a)^{-1} \sum_{k = 0}^{\infty}[b(\mu-a)^{-1}]^k
+	\end{align*}
+	
+	\begin{Lemma}
+		Sei $A$ ein abgeschlossener Operator auf einem Banachraum $X$, $B$ linear auf $X$ mit $D(A)\subset D(B)$. Falls $\lambda\in \rho(A)$ und $\|BR(\lambda, A)\|<1$. Dann ist $A+B$ mit $D(A+B) = D(A)$ abgeschlossen und $\lambda\in \rho(A+B)$ mit 
+		$$R(\lambda,A+B) = R(\lambda, A)[I- BR(\lambda,A)]^{-1} = R(\lambda, A)\sum_{k = 0}^{\infty}[BR(\lambda, A)]^k$$
+	\end{Lemma}
+	
+	\Bew Da $\|BR(\lambda, A)\| <1$ gilt nach dem Lemma über die Neumannsche Reihe
+	\begin{align*}
+		[\id - BR(\lambda, A)]^{-1} = \sum_{k = 0}^{\infty} BR(\lambda, A)^k
+	\end{align*}
+	Setze $R = R(\lambda,A)[I- BR(\lambda, A)]^{-1}$. Zu zeigen: $R$ ist Inverse von $\lambda-(A+B)$. 
+	$$R(\lambda I- A- B) RX = (\lambda I - A- B)R(\lambda, A)(I-BR(\lambda, A))^{-1} = (I- BR(\lambda, A)) (I - BR(\lambda, A)^{-1})x.$$
+	\begin{align*}
+		R(\lambda\id - A - B) &= R(\lambda, A)\sum_{k = 0}^{\infty} [BR(\lambda, A)]^k (\lambda - A - B) x \\
+		&= R(\lambda, A)(x-A-B)x + R(\lambda, A)\sum_{k = 0}^{\infty} (BR(\lambda, A))^k (\lambda - A - B)x\\
+		&= x - R(\lambda, A) Bx + R(\lambda, A)\sum_{k = 1}^{\infty}(BR(\lambda, A))^k (\lambda - A)x - \sum R(\lambda, A) (BR(\lambda, A))^kBx\\
+		&= x - \sum_{k = 0}^{\infty} R(\lambda, A)(BR(\lambda, A))^k Bx + \sum_{k = 1}^\infty R(\lambda, A) BR(\lambda, A)^{k-1}Bx\\
+		&= x, \text{ mit Indexshift}
+	\end{align*}
+	
+	\paragraph{Relative Kleinheitsbedingung.} $\exists$ $a,b>0$, sodass 
+	$$\|Bx\| \leq a\|Ax\| + b\|x\|.$$
+	
+	\begin{Satz}
+		Sei $H$ ein Hilbertraum, $H\supset D(A)\overset{A}{\rightarrow} H$ selbstadjungiert, $B$ ein symmetrischer Operator mit $D(B)\supset D(A)$ und es gebe $0<a<1$ und $b<\infty$, sodass für alle $x\in D(A)$
+		\begin{equation}
+			\|Bx\| \leq a\|Ax\| + b\|x\|.
+		\end{equation}
+		Dann ist $A+B$ selbstadjungiert.
+	\end{Satz}
+	
+	\Bew Sei $\mu\in \R\backslash\{0\}$, $x\in D(A)$. 
+	\begin{equation}
+		(\|A+i\mu)x\|^2 = \langle (A+i\mu)x, (A+i\mu)x\rangle = \|Ax\|^2 + \mu^2\|x\|^2 + 2 Re\langle Ax,\mu x\rangle
+	\end{equation}
+	Für $y\in H$ und $x=(A+i\mu)^{-1}y$ folgt aus (2.3) 
+	\begin{align*}
+		&\|A(A+i\mu)^{-1}y\|^2 + |\mu| \|(A+i\mu)y\|^2 = \|y\|^2\\
+		\Rightarrow& \|A(A+i\mu)^{-1} \|\leq 1,~ \|A+i\mu\|^{-1}\leq \frac{1}{|\mu|}
+	\end{align*}
+	
+	Setze $x=(i\mu + A)^{-1}y$ in (2.2).
+	\begin{align*}
+		\|B(A + i\mu)^{-1}y\| &\leq \|A(A+i\mu)^{-1}y\| + \frac{b}{|\mu|}\|\mu (A+i\mu)^{-1}y\|\\
+		&\leq a \|y\| + \frac{b}{|\mu|}\|y\|\leq (a+\frac{b}{|\mu|})\|y\|
+	\end{align*}
+	wobei $(a+\frac{b}{|\mu|})<1$ für $\mu$ groß genug. Also $\|B(A+i\mu)^{-1}\|<1$ für $\mu$ groß genug. Nach 8.1: $i\mu\in \rho(A+B)$ für $|\mu|$ groß genug. $A,B$ symmetrisch $\Rightarrow$ $A+B$ symmetrisch auf $D(A+B)= D(A)$. Also ist $A+B$ selbstadjungiert.
+	\qed
+	
+	\begin{Beispiel}
+		Sei $V = V_1+V_2$ mit $V_1\in L^2(\R^3)$, $V_2\in L^{\infty}(\R^3)$, $V$ reelwertig. Dann ist der \textbf{Schrödingeroperator} 
+		\begin{align*}
+			A = \laplace + V,~ Ax(u) = \laplace_x u(x) + V(x) u(x)
+		\end{align*}
+		mit Potential $V$ selbstadjungiert.
+	\end{Beispiel}
+	
+	\begin{Lemma}
+		 Sei $x\in L^2(\R^3)$ und $x\in D(A)=W^{2,2}(\R^3)$. Dann gibt es zu jedem $a>0$ ein $b<\infty$, sodass
+		 \begin{align*}
+		 	\|x\|_{L^\infty}\leq a\|\laplace x\|_{L^2} + b\|x\|_{L^2}.
+		 \end{align*}
+	\end{Lemma}
+	
+	\Bew Sei $x\in S(\R^3)$.
+	\begin{align*}
+		\|\hat x \|_{L^1(\R^3)}&\leq \left(\int |(1+|u|^2)\hat x(u)|^2du \right)^{1/2}\left(\int \left(\frac{1}{1+|u|^2} \right)^2du \right)^{1/2}\\
+		&\leq C(\| |u|^2\hat x(u)\|_{L^2}+\|\hat x\|_{L^2})
+	\end{align*}
+	Für $r> 0$ setze $x_r(u) = x(u/r)$, $\F(x)(u) = r^3 \hat x (ru)$.
+	\begin{align*}
+		\|\F(x_r)\|_{L^1} &= \|\hat x\|_{L^1},\\
+		\|\F(x_r)\|_{L^2} &= r^{3/2}\|\hat x\|_{L^2},\\
+		\||u^2| \F(x_r)(u)\|_{L^2}&= r^{-1/2}\||u|^2\hat x(u)\|_{L^2},\\
+		\|\hat x\|_{L^1} &= \|\F(x_r)\|_{L^1} \text{ mit 1. Ungleichung}\\
+		&\leq C(\| |u|^2 \F(x_r)(u) \|_{L^2} + \|\F x_r\|_{L^2})\\
+		&\leq C(r^{-1/2}\| |u|^2 \hat x (u)\|_{L^2} + r^3 \|\hat x\|_{L^2}).	
+	\end{align*}
+	Mit dem Riemannschem Lemma und der Plancherelidentität folgt
+	\begin{align*}
+		\|x\|_{L^\infty} \leq \|\hat x\|_{L^1}\leq C(r^{1/2}\|\laplace x\|_{L^2} + r^3\|x\|_{L^2}),
+	\end{align*}
+	da $\F^{-1}(\laplace x)(u) = -|u|^2x(u)$. Für $r$ genügend groß gilt dann $a = C r^{-1/2}$, $b = Cr^3$ und die Behauptung folgt.
+	\qed
+	
+	\emph{Beweis des Beispiels:} Wähle $Bx(n) = V(h)x(n)$ in 8.3. Für $x\in D(\laplace)$
+	\begin{align*}
+		\|V x\|_{L^2}\leq \|V_1\|_{L^2}\|x\|_{\infty} + \|V_2\|_{L^\infty}\|x\|_{L^2}.
+	\end{align*}
+	Nach 8.4 gilt
+	\begin{align*}
+		\|Vx\|_{L^2} &\leq \|V_1\|_{L^2}(a\|\laplace x\|_{L^2} + b\|x\|_{L^2}) + \|V_2\|_{L^\infty} \|x\|_{L^\infty}\\
+		&= a\|V_1\|_{L^2} \|\laplace x\|_{L^2} + (b\|V_1\|_{L^2} + \|V_2\|_{L^\infty}) \|x\|_{L^2}.
+	\end{align*}
+	Für $a\|V_1\|_{L^2}<1$ ist die Voraussetzung von 8.4 erfüllt und $\laplace+V$ ist selbstadjungiert.
+	
+	\subsection*{Grenzen der selbstadjungierten Theorie}
+	
+	\begin{itemize}
+		\item Sei $H$ ein Hilbertraum, $A=\laplace$, $B = \sum_{j = 1}^{d}b_j \partial_{x_j}$. $A+B$ ist selbstadjungiert, wenn $b_j=b_j(u)$, $u\in \R^d$, denn $A+B$ ist nicht normal.
+		\item $H = L^2(\R^d)$, $Ax(u) = a(u)\laplace x(u)$. Dieses $A$ ist nicht normal, denn 
+		$$\langle Ax, y\rangle = \sum_{j = 1}^{d}\int_{\R^d} a(u)\partial_j^2 xa(u) \overline{y(u)}du = \sum_{j =1}^{d} \int x(u)\left(\frac{\partial^2}{\partial x_j} a(u) \overline{y(u)}\right)du$$
+		\item $X= L^p(\R^d)$, $A=\laplace$ Keine Theorie selbstadjungierter Operatoren. $p \in [1,2)$, $p\neq p'$: $\F\colon L^p(\R^d)\rightarrow L^p(\R^d)$.
+	\end{itemize}
+	
+	\begin{Definition}
+		Sei $X\supset D(A)\overset{A}{\rightarrow} X$ abgeschlossener Operator, $X$ ein Banachraum. 
+		\begin{itemize}
+			\item $A$ sei injektiv und $\Bild(A)$ sei dicht in $X$.
+			\item $\sigma(A)\subset \Sigma_\om$, $\Sigma_{\om} = \{\lambda\in \C\colon |\arg\lambda|<\om \}$.
+			\item $\exists C$: $\|R(\lambda, A)\|\leq C/|\lambda|$, falls $\lambda\notin \overline{\Sigma_\om}$ $(+)$.
+		\end{itemize}
+		Dann heißt $A$ ein sektorieller Operator mit Winkel $\om$. Notation: $\om(A) = \inf \rho$, für die Bedingung $(+)$ erfüllt ist.
+	\end{Definition}
+	
+	\begin{Beispiel}
+		~
+		\begin{enumerate}[a)]
+			\item $A$ sei selbstadjungierter Operator, $A\geq 0$. Dann ist $\sigma(A)\subset \R_+$. $\|R(\lambda, A)\| = \frac{1}{|Im\lambda|}$, $Im\lambda=0$, also $\om(A) = 0$.
+			\item Sei $iA$ selbstadjungiert. Dann ist $\sigma(A)\subset i\R$. Dann ist $\om=\pi/2$.
+			\item Sei $A$ normal. $\sigma(A) \subset \Sigma_\omega$. Sann ist $A$ sektoriell mit Winkel $\om$. $\om(A) =$ der kleinste Sektor, der $\sigma(A)$ enthält.
+			\item $A$ beschränkt und $\sigma(A)\subset \Sigma_\om$, $0\notin \sigma(A)$. Dann ist $A$ sektoriell und $\om(A) \leq \varphi$. Zum Beweis mit $(\lambda + A)^{-1} = \sum_{n = 0}^{\infty}\lambda^{-n-1}A^n$. 
+		    \item $X = L^p(\R^d)$, $A = \laplace$ sektoriell (später).
+		    \item Der nächste Störungssatz gibt viele sektorielle Operatoren an.
+		\end{enumerate}
+	\end{Beispiel}
+	
+	\paragraph{Notation.} $A$ sei sektoriell vom Winkel $\varphi$. 
+	\begin{align*}
+		M_\varphi(A) = \sup \{\|\lambda R(\lambda, A)\|, \|A R(\lambda, A)\|: \lambda \notin \Sigma_\om\} <\infty\\
+		AR(\lambda, A) = \lambda R(\lambda, A)-\id.
+	\end{align*}
+	
+	\begin{Satz}
+		Sei $A$ ein sektorieller Operator mit Winkel $\varphi$ und $B$ sei Linear, $D(B)\supset D(A)$. Sei $a>0$ mit $a\m M_\varphi(A)<1$.
+		\begin{enumerate}[a)]
+			\item Falls $\|Bx\|\leq a\|Ax\|$ $(++)$ für $x\in D(A)$, dann ist $A+B$ auf sektoriell und $\om(A+B)\leq \varphi$.
+			\item Falls $\|Bx\|\leq a\|Ax\| +b\|x\|$ für $x\in D(A)$, dann gibt es ein $\mu_0>0$, sodass $A+B+\mu_0$ sektoriell und $\om(A+B+\mu_0)\leq \varphi$.
+		\end{enumerate}
+	\end{Satz}
+	
+	\Bew a) Zeige $\|B R(\lambda, A)\|<1$.
+	\begin{align*}
+		\|(A+B)x\|&\leq (1+a)\|Ax\| \text{ nach } (++)\\
+		\|(A+B)x\|&\geq \|Ax\|-\|Bx\| \geq (1-a)\|Ax\|, ~ a<1
+	\end{align*}
+	$A$ injektiv $\Rightarrow$ $(A+B)$ injektiv. $Tx = B A^{-1}x$, $x\in \Bild(A^{-1})$. Aus $(++)$ folgt für $x=A^{-1}y$
+	$$\|Ty\|\leq a\|y\|.$$
+	Also kann $T\in B(X)$ fortgesetzt werden, $\|T\|\leq a<1$. $I+T\in B(X)$ ist Isomorphismus. $\Bild(A+B) = (I+T)(\Bild(A))$, $\Bild(A+B)$ ist dicht. $Tx = B^{-1}x$, $x\in \Bild(A)$, $\|T\|_{B(X)}\leq a$. Zu zeigen: $\|BR(\lambda,A)\| <1$, $|\arg\lambda|>\varphi$. 
+	\begin{align*}
+		\|BR(\lambda,A) &\leq \|(BA^{-1})AR(\lambda, A)x\|\\
+		&\leq \|T\| \m\|AR(\lambda, A)\|\\
+		&\leq a M_\varphi(A) <1
+	\end{align*}
+	Nach Lemma 8.1
+	\begin{align*}
+		\lambda R(\lambda, A) &= \lambda R(\lambda, A) \left(\sum_{k = 0}^{\infty} [BA^{-1}A R(\lambda, A)]^k \right)\\
+		\|\lambda R(\lambda, A+B)\|&\leq \|\lambda R(\lambda, A)\| + \|\lambda R(\lambda, A)\| \sum_{k = 1}^{\infty} \|T\|^k\|AR(\lambda,A)\|^k\\
+		&\leq M_\varphi(A) + (1- a M_\varphi(A))^{-1},
+	\end{align*}
+	also $\om(A+B)\leq \om(A)$.
+	b) $|\arg(\mu)|>\varphi$, $x\in D(A)$ 
+	\begin{align*}
+		\|BR(\mu,A)x\| &\leq a\|AR(\mu, A)x\| + \frac{b}{|\mu|} \|\mu R(\mu, A)x\|\\
+		&\leq \left[a M_\varphi(A) + \frac{b}{|\mu|}M_\varphi(A)\right] \|x\|<\|x\|
+	\end{align*}
+	für $|\mu|$ groß genug. Dazu wähle $\mu_0>0$, sodass für $\mu= \lambda-\mu_0$ mit $\arg(\lambda)\geq \varphi$ gilt:
+	$$\left(a+\frac{b}{|\mu|} \right)M_\varphi(A)<1.$$
+	Also folgt aus Lemma 8.1 
+	$$\|\lambda R(\lambda,\mu_0+A+B)\| \leq M_\varphi(A) + \frac{1}{1-c}.$$
+	Somit $A+B+\mu_0$ sektoriell 
+	\qed
+	
+	\paragraph{Erinnerung:}
+	Sei $A$ linear und injektiv auf einem Banachraum $X$. $A$ heißt \textbf{sektoriell}, falls $D(A)$ und $\Bild(A)$ dicht sind in $X$. $\sigma(A)\subset \Sigma_\om$.
+	$$M_\om (A) = \sup\{\|\lambda R(\lambda, A)\|\colon \lambda \notin\Sigma_\om \} < \infty.$$
 	
 	
+	\begin{Beispiel}
+		Sei $b_1,...,b_d\in L^\infty(\R^d)$, $B\colon f\rightarrow \sum_{j = 1}^{d} b_j(x)\frac{\partial}{\partial x_j} f$, $X = L^2(\R^d)$, $A = -\laplace$, $D(A) = W^{2,2}(\R^d)$, $D(B) \supset D(A)$. A ist selbstadjungiert, $B$, $A+B$ \textbf{nicht} normal, aber $A+B$ ist sektoriell nach 8.8 b), da $\|Bx\|< a\| Ax\| + b\|x\|$ (Übung).
+	\end{Beispiel}
+	
+	\newpage
+	
+	\chapter{Der holomorphe Funktionalkalkül}
+	
+	\section{Dunfordkalkül für beschränkte Operatoren}
+	
+	Klar: $p(\lambda) = \sum_{j = 0}^{n}a_n \lambda^n$, $p(A) = \sum_{j = 0}^{n} a_n A^n$ für $A\in B(X)$. \\
+	Nächster Schritt: $f(\lambda) = \sum_{n = 0}^{\infty} a_n \lambda^n$ mit Konvergenzradius $R$. Sei $A\in B(X)$, $X$ Banachraum, mit $r(A) = \sup_{\lambda\in \sigma(A)}|\lambda|< R$. Dann $\limsup \|a_n A^n\|^{1/n}\leq c< 1$, denn $r(A) = \lim\|A^n\|^{1/n}$, $\|a_n A^n\|<c^n$, $c<1$ $\Rightarrow$ 
+	$$\boxed{f(A) = \sum_{n = 0}^{\infty}a_nA^n.}$$
+	z.B.
+	\begin{align*}
+		e^\lambda &= \sum_{n = 0}^{\infty} \frac{1}{n!}\lambda^n,~ R = \infty,~ A\in B(X)\\
+		e^A &= \sum_{n = 0}^{\infty} \frac{1}{n!} A^n
+	\end{align*}
+	
+	\paragraph{Ziel:} 
+	$$f(\lambda) = \frac{1}{2\pi i}\int_\Gamma \frac{1}{\mu-\lambda} f(\mu) d\mu.$$
+	Für $\lambda= A$ erhält man Formal $\Gamma\subset \rho(A)$:
+	$$f(A) = \frac{1}{2\pi i}\int_{\Gamma} R(\mu,A) f(\mu)d\mu.$$
+	
+	\begin{Lemma}
+		Sei $A\in B(X)$ und $f\colon \{\lambda\colon |\lambda|<R \}\rightarrow \C$ analytisch und $r(A)<R'<R$.
+		\begin{align*}
+			\sum_{n = 0}^{\infty} a_n A^n = f(A) = \frac{1}{2\pi i}\int_{|\mu|= R'} f(\mu) R(\mu,A) d\mu.
+		\end{align*}
+	\end{Lemma}
+	
+	\Bew Für $|\mu| = R'$, $|\mu|> r(A)$ gilt 
+	\begin{align*}
+		R(\mu, A) &= \sum_{m = 0}^{\infty} \mu^{-m-1}A^m\\
+		\frac{1}{2\pi i} \int_{|\mu| =R'} f(\mu) R(\mu, A) d\mu &= \frac{1}{2\pi i} \int_{|\mu| = R'} \left(\sum_{n = 0}^{\infty}a_n \mu^n \right) \left(\sum_{m = 0}^{\infty} \mu^{-m-1} A^m \right)d\mu\\
+		&= \frac{1}{2\pi i}\sum_{n,m = 0}^{\infty} a_n A^m \left(\int_{|\mu|= R'} \mu^{n-m-1} d\mu \right)
+	\end{align*}
+	\qed
+	
+	\begin{Bemerkung}[Dunford Integrale]
+		Gegeben: $\sigma(A)$. Wähle offene Mengen $U,V\in \C$ mit 
+		$$U\supset \bar V\supset V\supset \sigma(A).$$
+		$U\supset \partial V$, $\partial V\cap \sigma(A) =\emptyset$, $f\colon U\rightarrow \C$ analytisch. $\partial V$ besteht aus endlich vielen glatten Kurven, die positiv orientiert sind, d.h. $\sigma(A)$ liegt innerhalb von $\partial V$, $\C\backslash U$ ist außerhalb. Dann existiert das Dunford Integral $f(A) = \frac{1}{2\pi i}\int_{\partial V} f(\mu) R(\mu, A)d\mu$. Nach dem Satz von Cauchy hängt $f(A)$ nicht von der speziellen Wahl von $V$ ab, da 
+		\begin{align*}
+			(x',f(A)x) = \frac{1}{2\pi i}\int_{\partial V} f(\mu)(x', R(\lambda, A)x)d\mu
+		\end{align*}
+		für alle $x\in X$, $x'\in X'$ und damit auch für $A$.
+	\end{Bemerkung}
+	
+	Standardvoraussetzungen: $\sigma(A)\subset V\subset \bar V\subset U$, $U,V$ offen.
+	\begin{itemize}
+		\item $\partial V$ besteht aus endlich vielen glatten Kurven. 
+		\item $\partial V$ ist positiv orientiert.
+	\end{itemize}
+	
+	\paragraph{Notation.} $U$ offen, $H(U) =$ holomorphen Funktionen. $S\subset \C$ abgeschlossen, $f\in H(S)$ $\Leftrightarrow$ Es gibt eine offene Umgebung $U\supset S$ und $f\colon U\rightarrow \C$ holomorph.
+	
+	$H^\infty(U)$ - beschränkte, analytische Funktionen auf $U$ mit $\|f\|_\infty = \sup_{\lambda\in U} |f(\lambda)|$, $X$ Banachraum
+	
+	\begin{Definition}
+		Zu $A\in B(X)$ und $\sigma(A)\subset V\subset U$ wie in 1.2 definiere das \textbf{Dunford Integral} für $f\in H(U)$ durch
+		$$\Phi_A(f)=\frac{1}{2\pi i}\int_{\partial V} f(\lambda) R(\lambda, A) d\lambda.$$
+	\end{Definition}
 	
 	
+	\begin{Satz}
+		$\Phi_A\colon H(U) \rightarrow B(X)$ hat die Eigenschaften:
+		\begin{enumerate}[(i)]
+			\item $\Phi(1) = \id_X$, für $f(\lambda) = \lambda$ gilt $f(A) = A$.
+			\item $\Phi$ ist linear und multiplikativ.
+			\item $\|\Phi_A(f)\|\leq C_A \sup_{\lambda\in V} f(\lambda)$.
+			\item Falls $f_n, f\in H(U)$ und $f_n\rightarrow f$ gleichmäßig auf $\bar V$, dann $\Phi(f_n) \rightarrow \Phi(f)$ in $B(X)$. $\Phi_A$ heißt der \textbf{Dunfordsche Funktionalkalkül}.
+		\end{enumerate}
+	\end{Satz}
+
+	\paragraph{Notation:} $\Phi_A(f) =: f(A)$.
+	
+	\Bew (i) Wende 1.1 auf $f(\lambda) = 1$ an und $f(\lambda) = \lambda$.\\
+	(ii) Linearität klar, $f,g\in H(U)$. 
+	\begin{align*}
+		f(A) \m g(A) &= \left(\frac{1}{2\pi i} \int_{\partial V} f(\mu) R(\mu, A) d\mu\right) \left(\frac{1}{2\pi i} \int_{\partial W} g(\lambda) R(\lambda, A) d\lambda \right) \\
+		&= \left(\frac{1}{2\pi i}\right)^2 \int_{\partial V}\int_{\partial W} f(\mu) g(\lambda) R(\mu, A) R(\lambda, A) d\lambda d\mu\\
+		&= \left(\frac{1}{2\pi i}\right)^2 \int_{\partial V} \int_{\partial W} \frac{f(\mu)g(\lambda)}{\lambda-\mu} [R(\mu, A)-R(\lambda, A)]d\lambda d\mu \text{ nach Resolventenformel}\\
+		&= \frac{1}{2\pi i} \int_{\partial W} g(\lambda) \left(\frac{1}{2\pi i} \int_{\partial V} \frac{f(\mu)}{\mu-\lambda}d\mu \right) R(\lambda, A) d\lambda \\
+		&+ \frac{1}{2\pi i} \int_{\partial V} f(\mu) \left(\frac{1}{2\pi i} \int_{\partial W} \frac{g(\lambda)}{\lambda-\mu} d\lambda \right) R(\mu, A) d\mu\\
+		&= \frac{1}{2\pi i} \int_{\partial W} g(\lambda) \boxed{f(\lambda)} R(\lambda, A) d\lambda \\
+		&= \frac{1}{2\pi i}\int_{\partial W} (gf)(\lambda) R(\lambda, A) d\lambda= g(A) f(A)
+	\end{align*}
+	Dabei sind $V,W$ offen mit $U\supset V\supset \bar W\supset W \supset \sigma(A)$.\\
+	(iii) 
+	\begin{align*}
+		\|f(A)\| &\leq \frac{1}{2\pi} \int_{\partial V} |f(\lambda)| \|R(\lambda, A)\| d|lambda|\\
+		&\leq \frac{1}{2\pi} l(\partial V) \sup_{\lambda\in \partial V} |f(\lambda)| \sup_{\lambda\in\partial V} \|R(\lambda, A)\|\\
+		&\leq C\sup_{\lambda\in \bar V} |f(\lambda)|	
+	\end{align*}
+	(iv) $\|f_n(A) - f(A)\|\leq C\sup_{\lambda\in \partial V} |f_n(\lambda)-f(\lambda)| \rightarrow 0$ für $n\rightarrow\infty$.
+	
+	\begin{Korollar}
+		Für $A \in B(X)$ und $f\in H(\sigma(A))$ gilt
+		\begin{align*}
+			\sigma(f(A)) = f(\sigma(A))
+		\end{align*}
+		\textbf{Spektralabbildungssatz}.
+	\end{Korollar}
+	
+	\Bew \glqq $\subseteq$\grqq: Sei $\lambda \notin f(\sigma(A))$. Dann gilt $g(\mu) = (f(\mu)-\lambda)^{-1}\in H(\sigma(A))$ (denn es gibt ein offenes $U\supset \sigma(A)$ mit $\lambda \notin f(U)$).
+	\begin{align*}
+		g(A)(f(A)-\lambda) &= \Phi_A(g(\m) (f(\m)-\lambda)) = \Phi(1) = \id_X
+	\end{align*}
+	Ebenso $(f(A)-\lambda) g(A) = \id_X$. Also ist $g(A) = (f(A)-\lambda)^{-1}$, d.h. $\lambda \notin \sigma(f(A))$.\\
+	\glqq $\supseteq$\grqq: Sei $\lambda \in \sigma(A)$. Definiere $g\in H(\sigma(A))$.
+	$$g(\mu) = \left\{\begin{array}{l}
+	\frac{f(\mu)-f(\lambda)}{\mu-\lambda},~ \mu\neq\lambda\\
+	f(\lambda),~ \mu = \lambda
+	\end{array} \right.$$
+	Dann
+	\begin{align*}
+		f(A) - f(\lambda) =\Phi_A((f(\m)-f(\lambda)) = \Phi_A((\m-\lambda)g(\m)) = (A-\lambda)g(A) = g(A)(A-\lambda)
+	\end{align*}
+	$\lambda\in \sigma(A)$ $\Rightarrow$ $A-\lambda$ nicht invertierbar $\Rightarrow$ $f(A)-f(\lambda)$ nicht invertierbar, d.h. $f(\lambda)\in \sigma(f(A))$.
+	\qed
+	
+	\begin{Satz}[Spektralprojektion]
+		Sei $\sigma(A)= \sigma_1\overset{\m}{\cup} \sigma_2$ mit $\sigma_1,\sigma_2$ kompakt. Dann gibt es Projektionen $P_1,P_2\in  B(X)$ mit 
+		\begin{enumerate}
+			\item $\id= P_1+P_2$, $P_1\m P_2 = P_2\m P_1 = 0$.
+			\item $X = X_1\oplus X_2$ mit $X_j = \Bild P_j$.
+			\item $A(X_j) \subset X_j$, $j = 1,2$.
+			\item Für $A_j = A|_{X_j}$ gilt $\sigma(A_j) = \sigma_j$, $j =1,2$.
+		\end{enumerate}
+	\end{Satz}
+	
+	\paragraph{Bemerkung.} $A$ kompakt $\sigma(A) = \{0, \lambda_j, j\in J\}$, $H_j\rightarrow 0$. 
+	
+	\Bew 1. Wähle offene Mengen $U_1,U_2$ mit $\sigma_j\subset U_j$, $U_1\cap U_2 = \emptyset$. Setze 
+	$$f_j(\lambda) =\left\{ \begin{array}{l}
+	1,~ \lambda \in U_j\\0, \text{ sonst}
+	\end{array} \right. .$$
+	Dann ist $f_j\in H(\sigma(A))$, $f_j^2 = f_j$, $f_1 + f_2 = 1_{\chi_{U_1\cup U_2}}$. Mit Dunford Kalkül folgt für $P_j = f_j(A)$:
+	$$P_j^2 = P_j, P_1+P_2 = \id_X, P_1\m P_2 = 0.$$ 
+	2. $X_j = \Bild P_j$
+	Dann ist $X_1\subset \Kern P_2$, $X_2\subset \Kern P_1$, $X_1+X_2 = X$ $\Rightarrow$ $X=X_1\oplus X_2$, $X_1,X_2$ abgeschlossene Unterräume.\\
+	3. $x\in X_j$: $Ax = A(P_jx) = (P_j)(Ax)$ $\Rightarrow$ $Ax\in X_j$.\\
+	4. $A_j = A|_{X_j}$, $A_j = g_j(A)$, $g_j(\lambda) = \lambda f_j(\lambda)$. Mit Spektralabbildungssatz folgt $\sigma(A_j) = g_j(\sigma(A)) = \sigma_j$.
+	\qed
+	
+	\begin{Satz}
+		Seien $A,B\in B(X)$, $AB = BA$. Dann $f(A)B = Bf(A)$ für alle $f\in H(\sigma(A))$.
+	\end{Satz}
+	
+	\Bew 
+	\begin{align*}
+		f(A)B &= \left(\frac{1}{2\pi i} \int_{\partial V} R(\lambda, A) d\lambda \right) B\\
+		&= \frac{1}{2\pi i} \int_{\partial V} f(\lambda) R(\lambda, A)B d\lambda\\
+		&= \frac{1}{2\pi i} \int_{\partial V} f(\lambda) BR(\lambda, A) d\lambda \\
+		&= B\left(\frac{1}{2\pi i} \int_{\partial V} f(\lambda) R(\lambda, A) d\lambda \right)
+	\end{align*}
+	
+	\begin{Satz}
+		Sei $A\in B(X)$, $f\in H(\sigma(A))$, $g\in H(\sigma(f(A)))$. Dann ist $g\circ f\in H(\sigma(A))$ und 
+		$$(g\circ f) (A)  = g(f(A)).$$
+	\end{Satz}
+	
+	\Bew Nach 1.5: $\sigma(f(A)) = f(\sigma(A))$. Wähle Umgebung $V\supset \sigma(f(A))$ und $U\supset \sigma(A)$ mit $U,V$ offen, $\overline{f(U)}\subset V$. Zunächst sei $\lambda\in \partial V$. 
+	$$R(\lambda, f(A)) = \frac{1}{2\pi i} \int_{\partial U} \frac{1}{\lambda - f(\mu)} R(\mu, A) d\mu.$$
+	\begin{align*}
+		g(f(A)) &= \frac{1}{2\pi i} \int_{\partial V} g(\lambda) R(\lambda, f(A)) d\lambda\\
+		&= \frac{1}{2\pi i} \int_{\partial V} g(\lambda)\left( \frac{1}{2\pi i} \int_{\partial U} \frac{1}{\lambda - f(\mu)} R(\mu,A) d\mu \right)d\lambda\\
+		&= \frac{1}{2\pi i} \int_{\partial U} \left(\frac{1}{2\pi i} \int_{\partial V} \frac{g(\lambda)}{\lambda - f(\mu)} d\lambda \right) R(\mu, A) d\mu\\
+		&=(g\circ f)(A)
+	\end{align*}
 	
 	
+	\begin{Prop}[Dualität]
+		Sei $A\in B(X)$, $U\supset \sigma(A)$ offen. Für $f\in H(U)$ analytisch gilt:
+		\begin{enumerate}[a)]
+			\item $f(A)' = f(A')$.
+			\item Falls $X$ Hilbertraum mit $\langle \m,\m\rangle$, dann ist $f(A)^* = \tilde f(A^*)$ mit $\tilde f(\lambda) = \overline{f(\bar \lambda)}$ (z.B. $f(\lambda) = \sum a_n\lambda^n$ $\rightsquigarrow$ $\tilde f(\lambda) = \sum \bar a_n \lambda^n$), $\tilde f$ wieder analytisch, $\tilde f\in H(U)$.
+		\end{enumerate}
+	\end{Prop}
+	
+	\Bew b) 
+	\begin{align*}
+		\langle f(A)x, y\rangle &= \langle \frac{1}{1\pi i}\int_{\partial U} f(\lambda) R(\lambda, A) x d\lambda, y\rangle \\
+		&= \frac{1}{2\pi i} \int_{\partial U} f(\lambda) \langle R(\lambda, A)x, y\rangle d\lambda\\
+		&= \frac{1}{2\pi i}\int_{\partial U} f(\lambda)\langle x, R(\lambda,A)^*y\rangle d\lambda\\
+		&= \overline{\langle x, \left(\frac{1}{2\pi i} \right)} \int_{\partial U} \overline{f(\lambda)} R(\bar \lambda, A^*) yd\lambda, y\rangle\\
+		&= \langle x, \frac{1}{2\pi i} \int_{\partial U} \overline{f(\bar{\lambda})} R(\lambda, A^*) yd\lambda\rangle \\
+		&= \langle x, \tilde f(A)y\rangle 
+	\end{align*}
+	\qed
+	
+	\begin{Definition}[Fréchet Ableitung]
+		$t\in (a,b)\rightarrow f(t)\in X$, $X$ Banachraum. 
+		\begin{align*}
+			(+)~~f'(t_0) = \lim\limits_{t\rightarrow t_0} \frac{f(t) - f(t_0)}{t-t_0},~ t_0\in (a,b)
+		\end{align*}
+		$f$ ist \textbf{Fréchet differenzierbar} in $t_0$, falls $(+)$ existiert.
+	\end{Definition}
+	
+	\begin{Prop}
+		Sei $A\in B(X), U\supset \sigma(A)$ offen. Gegeben sei $t\in (a,b)\rightarrow f_t\in H^\infty(U)$.
+		\begin{enumerate}[a)]
+			\item Falls $t\in (a,b)\rightarrow f_t\in H(U)$ Fréchet differenzierbar ist, dann ist auch 
+			$$t\in (a,b)\rightarrow f_t(A)\in B(X)$$
+			Fréchet differenzierbar.
+			\item Sei $t\in (a,b) \rightarrow f_t\in H^\infty(U)$ integrierbar und 
+			$$g= \int_{a}^{b}f_t dt\in H^\infty(U),$$
+			dann ist auch 
+			$$t\in (a,b)\rightarrow f_t(A)\in B(X)$$
+			integrierbar und 
+			$$\int_{a}^{b} f_t(A) dt = g(A)$$
+			(integrierbar: $f_t$ ist stetiges Riemannintegral oder Bochner Integral).
+		\end{enumerate}
+	\end{Prop}
+	
+	\Bew Übung.
+	\qed
+	
+	\section{Halbgruppen mit beschränkten Erzeugern}
+	
+	Sei $A\in B(X)$. Wie versteht man \glqq $e^{tA}$\grqq?
+	\begin{enumerate}
+		\item Halbgruppen: Setze $e_z(\mu) = e^{z\mu}$. Definiere $e^{zA} = e_z(A)$, $e_z\in H(\C)$ für $z\in \C$. Nach Lemma 1.1: 
+		$$e^{zA} = \sum_{n = 0}^{\infty} \frac{1}{n!} z^n A^n).$$
+		Eigenschaften: $e_{z_1}(\mu) e_{z_2}(\mu) = e_{z_1+z_2}(\mu)$ $\Rightarrow$ $e^{z_1} e^{z_2 A} = e^{(z_1+z_2) A}$ (Halbgruppeneigenschaft).
+		$e_z(\mu)\rightarrow 1$ für $z\rightarrow 0$ gleichmäßig auf kompaktem $\sigma(A)\subset \C$ $\Rightarrow$ $e^{zA}\rightarrow \id_X$ in $B(X)$ für $z\rightarrow 0$ ($C_0$-Stetigkeit der Halbgruppe).
+		\item Halbgruppe und Resolvente: $r_\lambda(\mu):=\frac{1}{\lambda-\mu}$, $\lambda \notin \sigma(A)$, $r_\lambda\in H(\sigma(A))$. 
+		$$R(\lambda,A) = r_\lambda(A) = (\lambda - A)^{-1},~ \lambda\notin\sigma(A).$$
+		Resolventengleichung:
+		\begin{align*}
+			(\lambda_1-\mu)^{-1} - (\lambda_2-\mu)^{-1} &= (\lambda_2-\lambda_1) (\lambda_1-\mu)^{-1} (\lambda_2-\mu)^{-1}\\
+			\Rightarrow (\lambda_1-A)^{-1} - (\lambda_2-A)^{-1} &= (\lambda_2-\lambda_1) (\lambda_1-A)^{-1} (\lambda_2-A)^{-1}
+		\end{align*}
+		\begin{align*}
+			(\lambda-\mu)^{-1} &= \int_{0}^{\infty} e^{-\lambda t} e^{t\mu} dt\\
+			\Rightarrow R(\lambda, A) &= \int_{0}^{\infty} e^{-\lambda t} e^{tA} dt
+		\end{align*}
+		(die Resolvente ist die Laplacetransformierte der Halbgruppe). Umgekehrt:
+		\begin{align*}
+			e^{tA} = \frac{1}{2\pi i}\int_{\partial U}e^{t\lambda} R(\lambda, A)d\lambda
+		\end{align*}
+		Widder-Umkehrformel.
+		\begin{align*}
+			\left(\frac{n}{t} \right)^n \left(\frac{n}{t}-\mu \right)^{-n} &= \left(1-\frac{t\mu}{n} \right)^{-n} \overset{n\rightarrow \infty }{\longrightarrow} e^{t\mu}\\
+			\Rightarrow \left(\frac{n}{t} \right)^n R\left(\frac{n}{t}, A\right) &\overset{n\rightarrow\infty}{\longrightarrow} e^{tA}\text{ in } B(X),~ t>0
+		\end{align*}
+		\item Das Cauchy Problem: Gegeben sei $A\in B(X)$, $y_0\in X$. Gesucht ist $y\colon \R_+\rightarrow X$ mit 
+		$$(+) ~y'(t) = Ay(t) \text{ für } t\geq 0,~ y(0) = y_0.$$
+		Beispiel $x = \C^n$, $y_k'(t) = \sum_{k = 1}^{n} a_{kj}y_k(t)$, $y_k(0) = y_k$, $k = 1,...,n$. Damit ist $A = (a_{kj}) \in B(\C^n)$, $y_0=\left(\begin{matrix}
+		y_0\\
+		y_1
+		\end{matrix} \right)$. Lösung von $(+)$: $\frac{d}{dt}e^{t\mu} = \mu e^{t\mu}$. Nach 1.11 gilt 
+		$$T(t) = e^{tA}, ~ \frac{d}{dt}T(t) = AT(t).$$
+		Setze $y(t) = T(t)y_0$. Dann ist $y'(t) = Ay(t)$. $y(0) = T(0) y_0 = y_0$ und $y$ löst $(+)$.\\
+		\item Stabilität: Im Falle des obigen Beispiel ist bekannt: Ist
+		$$s(A) = \sup \{Re(\lambda)\colon \lambda \in \sigma(A) \}<0$$
+		dann gilt für die Lösung $y(t)$ von $(+)$ $\|y(t)\|\rightarrow 0$ für $t\rightarrow \infty$ (exponentiell).
+	\end{enumerate}
+	
+	\begin{Prop}
+		$A\in B(X)$, $s(A)<0$. Dann gibt es ein $\delta>0$, sodass $\|e^{tA}\|\leq Ce{-\delta t}$ für $t\geq 0$, $C<\infty$.
+	\end{Prop}
+	
+	\Bew Mit Spektralabbildungssatz gilt $\sigma(e^{TA}) = \{e^{T\lambda}\colon \lambda \in \sigma(A) \}$.
+	\begin{align*}
+		r(e^{TA}) = \sup \{|e^{T(Re\lambda + iIm \lambda)}|\colon \lambda \in \sigma(A) \} = e^{Ts(A)}
+	\end{align*}
+	\begin{align*}
+		\lim\limits_{n\rightarrow \infty} \|e{nTA}\|^{1/n} &= \lim\limits_{n\rightarrow\infty} \|(e^{TA})^n\|^{1/n} = r(e^{TA})
+		= e^{Ts(A)}
+	\end{align*}
+	Wähle $\delta>$, sodass $s(A)<-\delta<0$ und $n$ mit $\| e^{nTA}\|\leq e^{-Tn\delta}$. Für beliebiges $t>0$ schreibe $t = nT + u$ mit $u\in [0,T]$ $\Rightarrow$ $\|e^{tA}\| \leq \|e^{ntA}\|\m \|e^{uA}\|\leq \sup\{\|e^{uA}\|\colon  \}$.
+	
+	\paragraph{5. Gebrochene Potenzen von Operatoren}
+	
+	Sei $A\in B(X)$, $(-\infty,0] \subset \rho(A)$. Sei $\mu_\alpha = \mu^\alpha$ analytisch auf $\C\backslash\R_-$, $\alpha\in (0,1)$. Definiere $A^\alpha:= \mu_\alpha(A)$.
+	\begin{align*}
+		\mu^{-\alpha} = \frac{1}{2\pi i}\int_{\partial \Sigma_\sigma} z^{-\alpha} (z-\mu)^{-1}dz, ~ Re\mu> 0
+	\end{align*}
+	Für $\sigma\rightarrow \pi$:
+	\begin{align*}
+		\mu^{-\alpha} = \frac{\sin(\pi a)}{\pi} \int_{0}^{\infty} t^{-\alpha} (t+\mu)^{-1}dt
+	\end{align*}
+	Für $(1-\alpha)$ statt $\alpha$, $0<1-\alpha < 1$. 
+	$$(2)~ \mu^{\alpha} = \frac{\sin(\pi\alpha)}{\pi} \int_{0}^{\infty} t^{\alpha-1} \mu(t+\mu)^{-1}dt$$
+	Für $\mu = A$.
+	\begin{align*}
+		(1)~A^{-\alpha} &= \frac{\sin(\pi\alpha)}{\pi}\int_{0}^{\infty} t^{-\alpha} R(-t,A)dt\\
+		(2)~A^\alpha &= \frac{\sin(\pi\alpha)}{\pi} \int_{0}^{\infty} A R(t,-A)dt\\
+		(3)~ \Gamma(\alpha) &= \int_{0}^{\infty} s^{\alpha-1} e^{-s} ds, ~ 0<\alpha<1.
+	\end{align*}
+	Setze $s = \mu t$: 
+	\begin{align*}
+		\mu^{-\alpha} &= \frac{1}{\Gamma(\alpha)}\int_{0}^{\infty} t^{\alpha-1} e^{-\mu t}dt\\
+		A^{-\alpha} &= \frac{1}{\Gamma(\alpha)} \int_{0}^{\infty} t^{-\alpha-1} e^{-tA}dt.
+	\end{align*}
+	$\alpha = \pm1/2$:
+	\begin{align*}
+		A^{1/2} &= \frac{\sin(\pi/2)}{\pi} \int_{0}^{\infty} t^{-1/2} AR(t,-A)dt\\
+		A^{-1/2} &= \frac{1}{\Gamma(1/2)} \int_{0}^{\infty} t^{-1/2-1} AR(t,-A)dt
+	\end{align*}
+	
+	\paragraph{5. Cauchy Problem 2. Ordnung}
+	Skalar: $a>0$. 
+	$$y''(t) = -ay(t), ~ y(0) = x_0,~ y'(0) = y_0$$
+	hat die Lösung:
+	$$y(t) = \cos(a^{1/2}t)x_0 + \sin(a^{1/2}t)(a^{-1/2}y_0).$$
+	Nun sei $A\in B(X)$, $(-\infty, 0]\subset \rho(A)$. 
+	$$y(t) = \cos(A^{1/2}t) x_0 + \sin(A^{1/2}t)(A^{-1/2}y_0)$$
+	ist die Lösung für das Operatorproblem.
 	
 	
+	\section{Funktionalkalkül für sektorielle Operatoren}
 	
+	\paragraph{Problem:} $A$ unbeschränkt auf $X$, z.B. $A = (-\laplace)$ auf $L^p(\Omega)$.
 	
+	\begin{Definition}
+		$X$ Banachraum, $X\supset D(A)\overset{A}{\rightarrow} X$ abgeschlossen. $A$ sei injektiv, $D(A)$ und $R(A) = \Bild A$ dicht in $X$. Dann ist $A$ \textbf{sektoriell} für ein $\om\in (0,\pi)$, falls 
+		\begin{itemize}
+			\item $\sigma(A)\subset \Sigma_\om = \{\lambda\in \C\colon |\arg\lambda|<\om \}$.
+			\item Es gibt eine Konstante $C_\om$ mit $\|\lambda R(\lambda, A)\| \leq C_\om$ für alle $\lambda\notin \Sigma_\om$.
+		\end{itemize}
+	\end{Definition}
+	
+	\paragraph{Notation:} $\om(A) = \inf\{\om \text{ wie oben}\}$.
+	
+	\begin{Beispiel}
+		~
+		\begin{enumerate}[a)]
+			\item Sei $A_0$ selbstadjungiert auf einem Hilbertraum $X$, $\theta\in (-\pi/2,\pi/2)$. Setze $A= e^{i\theta} A_0$. Also $\sigma(A)\subset e^{i\theta}\R$. Für $\theta \neq 0$ ist $A$ nicht selbstadjungiert, aber sektoriell. 
+			$$\|R(\lambda, A)\| = \sup_{s>0}\frac{1}{|\lambda-e^{i\theta}s|} = \frac{1}{d}.$$
+			\item $X= L^p(S,\mu)$, $Ax = mx$, $m\colon S\rightarrow \Sigma_\om\backslash\{0\}$. $A$ ist sektoriell auf $X = L^p(S,\mu)$, $\om(A)= \om$, denn 
+			$$\|R(\lambda, A)\|= \sup_{s\in S} \frac{1}{|\lambda - m(s)|} = \frac{1}{\sin(\theta-\om)} \frac{1}{|\lambda|}.$$
+			\item $A\in B(X)$, $\sigma(A)\subset \Sigma_\om \backslash\{0\}$, denn für $|\lambda >2\|A\|$ gilt
+			\begin{align*}
+				R(\lambda, A) =\left\| \sum_{n = 0}^{\infty} \frac{1}{\lambda^{n+1}}A^n\right\| \leq \frac{1}{|\lambda|} \sum_{n = 0}^\infty \left(\frac{\|A\|}{|\lambda|} \right)^n
+			\end{align*}
+			\item $A$ sei \glqq Erzeuger\grqq\ einer Operatorenhalbgruppe $T(t)$ mit $\|T(t)\|\leq C$ für $t>0$, d.h. 
+			$$R(\lambda, A) = \int_{0}^{\infty} e^{-\lambda t}T(t) dt \text{ (Laplacetransformation)}.$$
+			Ein solcher Erzeuger ist immer sektoriell, denn 
+			\begin{align*}
+				\|\lambda R(\lambda, A)\|\leq \int_0^\infty |\lambda e^{-\lambda t}| \|T(t)\| dt\leq C.
+			\end{align*}
+		\end{enumerate}
+	\end{Beispiel}
+	
+	\begin{Definition}
+		~
+		\begin{enumerate}[a)]
+			\item $H^{\infty}(\Sigma_\sigma) = \{f\colon \Sigma_\sigma\rightarrow \C \text{ analytisch und beschränkt auf }\Sigma_\sigma \}$, $\|f\|_{H^\infty} = \sup_{\lambda\in \Sigma_\sigma} |f(\lambda)| <\infty$.
+			\item Sei $\rho(\lambda) = \lambda/(1+\lambda)^2$. 
+			$$H_0^\infty(\Sigma_\sigma) = \{f\in H^\infty(\Sigma_\sigma)\colon \forall \lambda \in \Sigma_\sigma \exists \epsilon >0\colon |f(\lambda)|\leq C|\rho(\lambda)|^\epsilon \}$$
+			$f\in H_0^\infty(\Sigma_\sigma)$ bedeutet insbesondere:
+			$|f(\lambda)|\leq C|\lambda|^\epsilon$ für $|\lambda|$ klein und $|f(\lambda)|\leq C/|\lambda|^\epsilon$ für $|\lambda|$ groß.
+		\end{enumerate}
+	\end{Definition}
+	
+	\begin{Definition}
+		Sei $A$ $\om$-sektoriell und $f\in H_0^\infty(\Sigma_\sigma)$. Sei weiter $\om < \sigma$ und wähle $\om<\nu<\sigma$.
+		$$\Phi_A(f) = f(A) = \frac{1}{2\pi i}\int_{\partial \Sigma_\nu} f(\lambda) R(\lambda,A) d\lambda. ~ (+)$$
+	\end{Definition}
+	
+	\paragraph{Bemerkung.} $f(A)\in B(X)$ definiert durch das Bochner Integral $(+)$, denn $\lambda\in \partial \Sigma_\nu$: 
+	\begin{align*}
+		|f(\lambda)| \|R(\lambda, A)\|\leq \|f\|_{H^{\infty}} \frac{1}{|\lambda|}.
+	\end{align*}
+	und das Integral $(+)$ existiert als uneigentliches Integral.
+	
+	\begin{Satz}
+		Sei $A$ $\om$-sektoriell und $\om<\nu<\sigma$. Die Abbildung 
+		$$f\in H_0^{\infty}(\Sigma_\sigma)\rightarrow f(A)\in B(X)$$ ist linea, multiplikativ, stetig und es gibt die Konvergenzeigenschaft: Falls für $\lambda\in \Sigma_\sigma$, $f_n,f\in H_0^{\infty}(\Sigma_\sigma)$ mit $|f_n(\lambda)|\leq C$, $f_n(\lambda)\rightarrow f(\lambda)$, dann $f_n(A)\rightarrow f(A)$ in $B(X)$.
+	\end{Satz}
+	
+	\paragraph{Bemerkung.} Diese Aussagen \glqq erweitern\grqq\ den Dunfordkalkül. Sei $A\in B(X)$, $0\in \rho(A)$, $\sigma(A)\subset \Sigma_\om$. Hier:
+	\begin{align*}
+		f(A) &=\frac{1}{2\pi i} \int_{\Gamma} f(\lambda) R(\lambda, A) d\lambda\\
+		&= \frac{1}{2\pi i} \int_{\partial \Sigma_\nu} f(\lambda) R(\lambda, A) d\lambda
+	\end{align*}
+	Für $A\in B(X)$: Dunfort = neuer Kalkül.
+	
+	\paragraph{Notation.} $\Sigma(\sigma_1,\sigma_2) = \{\lambda\in \C \colon \sigma_1<\arg\lambda <\sigma_2 \}\backslash\{0\}$, $\partial\Sigma(\sigma_1,\sigma_2)$ erhält eine positive Orientierung.
+	
+	\begin{Lemma}
+		Sei $G\colon \Sigma(\sigma_1,\sigma_2)\rightarrow Y$, analytisch, $Y$ Banachraum (äquivalent: $x'\circ G\colon \Sigma(\sigma_1,\sigma_2)\rightarrow\C$ analytisch, für alle $x'\in X'$).
+		\begin{enumerate}[a)]
+			\item (Satz von Cauchy): Sei $\|G(\lambda)\| \leq C \frac{1}{1+|\lambda|^{1+\epsilon}}$ für $\lambda \in \overline{\Sigma(\sigma_1,\sigma_2)}$, $\epsilon>0$. Dann ist 
+			$$\int_{\partial\Sigma(\sigma_1,\sigma_2)} \sigma(\lambda) d\lambda = 0.$$
+			\item (Cauchy Formel): Sei $\|G(\lambda)\| \leq C\frac{1}{1+|\lambda|^{1+\epsilon}}$ für $\lambda \in \overline{\Sigma(\sigma_1,\sigma_2)}$. Dann ist 
+			$$G(\mu) = \frac{1}{2\pi i}\int \frac{G(\lambda)}{\lambda- \mu}d\lambda.$$
+		\end{enumerate}
+	\end{Lemma}
+	
+	\Bew $\Gamma_n = \{\lambda \in \partial \Sigma(\sigma_1,\sigma_2)\colon 1/n\leq|\lambda|\leq n \}$, $\gamma_n =\{\lambda \in \Sigma(\sigma_1,\sigma_2)\colon |\lambda|=1/n \text{ oder } |\lambda| = n \}$.\\
+	a) 
+	\begin{align*}
+		\int_{\partial \Sigma(\sigma_1,\sigma_2)} G(\lambda) d\lambda = \lim_{n\rightarrow \infty} \int_{\Gamma_n} G(\lambda) d\lambda + \lim\limits_{n\rightarrow\infty} \int_{\gamma_n} G(\lambda) d\lambda
+	\end{align*}
+	denn 
+	\begin{align*}
+		\left\| \int_{\gamma_n} G\lambda d\lambda\right\| &\leq \int_{\gamma_{n,1}} \|G(\lambda)\| d|\lambda| + \int_{\gamma_{n,2}} \|G(\lambda)\|d\lambda \\
+		&\leq l(\gamma_{n,1}) \sup\|G(\lambda)\| + l(\gamma_{n,2}) \sup\|G(\lambda)\|\\
+		&\leq 2\pi (\sigma_1+\sigma_2) \frac{1}{n} C + 2\pi(\sigma_1+\sigma_2) n \frac{1}{1 + |n|^{1+\epsilon}} \rightarrow 0.
+	\end{align*}
+	b) analog.
+	\qed
+	
+	\subsection*{Ausblick zum $H^\infty$-Kalkül}
+	
+	\begin{Definition}
+		A hat einen beschränkten $H^\infty$-Kalkül, falls $A$ sektoriell ist, $\sigma(A)\subset \Sigma_\sigma$ und es eine Konstante $C$ gibt, mit 
+		$$\|f(A)\|_{B(X)} \leq C\|f\|_{H^\infty(\Sigma_\sigma)}$$ 
+		für alle $f\in H_0^\infty(\Sigma_\sigma)$.
+	\end{Definition}
+	
+	\paragraph{Bemerkung.} Falls $(+)$ gilt, dann lässt sich der zunächst auf einer dichten Teilmenge $D(A)\cap R(A)$ definierte Operator
+	$$f(A) = \frac{1}{2\pi i} \int_{\partial \Sigma_\sigma} f(\lambda) R(\lambda, A) xd\lambda,$$
+	$x\in D(A)\cap R(A)$ zu einem beschränkten Operator $f(A) \in B(X)$ fortsetzen, das heißt $f\in H^\infty(\Sigma_\sigma)\rightarrow B(X)$ ($H^\infty$-Kalkül).\\
+	
+	Für einen sektoriellen Operator $A$ auf einem Hilbertraum $X$ sind äquivalent:
+	\begin{enumerate}[(i)]
+		\item $A$ hat einen beschränkten $H^\infty$-Kalkül mit $\sigma<\pi/2$.
+		\item Es gibt auf $X$ ein zu $\langle\m,\m\rangle$ äquivalentes Skalarprodukt $[\m,\m]$, sodass 
+		\begin{align*}
+			[Ax,x]\in \Sigma_\sigma ~ \forall x\in D(A).
+		\end{align*}
+		\item $A$ erzeugt eine analytische Halbgruppe $T(z)$, $z\in \Sigma_{\pi/2 - \sigma}$, für die in einer äquivalenten Hilbertraumnorm $\||\m|\|$ gilt: $\|| T(z)|\| \leq 1$.
+		\item $A$ hat eine \textbf{Dilation} zu einem Multiplikationsoperator, d.h. es gibt eine isometrische Einbettung $J\colon X\rightarrow L^2(\R, X)$, eine Orthogonalprojektion $P = JJ^*$ von $L^2(\R, X)$ auf $J(X)$ und einen Multiplikationsoperator $Mf(t) = (it)^\alpha f(t)$, ($\alpha >2\sigma/\pi$), sodass
+		$$\xymatrix{
+			L^2(\R,X)\ar[r]^M & L^2(\R, X)\\
+			J_X\ar[r] \ar[u] & X\ar[u]_J
+			}$$
+	\end{enumerate}
+	
+	\begin{Satz}
+		Sei $A$ $\om$-sektoriell, $\om<\nu<\sigma$. Dann ist die Abbildung $\Phi_A\colon f\in H_0^\infty(\Sigma_\sigma) \rightarrow f(A) \in B(X)$ linear, multiplikativ, beschränkt und es gilt (Konvergenzeigenschaft): $f, f\in H_0^\infty(\Sigma_\sigma)$ mit $|f_n(\lambda)|\leq C$ und $f_n(\lambda)\rightarrow f(\lambda)$, $\lambda\in \Sigma_\sigma$. Außerdem gilt für alle $g\in H_0^\infty(\Sigma_\sigma)$:
+		$$\lim\limits_{n\rightarrow\infty} \Phi_A(gf_n) = \Phi(gf)\text{ in } B(X).$$
+	\end{Satz}
+	
+	\paragraph{Beachte:}$(+)$ $\|f(A)\|_{B(X)} \leq C_\nu \int_{\partial \Sigma_\sigma} |f(\lambda)|\frac{d|\lambda|}{|lambda|}$
+	
+	\Bew 
+	$$\|f(A)\|\leq \frac{1}{2\pi} \int_{\partial\Sigma_\sigma} \frac{|f(\lambda)|}{|\lambda|} \|\lambda R(\lambda, A)\| d|\lambda| \leq \left(\frac{C_\nu'}{2\pi} \right) \int_{\partial\Sigma_\sigma} \frac{|f(\lambda)|}{|\lambda|} d\lambda.$$
+	 Also gilt $(+)$, falls $f\in H_0^\infty(\Sigma_\sigma)$.
+	 
+	 $\Phi_A$ ist offensichtlich linear.
+	 
+	 $\Phi_A$ ist multiplikativ: $\Phi_A(g)\Phi_A(f) = \Phi_A(gf)$. Wähle $\nu_1,\nu_2$ mit $\om <\nu_1 <\nu_2 <\sigma$. 
+	 \begin{align*}
+	 	\Phi_A(f)\m \Phi_A(g) &= \left(\frac{1}{2\pi i} \int_{\partial\Sigma_{\nu_1}} f(\mu) R(\mu,A) d\mu \right) \left(\frac{1}{2\pi i}\int_{\partial \Sigma_{\nu_2}} g(\lambda) R(\lambda, A) d\lambda \right)\\
+	 	&= \frac{1}{(2\pi i)^2} \int_{\partial \Sigma_{\nu_1}} \left(
+	 	\int_{\partial\Sigma_{\nu_2}}f(\mu) g(\lambda) R(\mu,A) R(\lambda,A) d\lambda \right)d\mu \\
+	 	&=\frac{1}{2\pi i}\int_{\partial\Sigma_{\nu_2}} g(x) \left[\frac{1}{2\pi i} \left(\int_{\partial\Sigma_{\nu_1}} \frac{f(\mu)}{\mu-\lambda} d\mu \right) \right]R(\lambda, A) d\lambda\\
+	 	&+\frac{1}{2\pi i} \int_{\partial\Sigma_{\nu_1}} f(\mu) \left[\frac{1}{2\pi i} \int_{\partial\Sigma_{\nu_2}} \frac{g(\lambda)}{\lambda-\mu} d\lambda \right]R(\mu,A) d\mu\\
+	 	&= \frac{1}{2\pi i} \int_{\partial\Sigma_{\nu_1}} f(\mu)g(\mu) R(\mu, A) d\mu\\
+	 	&= \Phi_A(f\m g).
+	 \end{align*}
+	 Konvergenzeigenschaft:
+	 \begin{align*}
+	 	H_n(\lambda) &= \left[f_n(\lambda) - f(\lambda) \right] g(\lambda) R(\lambda, A) \in B(X),~ \lambda\in \partial\Sigma_\nu\\
+	 	\|H_n(X)\| &\leq |f_n(\lambda) - f(\lambda)| \frac{g(\lambda)}{|\lambda|} \|\lambda R(\lambda, A)\|,\\
+	 	\|H_n(\lambda)\|&\rightarrow 0, ~ n\rightarrow \infty.\\
+	 	\|\Phi_A(f_n g)- \Phi_A(fg) \| &\leq  \frac{1}{2\pi} \| \int_{\partial\Sigma_\nu} (f_n(\lambda) - f(\lambda)) g(\lambda) R(\lambda, A) d\lambda\| \\
+	 	&\leq \frac{1}{2\pi} \int_{\partial \Sigma_\nu} \|H_n(\lambda)\| d|\lambda|\rightarrow 0
+	 \end{align*}
+	 \qed
+	 
+	 \paragraph{Ziel:} $e^{-\lambda}$, $\frac{1}{\mu-\lambda}$, rationale Funktionen. 
+	 
+	 \begin{Lemma}
+	 	Sei $f\in H^\infty(\Sigma_\sigma)$ und es erfülle
+	 	\begin{itemize}
+	 		\item $f$ ist analytisch in $B(0,2\delta)$, $\delta >0$.
+	 		\item $|f(\lambda)| \leq \frac{C}{(1+|\lambda|)^\epsilon}$, $\epsilon> 0$. 
+	 	\end{itemize}
+	 	Für einen $\om$-sektoriellen Operator $A$ mit $\om<\delta$und $x\in \Bild(A)$ gilt:
+	 	\begin{enumerate}[(i)]
+	 		\item $I(f)x = \int_{\partial\Sigma\nu} f(\lambda) R(\lambda, A) d\lambda = \int_{\partial \Gamma_\delta} f(\lambda) R(\lambda, A)d\lambda$.
+	 		\item $\|I(f)x\|\leq M\left(\inf\int_{\Gamma_\epsilon} |f(x)| \frac{d|\lambda|}{|\lambda|} \right) \|x\|$ mit 
+	 		$$M = \sup_{\lambda\in \partial\Sigma_\nu} \|\lambda(R(\lambda, A)), ~ \Gamma_\delta= \partial[\Sigma_\nu\cup B(0,\delta)].$$
+	 	\end{enumerate}
+	 \end{Lemma}
+	 
+	 \Bew (i) Da $x\in \Bild A$, wähle $y\in D(A)$ mit $x = Ay$. $\Rightarrow$ $R(\lambda, A)x = R(\lambda, A) Ay = \lambda R(\lambda, A)y - y$. $\|R(\lambda, A)x\|$ ist beschränkt in $B(0,2\delta)$.
+	 \begin{align*}
+	 	\int_{\partial\Sigma_\nu} f(\lambda) R(\lambda, A)x d\lambda &= \lim\limits_{\epsilon\rightarrow 0} \int_{\partial\Gamma_\epsilon} f(\lambda) R(\lambda, A) xd\lambda \text{ (nach Lebesgue)}\\
+	 	&= \int_{\Gamma_\delta} f(\lambda) R(\lambda, A) d\lambda \text{ (nach Chauchy)}\\
+	 	&\Rightarrow \text{ (i)}
+	 \end{align*}
+	 
+	 (ii) $$\|I(f)x \| \leq \int_{\partial \Gamma_\delta} \frac{|f(\lambda)|}{|\lambda|} \|\lambda R(\lambda, A)x\| d|\lambda| \leq \tilde{C}' \|x\|.$$
+	 \qed
+	 
+	 \begin{Beispiel}
+	 	Sei $\rho(\lambda) = \frac{\lambda}{1+\lambda^2}$. Dann gilt
+	 	\begin{align*}
+	 		\rho(A) = A(I+A)^{-2}\text{ und}\\
+	 		\Bild(\rho(A)) = D(A)\cap \Bild(A).
+	 	\end{align*}
+	 \end{Beispiel}
+	 
+	 \Bew Wende Lemma 3.9 an auf $f(\lambda) = \frac{1}{1+\lambda}$.
+	 $$R(-1,A)x = -\frac{1}{2\pi i} \int_{\partial \Sigma_\nu} \frac{1}{\lambda + 1} R(\lambda, A) x d\lambda$$
+	 wobei $\nu\in (\om, \pi)$. 
+	 \begin{align*}
+	 	A R(-1,A)^2 x &= \frac{1}{2\pi i}\int_{\partial\Sigma_\nu} \frac{-1}{\lambda + 1} A R(-1, A) R(\lambda, A) xd\lambda\\
+	 	&=  \frac{1}{2\pi i} \int_{\partial\Sigma_\nu} \frac{1}{\lambda + 1} \frac{AR(\lambda, A) x - A R(-1,A)x}{\lambda + 1} d\lambda\\
+	 	&= \frac{1}{2\pi i} \int_{\partial\Sigma_\nu} \frac{1}{(1+\lambda)^2} R(\lambda, A) d\lambda + \frac{1}{2\pi i} \int_{\partial\Sigma_\nu} \frac{1}{1+\lambda^2}d\lambda (-x-AR(-1,A))x\\
+	 	&= \rho(A) + 0
+	 \end{align*}
+	 $AR(-1,A) x = A(I+A)^{-2}x = \rho(A)x$ für $x\in \Bild(A)$, dicht in $X$.
+	 
+	 Bleibt zu zeigen: $R(A(1+A)^{-2}) = D(A)\cap \Bild(A)$.\\
+	 \glqq $\subseteq$\grqq: Sei $y\in \Bild(A(I+A)^{-2})$. Wähle $x\in X$ mit $y= A(I+A)^{-2}x$ $\Rightarrow$ $y = (I+A)^{-1} z\in D(A)$, da $z= A(I+A)^{-1}\in X$. $y= A\tilde{z} \in \Bild(A)$, da $\tilde{z} = (I+A)^{-1}(I+A)^{-1}x\in D(A)$.\\
+	 \glqq $\supseteq$\grqq $y:= (1+A) A^{-1}(I+A)x = (1+A)A^{-1}x + (1+A)x$. $A(I+A)^{-2}y = A(I+A)^{-1}(I+A)^{-1}(I+A)A^{-1} (I+A)x = x$.
+	 \qed
+	 
+	 \begin{Definition}
+	 	Sei $A$ $\om$-sektoriell auf $X$ $f\in H^\infty(\Sigma_\sigma)$, $\sigma> \om$, $x\in D(A)\cap \Bild(A)$. Setze $f(A)x = (f\m\rho)(A)y$ mit $y=\rho(A)^{-1}x$. Also ist $f(A)$ auf der dichten Teilmenge $D(A)\cap \Bild(A)$ definiert. 
+	 \end{Definition}
+	 
+	 \begin{Bemerkung}
+	 	\begin{enumerate}
+	 		\item $f\rho\in H_0^\infty(\Sigma_\sigma)$. Also $(f\rho)(A)\in B(X)$ nach 3.7, 3.8. 
+	 		\item Falls $f\in H_0^{\infty}(\Sigma_\sigma)$, dann stimmen die beiden Definitionen 
+	 		$$f(A)x = (f\rho)(\rho^{-1}(x))$$
+	 		überein, da $\Phi_A$ auf $H_0^\infty$ multiplikativ ist. 
+	 		\item $f(A)$, $D(f(A)) = D(A)\cap \Bild(A)$ ist abschließbar (Übung).
+	 	\end{enumerate}
+	 \end{Bemerkung}
+	 
+	 \begin{Definition}
+	 	Sei $A$ $\om$-sektoriell auf $X$, $\sigma > \om$. 
+	 	$$H_A^\infty(\Sigma_\sigma) = \{f\in H^\infty(\Sigma_\sigma)\colon f(A) \in B(X) \}.$$
+	 	Falls $H_A^\infty(\Sigma_\sigma) = H^\infty(\Sigma_\sigma)$, dann hat $A$ einen \textbf{beschränkten} $\mathbf{H^\infty}$\textbf{-Funktionalkalkül}.
+	 \end{Definition}
+	
+	\begin{Bemerkung}
+		$H_0^\infty(\Sigma_\sigma)\subset H_A^\infty(\Sigma_\sigma)$. $f$ wie in 3.9 ist auch in $H_A^\infty(\Sigma_\sigma)$. Es gibt auch Operatoren, die keinen beschränkten $H^\infty$-Kalkül haben. Diese sind jedoch exotisch.
+	\end{Bemerkung}
+	
+	\begin{Beispiel}
+		~
+		\begin{enumerate}[a)]
+			\item $H_0^\infty(\Sigma_\sigma) \subseteq H_A^\infty(\Sigma_\sigma)$.
+			\item $r_\mu(\lambda) = \frac{1}{\mu-\lambda}$, $\mu\notin \overline{\Sigma_\sigma}\colon r_\mu(A) = R(\mu, A)$.\\
+			\item $f(\lambda)\equiv 1$: $f(A) = \id_X$.
+			\item $f(\lambda) = \prod_{j = 1}^n \frac{a_j-\lambda}{\mu_j-\lambda}$  mit $a_j \in \C$, $\mu_j\notin \overline{\Sigma_\sigma}$: $f(A) = \prod_{j = 1}^{ n }(a_j- A) R(\mu_j, A)$ [Übung mit Lemma 3.9].
+		\end{enumerate}
+	\end{Beispiel}
+	
+	\begin{Satz}
+		$\Phi_A\colon H_A^\infty(\Sigma_\sigma) \rightarrow B(X)$ ist linear, multiplikativ und es gilt: 
+		\begin{itemize}
+			\item[$(+)$] Sei $|f_n(\lambda)|\leq C_1$, $f_n(\lambda)\rightarrow f(\lambda)$ für $\lambda\in \Sigma_\sigma$ mit $f_n\in H_A^\infty(\Sigma_\sigma)$ und $f\in H^\infty(\Sigma_\sigma)$ und $\|f_n(A)\|_{B(X)}\leq C$.
+		\end{itemize}
+		Dann ist $f\in H_A^\infty(\Sigma_\sigma)$ und $\|f(A)\|_{B(X)}\leq C$.
+	\end{Satz}
+	
+	\paragraph{Folgerung.} Die lineare, unbeschränkte Abbildung $H^\infty(\Sigma_\sigma)\supseteq H_A^\infty(\Sigma_\sigma)\overset{\Phi_A}{\rightarrow} B(X)$ ist abgeschlossen.
+	
+	\Bew Linear und multiplikativ wie bisher. Zu $(+)$: Es gilt für $\rho(\lambda) = \lambda(1+\lambda^2)^{-1}\in H_0^\infty(\Sigma_\sigma)$
+	\begin{align*}
+		\|(f_n\rho)(A) - (f\rho)(A)\|_{B(X)} & \rightarrow 0\\
+		\Rightarrow \|f_n(A)x-f(A)x\|_X& \Rightarrow 0
+	\end{align*}
+	für $x= \rho(A)y\in D(A)\cap\Bild(A)$ für $y\in X$.
+	\begin{align*}
+		&\Rightarrow \lim \|f_n(A)x\| = \|f(A)x\| \text{ für } x\in D(A)\cap \Bild(A)\\
+		&\Rightarrow \|f(A)x\|\leq C\|X\| \text{ für } x\text{ in dichter Teilmenge von } X\\
+		&\Rightarrow f(A)\in B(X), ~ \|f(A)\|\leq C.
+	\end{align*}
+	
+	\begin{Definition}
+		$A$ hat einen beschränkten $H^\infty(\Sigma_\sigma)$-Kalkül, falls $H_A^\infty(\Sigma_\sigma) = H^\infty(\Sigma_\sigma)$.
+	\end{Definition}
+	
+	\begin{Beispiel}
+		~
+		\begin{enumerate}[a)]
+			\item Fourierreihen auf $L^p(0,1)$:
+			\begin{align*}
+				e_n(t) = e^{2\pi int},~ t\in [0,1], \text{ ONB von } L^2[0,1]
+			\end{align*}
+			Fourierkoeffizienten für $x\in L^p(0,1)$: 
+			$$\hat x(n) = \int_{0}^{1}e^{-2\pi int} x(t)dt,~ n \in \Z.$$
+			Fourierdarstellung: 
+			$$x= \sum_{n\in \Z} \hat x(n) e_n \text{ in } L^p(0,1), ~n<\infty.$$
+			\item Diagonaloperatoren bezüglich der Fourierreihen. Sei $\alpha_n > 0$, $n\in \Z$, gegeben. Definiere einen unbeschränkten Operator $A$ auf $L^p(0,1)$:  
+			$$D(A)=\{x\in L^p(0,1)\colon \sum_{n\in \Z}\hat x(n) \alpha_n e_n \text{ konvergiert in } L^p \}.$$
+			$x\in D(A)$: $Ax= \sum_{n\in \Z} \hat x(n) \alpha_n e_n$. $H^\infty$-Kalkül für $A$:
+			\begin{enumerate}[(i)]
+				\item Sei $\alpha_n = n^2$. Dann ist 
+				$A = -\laplace = -\frac{d^2}{dt^2}$ ein beschränkter $H^\infty$-Kalkül für $p\in (1,\infty)$ aber für $p = 1$, $p= \infty$ \textbf{nicht}.
+				\item Sei $\alpha_n= 2^n$. Dann hat $A$ einen beschränkten $H^\infty$-Kalkül für $p = 2$, aber für \textbf{kein} $p\neq 2$.
+				\item $\alpha_n = p_n\in \mathcal{P}$. $A$ hat keinen $H^\infty$-Kalkül.
+				\item $\alpha_n\sim n^q$, $q\in \R^+$. Dann hat $A$ einen $H^\infty$-Kalkül.
+			\end{enumerate}
+		\end{enumerate}
+	\end{Beispiel}
+	
+	\begin{Satz}
+		Sei $A$ ein $\om$-sektorieller Operator auf einem Banachraum $X$ mit $\om<\pi/2$. Wähle $\delta\in (0, \pi/2 - \om)$, $f_z(\lambda) = e^{-z\lambda}$, $z\in \Sigma_\delta$. Dann gilt für $T(z) = f_z(A)$:
+		\begin{enumerate}[(i)]
+			\item $z\in \Sigma_\delta\rightarrow T(z)\in B(X)$ beschränkt und analytisch und $\frac{d}{dz}T(z) = -AT(z)$, ($T(z) = e^{-zA}$.
+			\item $T(z_1)T(z_2) = T(z_1+z_2)$, $z_1,z_2\in \Sigma_\delta$.
+			\item $T(z)x\rightarrow x$ für $z\rightarrow 0$ und $x\in X$.
+			\item Außerdem gilt für $Re\lambda<0$
+			$$R(\lambda, A) = \int_0^\infty e^{-\lambda t}T(t) dt.$$
+		\end{enumerate}
+	\end{Satz}
+	
+	\begin{Definition}
+		$T(z)$ mit den Eigenschaften (i)-(iii) heißt \textbf{analytische Halbgruppe} mit Erzeuger $A$.
+	\end{Definition}
+	
+	\Bew Zeige $T(z)$, $z\in \Sigma_\sigma$, ist beschränkt in $B(X)$. Nach Lemma 3.9 gilt wegen $T(z) = f_z(A)$
+	\begin{align*}
+		\|T(z)\| &= \|f_z(A)\| \leq \inf \int_{\Gamma_\epsilon} \frac{|f_z(\lambda)|}{|\lambda|} d|\lambda|\\
+		\int_{\Gamma_\epsilon} |e^{-z\lambda}|\frac{d|\lambda}{|\lambda|} &\leq \int_{\Gamma_\epsilon\cap B_0(\epsilon)} |e^{-z\lambda}|\frac{d|\lambda|}{|\lambda|} +\int_{\Gamma_\epsilon \cap B_0(i)} |e^{-z\lambda}|\frac{d|\lambda|}{|\lambda|} = (*)
+	\end{align*}
+	Parametrisierung der Komplexen Wegintegrale $\theta\rightarrow \epsilon e^{i\theta}$ (erstes Integral), $t\rightarrow \lambda = te^{i\pm\nu}$ (zweites Integral).
+	\begin{align*}
+		(*)&\leq \int_0^{2\pi} e^{-\epsilon r\cos(\om+\theta)}\frac{\epsilon d\theta}{\epsilon} + \int_\epsilon^\infty e^{-tr\cos(\pm\nu + \om)}\frac{dt}{t}\\
+		&\leq 2\pi e^{+\epsilon r} + \sum_{+,-} e \int_{\epsilon a\pm} \frac{dt}{t}\leq C(\om) 
+	\end{align*}
+	
+	\paragraph{Bemerkung.} Sektorielle Operatoren mit $\om<\pi/2$ $\Leftrightarrow$ $A$ ist Erzeuger einer analytischen Halbgruppe.
 	
 	
 	
