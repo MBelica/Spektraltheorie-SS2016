@@ -10,7 +10,7 @@ Verständnisprobleme) - ich bitte deswegen um Verständnis.
 Den Verbesserungsvorschlag (wenn auch nur
 Rechtschreibfehler) kann man
 * entweder direkt selbst umsetzen via oder
-* mir per Email (ProxiStyx@hmamail.com) schicken.
+* mir per Email (MBelica@hmamail.com) schicken.
 
 Ich werde dann versuchen sowohl die Vorlesung, als auch eure Verbesserungsvorschläge zeitnah einzuarbeiten.
 
